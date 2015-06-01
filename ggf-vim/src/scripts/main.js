@@ -6,6 +6,7 @@ var bespoke = require('bespoke'),
   bullets = require('bespoke-bullets'),
   backdrop = require('bespoke-backdrop'),
   hash = require('bespoke-hash'),
+  substeps = require('bespoke-substeps/dom'),
   progress = require('bespoke-progress');
 
 // Bespoke.js
@@ -14,6 +15,7 @@ bespoke.from('article', [
   keys(),
   touch(),
   bullets('li, .bullet'),
+  substeps(),
   backdrop(),
   hash(),
   progress()
