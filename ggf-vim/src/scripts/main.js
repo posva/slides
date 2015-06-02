@@ -24,5 +24,5 @@ bespoke.from('article', [
 // Prism syntax highlighting
 // This is actually loaded from "bower_components" thanks to
 // debowerify: https://github.com/eugeneware/debowerify
-require('prism');
+require('prismjs');
 

@@ -15,14 +15,15 @@ var pkg = require('./package.json'),
   del = require('del'),
   through = require('through'),
   opn = require('opn'),
-  ghpages = require('gh-pages'),
   path = require('path'),
   isDist = process.argv.indexOf('serve') === -1;
 
 gulp.task('js', ['clean:js'], function() {
   return gulp.src('src/scripts/main.js')
     .pipe(isDist ? through() : plumber())
-    .pipe(browserify({ transform: ['debowerify'], debug: !isDist }))
+    .pipe(browserify({
+      debug: !isDist
+    }))
     .pipe(isDist ? uglify() : through())
     .pipe(rename('build.js'))
     .pipe(gulp.dest('dist/build'))
@@ -32,7 +33,9 @@ gulp.task('js', ['clean:js'], function() {
 gulp.task('html', ['clean:html'], function() {
   return gulp.src('src/index.jade')
     .pipe(isDist ? through() : plumber())
-    .pipe(jade({ pretty: true }))
+    .pipe(jade({
+      pretty: true
+    }))
     .pipe(rename('index.html'))
     .pipe(gulp.dest('dist'))
     .pipe(connect.reload());
@@ -42,11 +45,13 @@ gulp.task('css', ['clean:css'], function() {
   return gulp.src('src/styles/main.styl')
     .pipe(isDist ? through() : plumber())
     .pipe(stylus({
-      // Allow CSS to be imported from node_modules and bower_components
+      // Allow CSS to be imported from node_modules
       'include css': true,
-      'paths': ['./node_modules', './bower_components']
+      'paths': ['../node_modules']
     }))
-    .pipe(autoprefixer('last 2 versions', { map: false }))
+    .pipe(autoprefixer('last 2 versions', {
+      map: false
+    }))
     .pipe(isDist ? csso() : through())
     .pipe(rename('build.css'))
     .pipe(gulp.dest('dist/build'))
@@ -86,7 +91,7 @@ gulp.task('connect', ['build'], function() {
   });
 });
 
-gulp.task('open', ['connect'], function (done) {
+gulp.task('open', ['connect'], function(done) {
   opn('http://localhost:8080', done);
 });
 
@@ -100,12 +105,13 @@ gulp.task('watch', function() {
   ], ['js']);
 });
 
-gulp.task('deploy', ['build'], function(done) {
-  ghpages.publish(path.join(__dirname, 'dist'), { logger: gutil.log }, done);
+gulp.task('bundle', ['build'], function() {
+  return gulp.src('dist/**/*')
+    .pipe(gulp.dest(path.join('../dist', path.basename(path.resolve('.')))));
 });
 
 gulp.task('build', ['js', 'html', 'css', 'images']);
 
 gulp.task('serve', ['open', 'watch']);
 
-gulp.task('default', ['build']);
+gulp.task('default', ['bundle']);
