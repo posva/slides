@@ -16,7 +16,22 @@ var pkg = require('./package.json'),
   through = require('through'),
   opn = require('opn'),
   path = require('path'),
+  webshot = require('webshot'),
   isDist = process.argv.indexOf('serve') === -1;
+
+
+gulp.task('webshot', ['build'], function(done) {
+  connect.server({
+    root: 'dist',
+    port: 8888
+  });
+  webshot('http://localhost:8888', 'dist/thumbail.png', function(err) {
+    if (err)
+      console.error('Error webshotting', err);
+    connect.serverClose();
+    done();
+  });
+});
 
 gulp.task('js', ['clean:js'], function() {
   return gulp.src('src/scripts/main.js')
