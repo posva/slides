@@ -47,6 +47,11 @@ spacer_gif = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAAB
 
 // bespoke.js layout styles
 
+.pull-left
+  float: left !important;
+.pull-right
+  float: right !important;
+
 article
   transition: all .3s ease
   display: none
@@ -67,6 +72,36 @@ article
       background: primary
     &.white
       background: white
+
+section
+  .bottom
+    size: 80% 128px
+    position: relative
+    bottom: -64px
+
+  &.full
+    size: 100% 100%
+    position: initial
+    margin: initial
+    background: url(../images/sonic-running.gif) no-repeat center center
+    -webkit-background-size: cover
+
+    &::before
+      content: ''
+      background: rgba(0, 0, 0, 0.6)
+      size: 80%
+      position: absolute
+      left: 10%
+      top: 10%
+      z-index: -1
+
+  .icon-link
+
+  .logo
+    max-width: 128px
+
+  .icon
+    max-width: 64px
 
 .bespoke-slide
   transition:
@@ -242,6 +277,7 @@ small
 a
   color: primary
   text-decoration: none
+  border-bottom: 0
   &.black
     color: black
   .bespoke-slide.light &

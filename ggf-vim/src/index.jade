@@ -11,8 +11,13 @@ html
 
     article
 
-      section
-        h1 Gotta Go Fast: Vim
+      section.full
+        img.logo(src='images/vimlogo.svg')
+        h1 Gotta Go Fast
+        div.bottom
+          a.pull-right.icon-link(href='https://github.com/posva')
+            img.icon(src='images/githubicon.svg')
+            span posva
 
       section
         h2 Keyboard Interaction
@@ -46,10 +51,6 @@ html
         h2 Named Route
         h3 Powered by <a href="https://github.com/markdalgleish/bespoke-hash">bespoke-hash</a>
         p Look up! This route has been named with a <em>'data-bespoke-hash'</em> attribute.
-
-      section.emphatic-text(data-bespoke-backdrop='emphatic')
-        h2 Emphatic Slide!
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-backdrop">bespoke-backdrop</a>
 
       section
         h2.bullet Just the beginning...
