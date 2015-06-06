@@ -3,9 +3,14 @@
 
 // Import CSS from "node_modules" and "bower_components"
 // thanks to Stylus' "import css" and "paths" options
+@import 'Skeleton/css/skeleton.css'
 
+code, pre
+  background: initial
+  border: initial
+  background: hsl(0, 0%, 8%) !important
+  overflow: visible !important
 @import 'prismjs/themes/prism-twilight.css'
-// Check out "bower_components/prism/themes/" for available themes
 
 @import 'bespoke-substeps/style.css'
 
@@ -15,7 +20,7 @@
 
 primary = #06C510
 
-slide_width = 800px
+slide_width = 80%
 slide_height = 600px
 slide_background = transparent
 
@@ -73,18 +78,25 @@ article
     &.white
       background: white
 
+.iframe
+  iframe
+    background: white
+
 section
+  .notes
+    display: none
   .bottom
     size: 80% 128px
-    position: relative
-    bottom: -64px
+    relative: bottom -64px
+
+  h1, h2
+    text-transform: initial
 
   &.full
     size: 100% 100%
-    position: initial
+    absolute: top left
     margin: initial
-    background: url(../images/sonic-running.gif) no-repeat center center
-    -webkit-background-size: cover
+    -webkit-background-size: cover !important
 
     &::before
       content: ''
@@ -189,9 +201,9 @@ section
   top: 0
   left: 0
   right: 0
-  height: 5px
+  height: 2px
   @media only screen and (min-width: 1366px)
-    height: 10px
+    height: 4px
   @media print
     display: none
 
@@ -219,11 +231,13 @@ pre
 
 // content styles
 
+.columns
+  padding-right: 1em
 body
   background: #303030
   font-family: open sans, helvetica, arial, sans-serif
   font-weight: 300
-  font-size: 18px
+  font-size: 23px
   color: #f0f0f0
   .gif
     color: rgba(255,255,255,0.8)
@@ -231,7 +245,7 @@ body
     color: rgba(0,0,0,0.5)
 
 h1
-  font-size: 72px
+  font-size: 2.35em
   font-weight: 600
   line-height: 82px
   letter-spacing: -2px
@@ -239,7 +253,7 @@ h1
 
 h2
   font-weight: 300
-  font-size: 42px
+  font-size: 1.75em
   letter-spacing: -1px
   margin-bottom: 8px
   color: #f0f0f0
@@ -247,7 +261,7 @@ h2
     color: rgba(0,0,0,0.6)
 
 h3
-  font-size: 24px
+  font-size: 1.25em
   font-weight: 300
   margin-bottom: 24px
   color: #e0e0e0

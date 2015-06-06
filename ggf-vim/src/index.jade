@@ -6,12 +6,17 @@ html
     title Gotta Go Fast: Vim
 
     link(rel='stylesheet', type='text/css', href='build/build.css')
+    link(rel='icon' type='image/png' href='images/posvaicon.png')
 
   body
 
     article
 
-      section.full
+      mixin section(back)
+        section.full(style='background: url(../images/' + back + ') no-repeat center center; ')
+          block
+
+      +section('sonic-running.gif')
         img.logo(src='images/vimlogo.svg')
         h1 Gotta Go Fast
         div.bottom
@@ -20,20 +25,43 @@ html
             span posva
 
       section
-        h2 Keyboard Interaction
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-keys">bespoke-keys</a>
+        .notes
+          p Je suis sur que tout le monde a entendu parler de vim.
+          | C'est normal, ça existe depuis 40 ans !
+        h2 Vim ?
+        h3 Ça me dit quelquechose
+
+      +section('timetravel.gif')
+        h1 1976
 
       section
-        h2 Touch Interaction
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-touch">bespoke-touch</a>
+        h2 Dans la même année
+        .row
+          .seven.columns
+            img.u-max-full-width(src='images/apple1.jpg')
+          .five.colums
+            h3.bullet Apple 1
+            ul
+              li Assemblé à la main
+              li CPU à 1 Mhz
+              li 4 Kb de mémoire
+              li 40x24 characters
 
-      section
-        h2 Bullet List
-        h3.bullet Powered by <a href="https://github.com/markdalgleish/bespoke-bullets">bespoke-bullets</a>
-        ul
-          li Bullet 1
-          li Bullet 2
-          li Bullet 3
+      +section('vi-screen.png')
+        h1 Vi
+        h2 Mode visuel pour Ex
+
+      +section('vim-screen.png')
+        h1 Vim (1991)
+        h2.bullet Clone de Vi
+        h2.bullet Ameiloré
+
+      section.iframe
+        .notes
+          p Bien qu'il soit paru il y a plus de 20 ans il continue à être utilisé
+          | Cela est du à l'énorme gain que L'utilisation de Vim aporte à un dev
+        script(type='text/javascript'
+          src='//www.google.com/trends/embed.js?hl=en-US&q=Vim,+Sublime+Text,+Emacs&date=1/2004+133m&cmpt=q&tz&tz&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=800&h=430')
 
       section
         h2 Syntax Highlighting
@@ -47,22 +75,7 @@ html
               bullets('li, .bullet')
             ]);
 
-      section(data-bespoke-hash='named-route')
-        h2 Named Route
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-hash">bespoke-hash</a>
-        p Look up! This route has been named with a <em>'data-bespoke-hash'</em> attribute.
-
-      section
-        h2.bullet Just the beginning...
-        br
-        ul
-          li Edit <a href="http://jade-lang.com/">Jade</a> markup in <em>'src/index.jade'</em>
-          li Edit <a href="http://learnboost.github.io/stylus/">Stylus</a> styles in <em>'src/styles/main.styl'</em>
-          li Edit JavaScript in <em>'src/scripts/main.js'</em>
-        br
-        ul
-          li
-            strong Enjoy! :)
-            a(href='http://twitter.com/markdalgleish')  -@markdalgleish
+      +section('ending.gif')
+        h2 Des questions ?
 
     script(src='build/build.js')
