@@ -13,6 +13,9 @@ html
     article
 
       mixin section(back)
+        section.full-text(style='background: url(../images/' + back + ') no-repeat center center; ')
+          block
+      mixin full(back)
         section.full(style='background: url(../images/' + back + ') no-repeat center center; ')
           block
 
@@ -38,7 +41,7 @@ html
         h2 Dans la même année
         .row
           .seven.columns
-            img.u-max-full-width(src='images/apple1.jpg')
+            img.u-max-full-width(src='images/apple1.png')
           .five.colums
             h3.bullet Apple 1
             ul
@@ -60,8 +63,109 @@ html
         .notes
           p Bien qu'il soit paru il y a plus de 20 ans il continue à être utilisé
           | Cela est du à l'énorme gain que L'utilisation de Vim aporte à un dev
+        h2 Trends
         script(type='text/javascript'
           src='//www.google.com/trends/embed.js?hl=en-US&q=Vim,+Sublime+Text,+Emacs&date=1/2004+133m&cmpt=q&tz&tz&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=800&h=430')
+
+      section
+        .notes
+          p Il ne faut pas voir vim comme un editeur de texte mais plutôt comme
+          | une façon d'éditer du texte. Une façon d'éditer le texte qui change
+          | la vie à tout développeur. Je n'ai jamais connu un seul qui regrette
+          | d'avoir apris vim et qui ne s'en serve pas aujourd'hui
+        h2.bullet Pourquoi apprendre Vim
+        ul
+          li Taper plus vite
+          li Taper moins
+          li Répéter facilement
+          li Programmer l'édition
+          li C'est amusant !
+
+      section
+        .notes
+          p Au lieu de vouloir tout apprendre d'un coup il faut aller par bouts.
+          | Apprendre d'abord à s'en servir comme nimporte quel autre éditeur.
+        h2 3 étapes
+        ul
+          li
+            h3 Survivre dans Vim
+          li
+            h3 Apprendre à s'en servir
+          li
+            h3 Super-pouvoirs
+
+      +full('survive.gif')
+
+      section
+        .notes
+          p Vim est par défaut en mode normal. Ce mode permet de faire des commandes
+          | et bien plus de choses qu'on verra par la suite. Pour écrire du texte comme
+          | dans n'importe quel autre éditeur il faut entrer dans le mode insertion
+        h2 La base
+        ul
+          li <pre>i</pre> rentrer en mode insertion
+          li <pre>ESC</pre> pour sortir
+          li <pre>:e</pre> pour éditer un fichier
+          li <pre>:w</pre> pour le sauvegarder
+          li <pre>dd</pre> pour couper une ligne
+          li <pre>p</pre> pour la coller
+
+      +full('start-typing.gif')
+
+      +full('vim-base.png')
+        .notes
+          p Tu ouvre vim et çaç fait un peu peur. Pas du tout envie de coder sur ça
+
+      section
+        .notes
+          p Petit détail de vim. Il faut le configurer alors que n'a pas ouvert !
+        h2.bullet Prendre une config toute faite !
+        ul
+          li
+            a(href='http://vim.spf13.com') spf13
+          li
+            a(href='https://github.com/joom/vim-starter') joom/vim-starter
+          li
+            a(href='https://github.com/posva/gotta-go-fast-vim') Gotta go fast
+
+      +full('vim-with-config.png')
+        .notes
+          p On a un éditeur dont on ne sais pas se servir encore mais dans lequel on
+          | peut travailler sans perdre beaucoup de productivité. Mais ce n'est bien
+          | sur pas suffisant !
+
+      +full('comfortable.gif')
+
+      section
+        .notes
+          p Tout movement réalisé en mode Normal en vim est appelé une motion. Presque
+          | toutes le commandes sont utilisées avec des motions. Les motiosn bougent le curseur
+          | et permettent de se déplacer de façon plus rapide. En effet on utilise le clavier au
+          | lieu de la souris et on gagne du temps. Il existe plein de motions permettant de
+          | se déplacer là où on veut dans un mot, dans une ligne ou dans un fichier.
+        h1 Les Motions
+
+      section
+        h2 Bouger entre mots
+        ul
+          li words: <pre>w</pre>, <pre>b</pre>, <pre>e</pre>
+          li Words: <pre>W</pre>, <pre>B</pre>, <pre>E</pre>
+
+        img.bullet(src='images/word-move.png')
+
+        .notes
+          p On peut considerer <pre>foo-bar</pre> comme un mot
+          | C'est utile en web
+
+      section
+        h2 Pour aller plus loin
+        ul
+          li
+            a(href='http://www.moolenaar.net/habits.html') Seven habits of effective text editing
+          li
+            a(href='http://rayninfo.co.uk/vimtips.html') Best of Vim
+          li
+            a(href='http://yannesposito.com/Scratch/en/blog/Vim-as-IDE/') Vim as an IDE
 
       section
         h2 Syntax Highlighting
