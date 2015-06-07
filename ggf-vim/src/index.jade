@@ -103,12 +103,19 @@ html
           | dans n'importe quel autre éditeur il faut entrer dans le mode insertion
         h2 La base
         ul
-          li <pre>i</pre> rentrer en mode insertion
-          li <pre>ESC</pre> pour sortir
-          li <pre>:e</pre> pour éditer un fichier
-          li <pre>:w</pre> pour le sauvegarder
-          li <pre>dd</pre> pour couper une ligne
-          li <pre>p</pre> pour la coller
+          li <pre>i</pre> → mode insertion
+          li <pre>ESC</pre> → sortir
+          li <pre>:e</pre> → éditer un fichier
+          li <pre>:w</pre> → sauvegarder
+          li <pre>dd</pre> → couper une ligne
+          li <pre>p</pre> → la coller
+
+      section
+        h2 Un peu plus
+        ul
+          li <pre>u</pre> → undo (Ctrl+Z)
+          li <pre>Ctrl+R</pre> → redo (Ctrl+Shift+Z)
+          li <pre>:q</pre> → quitter
 
       +full('start-typing.gif')
 
@@ -148,8 +155,8 @@ html
       section
         h2 Bouger entre mots
         ul
-          li words: <pre>w</pre>, <pre>b</pre>, <pre>e</pre>
-          li Words: <pre>W</pre>, <pre>B</pre>, <pre>E</pre>
+          li words → <pre>w</pre>, <pre>b</pre>, <pre>e</pre>
+          li Words → <pre>W</pre>, <pre>B</pre>, <pre>E</pre>
 
         img.bullet(src='images/word-move.png')
 

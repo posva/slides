@@ -94,10 +94,13 @@ section
   h1, h2
     text-transform: initial
 
-  li pre
-    display: inline-block
-    border-radius 5px
-    padding: 0px 3px !important
+  li
+    &::before
+      content: none
+    pre
+      display: inline-block
+      border-radius 5px
+      padding: 0px 3px !important
 
   &.full-text, &.full
     size: 100% 100%
