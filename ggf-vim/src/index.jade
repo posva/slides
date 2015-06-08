@@ -153,16 +153,70 @@ html
         h1 Les Motions
 
       section
+        h2 Bouger sur une ligne
+        ul
+          li <pre>0</pre>/<pre>$</pre> → début / fin de ligne(+\n)
+          li <pre>^</pre>/<pre>g_</pre> → début / fin (non-blank) de ligne
+        p.bullet Utile pour se déplacer
+        p.notes mais généralement on se déplace pour écrire cad
+
+      section
+        h2.bullet Les variantes de <pre>i</pre>
+        .notes
+          p Au debut on passe plus de temps dans le mode insertion mais une fois qu'on prend
+          | l'habiutude on passe plus de temps en mode normal car c'est plus rapide de ce déplacer
+          | Il faut donc être rapide pour insérer là où on veut
+          | i insert là ou on se trouve mais on veux souvent insérer juste après
+        ul
+          li <pre>I</pre> → <pre>^i</pre>
+          li <pre>a</pre> → append <pre>&lt;Right&gt;i</pre>
+          li <pre>A</pre> → <pre>$a</pre>
+
+      section
+        .notes
+          p Vous allez penser que c'est la mPême chose que d'utiliser Ctrl ou alt (selon l'os)
+          | mais le fait de pouvoir faire le tout en une seule commande change tout
         h2 Bouger entre mots
         ul
           li words → <pre>w</pre>, <pre>b</pre>, <pre>e</pre>
-          li Words → <pre>W</pre>, <pre>B</pre>, <pre>E</pre>
+          li WORDS → <pre>W</pre>, <pre>B</pre>, <pre>E</pre>
 
         img.bullet(src='images/word-move.png' width='400px')
 
         .notes
           p On peut considerer <pre>foo-bar</pre> comme un mot
           | C'est utile en web
+
+      section
+        h2.bullet Les délétions
+        h3 Délétion = copier
+        ul
+          li <pre>d</pre>+motion → couper
+          li <pre>x</pre> → couper le caractère sous curseur
+          li <pre>c</pre>+motion → couper et éditer (change)
+
+      section
+        .notes
+          p Pour avoir un comportement plus consistent on peut remaper Y pour copier
+          | jusqu'a la fin de la ligne
+        h2.bullet Les copies
+        ul
+          li <pre>y</pre>+motion → copier
+          li <pre>yy</pre>/<pre>Y</pre> → copier la ligne
+
+      section
+        h2 Coller
+        ul
+          li <pre>p</pre> → coller après le curseur
+          li <pre>P</pre> → coller avant le curseur
+
+      +section('vegeta.gif')
+        h2
+          ul.bullet
+            li Mode Visuel
+            li Motions++
+            li Completion
+            li Plugins
 
       section
         h2 Pour aller plus loin
