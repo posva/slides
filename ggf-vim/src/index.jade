@@ -87,12 +87,9 @@ html
           | Apprendre d'abord à s'en servir comme nimporte quel autre éditeur.
         h2 3 étapes
         ul
-          li
-            h3 Survivre dans Vim
-          li
-            h3 Apprendre à s'en servir
-          li
-            h3 Super-pouvoirs
+          li Survivre dans Vim
+          li Apprendre à s'en servir
+          li Super-pouvoirs
 
       +full('survive.gif')
 
@@ -105,8 +102,8 @@ html
         ul
           li <pre>i</pre> → mode insertion
           li <pre>ESC</pre> → sortir
-          li <pre>:e</pre> → éditer un fichier
-          li <pre>:w</pre> → sauvegarder
+          li <pre>:e &lt;fichier&gt;</pre> → éditer un fichier
+            li <pre>:w</pre> → sauvegarder
           li <pre>dd</pre> → couper une ligne
           li <pre>p</pre> → la coller
 
@@ -135,13 +132,24 @@ html
           li
             a(href='https://github.com/posva/gotta-go-fast-vim') Gotta go fast
 
+      section
+        h2.bullet Ne pas oublier de
+        ul
+          li Laisser les flèches activées (pour le moment) !
+          li Activer la souris → <pre>:set mouse=a</pre>
+
+
       +full('vim-with-config.png')
         .notes
           p On a un éditeur dont on ne sais pas se servir encore mais dans lequel on
           | peut travailler sans perdre beaucoup de productivité. Mais ce n'est bien
           | sur pas suffisant !
 
+      +full('typing1.gif')
+        h2 Démo
+
       +full('comfortable.gif')
+        h1 Apprendre à s'en servir
 
       section
         .notes
@@ -171,6 +179,7 @@ html
           li <pre>I</pre> → <pre>^i</pre>
           li <pre>a</pre> → append <pre>&lt;Right&gt;i</pre>
           li <pre>A</pre> → <pre>$a</pre>
+          li <pre>o</pre>/<pre>O</pre> → Nouvelle ligne + mode insertion
 
       section
         .notes
@@ -210,35 +219,107 @@ html
           li <pre>p</pre> → coller après le curseur
           li <pre>P</pre> → coller avant le curseur
 
+      section
+        h2.bullet Mode Visuel
+        ul
+          li <pre>v</pre> → Visuel
+          li <pre>V</pre> → Visuel Line
+          li <pre>Ctrl+v</pre> → Visuel block
+          li compatible avec les motions
+
+      section
+        h2.bullet Les splits
+        ul
+          li <pre>:vs</pre> → Vertical Split
+          li <pre>:sp</pre> → Hortizontal Split
+          li <pre>Ctrl+ww</pre> → Changer de split
+          li <pre>Ctrl+w</pre>+<pre>[hjkl]</pre> → Choix du split
+
+      +full('typing2.gif')
+        h2 Démo
+
       +section('vegeta.gif')
+        h1 Super-pouvoirs
         h2
           ul.bullet
-            li Mode Visuel
             li Motions++
             li Completion
             li Plugins
+            li Macros
+
+      section
+        h2 Motions dans fichier
+        ul
+          li <pre>gg</pre>/<pre>G</pre> → début/fin
+          li <pre>/foo</pre> → cherche toutes le occurences de foo
+          li <pre>n</pre>/<pre>N</pre> → va sur la suivante/précédante occurrence de foo
+          li <pre>Ctrl+o</pre> → revient sur la dernière position du curseur
+          li <pre>Ctrl+i</pre> → l'inverse
+
+      section
+        h2 Motions Ligne
+        ul
+          li <pre>fa</pre> → se place sur la lettre a
+          li <pre>ta</pre> → se place juste avant la lettre a
+          li <pre>3ta</pre> → se place juste avant la lettre a
+
+      section
+        h2 Motions inside/around
+        ul
+          li <pre>i'</pre> → inside '
+          li <pre>a'</pre> → around '
+          li <pre>vi'</pre> → séléction visuelle entre deux '
+          li <pre>yi'</pre> → copie entre deux '
+          li <pre>%</pre> → va sur la [{('" qui correspond
+
+      section
+        h2 Motion recherche
+        ul
+          li <pre>*</pre> → recherche le mot qui se trouve sous le curseur
+          li On peut naviguer avec <pre>n</pre> et <pre>N</pre>
+
+      section
+        h2 Completion
+        ul
+          li <pre>Ctrl+n</pre>/<pre>Ctrl+p</pre>
+          li <pre>*</pre> → recherche le mot qui se trouve sous le curseur
+          li On peut naviguer avec <pre>n</pre> et <pre>N</pre>
+
+      section
+        h2 Plugins
+        ul
+          li Etendre les fonctionalités
+          li Rajouter la compatibilité avec des nouevaux langages
+          li Ecrits souvent en VimL
+
+      section
+        h2.bullet Must have Plugins
+        ul
+          li Vundle: Gestion de plugin
+          li ctrlp/unite: Ouvrir des fichiers rapidement
+          li surround + repeat: gérer les caractères qui entourent
+          li syntastic: Erreurs de syntaxe/compilation
+
+      section
+        h2 Macros
+        ul
+          li <pre>qa</pre> Enregistre une macro dans a
+          li <pre>@a</pre> Lance la macro enregistré dans a
+
+      +full('typing3.gif')
+        h2 Démo
 
       section
         h2 Pour aller plus loin
         ul
+          li <pre>:set spell</pre>
+          li manipuler les registres
           li
             a(href='http://www.moolenaar.net/habits.html') Seven habits of effective text editing
           li
             a(href='http://rayninfo.co.uk/vimtips.html') Best of Vim
           li
             a(href='http://yannesposito.com/Scratch/en/blog/Vim-as-IDE/') Vim as an IDE
-
-      section
-        h2 Syntax Highlighting
-        h3 Powered by <a href="http://twitter.com/LeaVerou">Lea Verou</a>'s <a href="https://github.com/LeaVerou/prism">Prism</a>
-        pre
-          code.language-javascript.
-            bespoke.from('article', [
-              classes(),
-              keys(),
-              touch(),
-              bullets('li, .bullet')
-            ]);
 
       +section('ending.gif')
         h2 Des questions ?
