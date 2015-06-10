@@ -44,7 +44,7 @@ html
             img.u-max-full-width(src='images/apple1.png')
           .five.colums
             h3.bullet Apple 1
-            ul
+            ul.text-right
               li Assemblé à la main
               li CPU à 1 Mhz
               li 4 Kb de mémoire
@@ -98,21 +98,82 @@ html
           p Vim est par défaut en mode normal. Ce mode permet de faire des commandes
           | et bien plus de choses qu'on verra par la suite. Pour écrire du texte comme
           | dans n'importe quel autre éditeur il faut entrer dans le mode insertion
-        h2 La base
-        ul
-          li <pre>i</pre> → mode insertion
-          li <pre>ESC</pre> → sortir
-          li <pre>:e &lt;fichier&gt;</pre> → éditer un fichier
-            li <pre>:w</pre> → sauvegarder
-          li <pre>dd</pre> → couper une ligne
-          li <pre>p</pre> → la coller
+        h1 Les Modes
+        ul.bullet
+          li Normal
+          li Insertion
+          li Visual
 
       section
-        h2 Un peu plus
-        ul
-          li <pre>u</pre> → undo (Ctrl+Z)
-          li <pre>Ctrl+R</pre> → redo (Ctrl+Shift+Z)
-          li <pre>:q</pre> → quitter
+        h2 L'insertion
+        .row
+          .ten.columns.offset-by-one.bullet
+            .inline-pre
+              pre i
+            img.full(src='images/vim-tut-1.gif')
+
+      section
+        h2 L'insertion
+        .row
+          .ten.columns.offset-by-one.bullet
+            .inline-pre
+              pre a
+            img.full(src='images/vim-tut-1-2.gif')
+
+      section
+        h2 Enregistrer
+        .row
+          .ten.columns.offset-by-one.bullet
+            .inline-pre
+              pre :w
+            img.full(src='images/vim-tut-2.gif')
+
+      section
+        h2 Couper / Coller
+        .row
+          .ten.columns.offset-by-one.bullet
+            .inline-pre
+              pre dd
+              span /
+              pre p
+            img.full(src='images/vim-tut-3.gif')
+
+      section
+        h2 Quitter
+        .row
+          .ten.columns.offset-by-one.bullet
+            .inline-pre
+              pre :q
+              span /
+              pre :q!
+            img.full(src='images/vim-tut-5.gif')
+
+      section
+        h2 Undo / Redo
+        .row
+          .ten.columns.offset-by-one.bullet
+            .inline-pre
+              pre u
+              span /
+              pre ^R
+            img.full(src='images/vim-tut-4.gif')
+
+      section
+        h2 Undo / Redo
+        .row
+          .ten.columns.offset-by-one.bullet
+            .inline-pre
+              pre u
+              span /
+              pre ^R
+            img.full(src='images/vim-tut-4-2.gif')
+      section
+        h2 La souris
+        .row
+          .ten.columns.offset-by-one.bullet
+            .inline-pre
+              pre :set mouse=a
+            img.full(src='images/vim-tut-6.gif')
 
       +full('start-typing.gif')
 
