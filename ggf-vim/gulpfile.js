@@ -16,6 +16,7 @@ var pkg = require('./package.json'),
   through = require('through'),
   opn = require('opn'),
   path = require('path'),
+  imagemin = require('gulp-imagemin'),
   webshot = require('webshot'),
   taskListing = require('gulp-task-listing'),
   isDist = process.argv.indexOf('serve') === -1;
@@ -79,6 +80,12 @@ gulp.task('images', ['clean:images'], function() {
   return gulp.src('src/images/**/*')
     .pipe(gulp.dest('dist/images'))
     .pipe(connect.reload());
+});
+
+gulp.task('imagemin', function() {
+  return gulp.src('src/images/**/*')
+    .pipe(imagemin())
+    .pipe(gulp.dest('src/images'));
 });
 
 gulp.task('clean', function(done) {
