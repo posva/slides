@@ -10,15 +10,15 @@ html
 
   body
 
+
+    mixin section(back)
+      section.full-text(style='background: url(../images/' + back + ') no-repeat center center; ')
+        block
+    mixin full(back)
+      section.full(style='background: url(../images/' + back + ') no-repeat center center; ')
+        block
+
     article
-
-      mixin section(back)
-        section.full-text(style='background: url(../images/' + back + ') no-repeat center center; ')
-          block
-      mixin full(back)
-        section.full(style='background: url(../images/' + back + ') no-repeat center center; ')
-          block
-
       +section('sonic-running.gif')
         img.logo(src='images/vimlogo.svg')
         h1 Gotta Go Fast

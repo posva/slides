@@ -17,10 +17,12 @@ var pkg = require('./package.json'),
   opn = require('opn'),
   path = require('path'),
   webshot = require('webshot'),
+  taskListing = require('gulp-task-listing'),
   isDist = process.argv.indexOf('serve') === -1;
 
+gulp.task('help', taskListing);
 
-gulp.task('webshot', ['build'], function(done) {
+gulp.task('webshot', function(done) {
   connect.server({
     root: 'dist',
     port: 8888

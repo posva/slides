@@ -64,6 +64,7 @@ article
   display: none
   &.bespoke-parent
     display: block
+    background: #222
     position: absolute
     top: 0
     bottom: 0
@@ -120,8 +121,10 @@ section
     position: absolute
     left: 10%
     top: 10%
-    z-index: -1
     border-radius: 1em
+
+  *
+    z-index: 1
 
   li h3
     display: inline-block
@@ -241,8 +244,8 @@ section
 // prism styles
 
 pre
-  padding:5px !important
-  border-radius !importane: 8px
+  padding: 5px !important
+  border-radius: 8px !important
   border: none !important
   box-shadow: none !important
   span

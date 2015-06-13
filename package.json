@@ -37,6 +37,7 @@
     "gulp-plumber": "^0.6.3",
     "gulp-rename": "^1.2.0",
     "gulp-stylus": "^1.0.2",
+    "gulp-task-listing": "^1.0.0",
     "gulp-uglify": "^0.3.1",
     "gulp-util": "^2.2.17",
     "insert-css": "^0.2.0",
