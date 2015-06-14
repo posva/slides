@@ -17,6 +17,7 @@ var gulp = require('gulp'),
   del = require('del'),
   through = require('through'),
   opn = require('opn'),
+  ghPages = require('gulp-gh-pages'),
   path = require('path'),
   imagemin = require('gulp-imagemin'),
   PORT = 4000,
@@ -37,7 +38,7 @@ function getNewestMtime(files) {
   return newest;
 }
 
-gulp.task('default', function() {
+gulp.task('bundle', function() {
   var slideDirs = glob.sync('*/src');
   var rebuildDirs = [];
   slideDirs.forEach(function(slidesDir) {
@@ -55,6 +56,11 @@ gulp.task('default', function() {
   });
   return gulp.src(rebuildDirs)
     .pipe(gulpGulp());
+});
+
+gulp.task('deploy', function() {
+  return gulp.src('./dist/**/*')
+    .pipe(ghPages());
 });
 
 gulp.task('js', ['clean:js'], function() {
@@ -148,3 +154,5 @@ gulp.task('watch', function() {
 gulp.task('build', ['js', 'html', 'css', 'images']);
 
 gulp.task('serve', ['open', 'watch']);
+
+gulp.task('default', ['build', 'bundle']);
