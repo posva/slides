@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Gotta Go Fast: Vim</title>
+    <link rel="stylesheet" type="text/css" href="build/build.css">
+    <link rel="icon" type="image/png" href="images/posvaicon.png">
+  </head>
+  <body>
+    <article>
+          <section style="background: url(images/sonic-running.gif) no-repeat center center; " class="full-text"><img src="images/vimlogo.svg" class="logo">
+            <h1>Gotta Go Fast</h1>
+            <div class="bottom"><a href="https://github.com/posva" class="pull-right icon-link"><img src="images/githubicon.svg" class="icon"><span>posva</span></a></div>
+          </section>
+      <section>
+        <div class="notes">
+          <p>Je suis sur que tout le monde a entendu parler de vim.</p>C'est normal, ça existe depuis 40 ans !
+        </div>
+        <h2>Vim ?</h2>
+        <h3>Ça me dit quelquechose</h3>
+      </section>
+          <section style="background: url(images/timetravel.gif) no-repeat center center; " class="full-text">
+            <h1>1976</h1>
+          </section>
+      <section>
+        <h2>Dans la même année</h2>
+        <div class="row">
+          <div class="seven columns"><img src="images/apple1.png" class="u-max-full-width"></div>
+          <div class="five colums">
+            <h3 class="bullet">Apple 1</h3>
+            <ul class="text-right">
+              <li>Assemblé à la main</li>
+              <li>CPU à 1 Mhz</li>
+              <li>4 Kb de mémoire</li>
+              <li>40x24 characters</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+          <section style="background: url(images/vi-screen.png) no-repeat center center; " class="full-text">
+            <h1>Vi</h1>
+            <h2>Mode visuel pour Ex</h2>
+          </section>
+          <section style="background: url(images/vim-screen.png) no-repeat center center; " class="full-text">
+            <h1>Vim (1991)</h1>
+            <h2 class="bullet">Clone de Vi</h2>
+            <h2 class="bullet">Ameiloré</h2>
+          </section>
+      <section class="iframe">
+        <div class="notes">
+          <p>Bien qu'il soit paru il y a plus de 20 ans il continue à être utilisé</p>Cela est du à l'énorme gain que L'utilisation de Vim aporte à un dev
+        </div>
+        <h2>Trends</h2>
+        <script type="text/javascript" src="//www.google.com/trends/embed.js?hl=en-US&amp;q=Vim,+Sublime+Text,+Emacs&amp;date=1/2004+133m&amp;cmpt=q&amp;tz&amp;tz&amp;content=1&amp;cid=TIMESERIES_GRAPH_0&amp;export=5&amp;w=800&amp;h=430"></script>
+      </section>
+      <section>
+        <div class="notes">
+          <p>Il ne faut pas voir vim comme un editeur de texte mais plutôt comme</p>une façon d'éditer du texte. Une façon d'éditer le texte qui change
+          la vie à tout développeur. Je n'ai jamais connu un seul qui regrette
+          d'avoir apris vim et qui ne s'en serve pas aujourd'hui
+        </div>
+        <h2 class="bullet">Pourquoi apprendre Vim</h2>
+        <ul>
+          <li>Taper plus vite</li>
+          <li>Taper moins</li>
+          <li>Répéter facilement</li>
+          <li>Programmer l'édition</li>
+          <li>C'est amusant !</li>
+        </ul>
+      </section>
+      <section>
+        <div class="notes">
+          <p>Au lieu de vouloir tout apprendre d'un coup il faut aller par bouts.</p>Apprendre d'abord à s'en servir comme nimporte quel autre éditeur.
+        </div>
+        <h2>3 étapes</h2>
+        <ul>
+          <li>Survivre dans Vim</li>
+          <li>Apprendre à s'en servir</li>
+          <li>Super-pouvoirs</li>
+        </ul>
+      </section>
+          <section style="background: url(images/typing1.gif) no-repeat center center; " class="full">
+          </section>
+      <section>
+        <div class="notes">
+          <p>Vim est par défaut en mode normal. Ce mode permet de faire des commandes</p>et bien plus de choses qu'on verra par la suite. Pour écrire du texte comme
+          dans n'importe quel autre éditeur il faut entrer dans le mode insertion
+        </div>
+        <h1>Les Modes</h1>
+        <ul class="bullet">
+          <li>Normal</li>
+          <li>Insertion</li>
+          <li>Visuel</li>
+        </ul>
+      </section>
+      <section>
+        <h2>L'insertion</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>i</pre>
+            </div><img src="images/vim-tut-1.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>L'insertion</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>a</pre>
+            </div><img src="images/vim-tut-1-2.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Enregistrer</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>:w</pre>
+            </div><img src="images/vim-tut-2.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Couper / Coller</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>dd</pre><span> /</span>
+              <pre>p</pre>
+            </div><img src="images/vim-tut-3.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Quitter</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>:q</pre><span> /</span>
+              <pre>:q!</pre>
+            </div><img src="images/vim-tut-5.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Undo / Redo</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>u</pre><span> /</span>
+              <pre>^R</pre>
+            </div><img src="images/vim-tut-4.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Undo / Redo</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet"><img src="images/vim-tut-4-2.gif" class="full"></div>
+        </div>
+      </section>
+      <section>
+        <h2>La souris</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>:set mouse=a</pre>
+            </div><img src="images/vim-tut-6.gif" class="full">
+          </div>
+        </div>
+      </section>
+          <section style="background: url(images/start-typing.gif) no-repeat center center; " class="full">
+          </section>
+          <section style="background: url(images/vim-base.png) no-repeat center center; " class="full">
+            <div class="notes">
+              <p>Tu ouvre vim et çaç fait un peu peur. Pas du tout envie de coder sur ça</p>
+            </div>
+          </section>
+      <section>
+        <div class="notes">
+          <p>Petit détail de vim. Il faut le configurer alors que n'a pas ouvert !</p>
+        </div>
+        <h2 class="bullet">Prendre une config toute faite !</h2>
+        <ul>
+          <li><a href="http://vim.spf13.com">spf13</a></li>
+          <li><a href="https://github.com/joom/vim-starter">joom/vim-starter</a></li>
+          <li><a href="https://github.com/posva/gotta-go-fast-vim">Gotta go fast</a></li>
+        </ul>
+      </section>
+      <section>
+        <h2 class="bullet">Ne pas oublier de</h2>
+        <ul>
+          <li>Laisser les flèches activées (pour le moment) !</li>
+          <li>Activer la souris → <pre>:set mouse=a</pre></li>
+        </ul>
+      </section>
+          <section style="background: url(images/vim-with-config.png) no-repeat center center; " class="full">
+            <div class="notes">
+              <p>On a un éditeur dont on ne sais pas se servir encore mais dans lequel on</p>peut travailler sans perdre beaucoup de productivité. Mais ce n'est bien
+              sur pas suffisant !
+            </div>
+          </section>
+          <section style="background: url(images/typing-cat.gif) no-repeat center center; " class="full">
+          </section>
+      <section>
+        <div class="notes">
+          <p>Tout movement réalisé en mode Normal en vim est appelé une motion. Presque</p>toutes le commandes sont utilisées avec des motions. Les motiosn bougent le curseur
+          et permettent de se déplacer de façon plus rapide. En effet on utilise le clavier au
+          lieu de la souris et on gagne du temps. Il existe plein de motions permettant de
+          se déplacer là où on veut dans un mot, dans une ligne ou dans un fichier.
+        </div>
+        <h1>Les Motions</h1>
+      </section>
+      <section>
+        <h2>Fichier</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>gg</pre><span> /</span>
+              <pre>G</pre><br>
+              <pre>:<numéro de ligne></pre>
+            </div><img src="images/vim-tut-gg.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Mots</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>b</pre><span> /</span>
+              <pre>w</pre>
+            </div><img src="images/vim-tut-wb.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Mots</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>e</pre>
+            </div><img src="images/vim-tut-e.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>← ↓ ↑ →</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre"><span>Utiliser</span>
+              <pre>hjkl</pre><span>autant que possible</span>
+            </div><img src="images/vim-tut-hjkl.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Motion + Insertion</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>A</pre>
+            </div><img src="images/vim-tut-biga.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Motion + Insertion</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>I</pre>
+            </div><img src="images/vim-tut-bigi.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Supprimer + Insérer</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>c</pre><span>+ motion</span>
+            </div><img src="images/vim-tut-cw.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Couper</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>d</pre><span>+ motion</span>
+            </div><img src="images/vim-tut-de.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Couper</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>d</pre><span> + Chiffre +</span>
+              <pre>d</pre><span> ou Chiffre +</span>
+              <pre>dd</pre>
+            </div><img src="images/vim-tut-d2.gif" class="full">
+          </div>
+        </div>
+      </section>
+          <section style="background: url(images/magic.gif) no-repeat center center; " class="full">
+          </section>
+      <section>
+        <h2>Répétition</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>.</pre>
+            </div><img src="images/vim-tut-dot.gif" class="full">
+          </div>
+        </div>
+      </section>
+          <section style="background: url(images/typing2.gif) no-repeat center center; " class="full">
+          </section>
+          <section style="background: url(images/cheatsheet.png) no-repeat center center; " class="full-text"><a href="https://www.dropbox.com/s/vnrph5ajqn0fllb/vim-cheat-sheet-en.pdf?dl=1">
+              <h2>Utiliser une CheatSheet</h2></a>
+          </section>
+      <section>
+        <h1>Mode Visuel</h1>
+      </section>
+      <section>
+        <h2>Visuel</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>v</pre>
+            </div><img src="images/vim-tut-v.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Visuel par ligne</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>V</pre>
+            </div><img src="images/vim-tut-bigv.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Couper en visuel</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>v</pre><span>+</span>
+              <pre>d</pre>
+            </div><img src="images/vim-tut-vd.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Visuel par bloc</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>^V</pre>
+            </div><img src="images/vim-tut-vbloc.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Motion + Insertion</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>o</pre><span> /</span>
+              <pre>O</pre>
+            </div><img src="images/vim-tut-oo.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Inside</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre"><span>Motion +</span>
+              <pre>i</pre>
+            </div><img src="images/vim-tut-inside.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Around</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre"><span>Motion +</span>
+              <pre>a</pre>
+            </div><img src="images/vim-tut-around.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Inside / Around</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet"><img src="images/vim-tut-in-demo1.gif" class="full"></div>
+        </div>
+      </section>
+      <section>
+        <h2>Inside / Around</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet"><img src="images/vim-tut-in-demo2.gif" class="full"></div>
+        </div>
+      </section>
+      <section>
+        <h2>Motions++</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>f</pre><span>+ un caractère</span>
+            </div><img src="images/vim-tut-f.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Motions++</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>t</pre><span>+ un caractère</span>
+            </div><img src="images/vim-tut-t.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Motions++</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>F</pre><span> /</span>
+              <pre>T</pre>
+            </div><img src="images/vim-tut-bigf.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Recherches</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>/</pre><span> +</span>
+              <pre>n</pre><span>et</span>
+              <pre>N</pre>
+            </div><img src="images/vim-tut-slash.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Recherches</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>*</pre><span> +</span>
+              <pre>n</pre><span>et</span>
+              <pre>N</pre>
+            </div><img src="images/vim-tut-star.gif" class="full">
+          </div>
+        </div>
+      </section>
+          <section style="background: url(images/vim-splits.png) no-repeat center center; " class="full-text">
+            <h2 class="bullet">Les splits</h2>
+            <ul>
+              <li><pre>:vs</pre> → Vertical Split</li>
+              <li><pre>:sp</pre> → Hortizontal Split</li>
+              <li><pre>^Ww</pre> → Changer de split</li>
+              <li><pre>^W</pre>+<pre>[hjkl]</pre> → Choix du split</li>
+            </ul>
+          </section>
+          <section style="background: url(images/typing-extra.gif) no-repeat center center; " class="full-text">
+            <h1>Super-pouvoirs</h1>
+            <h2>
+              <ul class="bullet">
+                <li>Complétion</li>
+                <li>Plugins</li>
+                <li>Macros</li>
+                <li>Démo</li>
+              </ul>
+            </h2>
+          </section>
+      <section>
+        <h2>Completion</h2>
+        <div class="row">
+          <div class="ten columns offset-by-one bullet">
+            <div class="inline-pre">
+              <pre>^N</pre><span> /</span>
+              <pre>^P</pre>
+            </div><img src="images/vim-tut-pn.gif" class="full">
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Plugins</h2>
+        <ul>
+          <li>Etendre les fonctionalités</li>
+          <li>Rajouter la compatibilité avec des nouevaux langages</li>
+          <li>Ecrits souvent en VimL</li>
+        </ul>
+      </section>
+      <section>
+        <h2 class="bullet">Must have Plugins</h2>
+        <ul>
+          <li><a href="https://github.com/gmarik/Vundle.vim">Vundle</a><span>: Gestion de plugin</span></li>
+          <li><a href="https://github.com/kien/ctrlp.vim">ctrlp</a><span> /</span><a href="https://github.com/Shougo/unite.vim">unite</a><span>: Ouvrir des fichiers rapidement</span></li>
+          <li><a href="https://github.com/tpope/vim-surround">surround</a><span> +</span><a href="https://github.com/tpope/vim-repeat">repeat</a><span>: gérer les caractères qui entourent</span></li>
+          <li><a href="https://github.com/scrooloose/syntastic">Syntastic</a><span>: Erreurs de syntaxe/compilation</span></li>
+        </ul>
+      </section>
+      <section>
+        <h2>Macros</h2>
+        <ul>
+          <li><pre>qa</pre> Enregistre une macro dans a</li>
+          <li><pre>@a</pre> Lance la macro enregistré dans a</li>
+        </ul>
+      </section>
+          <section style="background: url(images/typing3.gif) no-repeat center center; " class="full">
+            <h2>Démo</h2>
+          </section>
+      <section>
+        <h2>Pour aller plus loin</h2>
+        <ul>
+          <li>
+            <pre>:set spell</pre><span> +</span>
+            <pre>:set spelllang=fr</pre>
+          </li>
+          <li><a href="http://usevim.com/2012/04/13/registers/">Manipuler les registres</a></li>
+          <li><a href="http://www.moolenaar.net/habits.html">Seven habits of effective text editing</a></li>
+          <li><a href="http://rayninfo.co.uk/vimtips.html">Best of Vim</a></li>
+          <li><a href="http://yannesposito.com/Scratch/en/blog/Vim-as-IDE/">Vim as an IDE</a></li>
+        </ul>
+      </section>
+          <section style="background: url(images/end.gif) no-repeat center center; " class="full">
+            <h2>Happy Typing!</h2>
+          </section>
+    </article>
+    <script src="build/build.js"></script>
+  </body>
+</html>
