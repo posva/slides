@@ -9,12 +9,14 @@
   },
   "author": "",
   "license": "ISC",
+  "scripts": {
+    "postinstall": "napa dhg/Skeleton"
+  },
   "bugs": {
     "url": "https://github.com/posva/slides/issues"
   },
   "homepage": "https://github.com/posva/slides#readme",
   "devDependencies": {
-    "Skeleton": "mshick/Skeleton",
     "bespoke": "^1.0.0",
     "bespoke-backdrop": "^1.0.0",
     "bespoke-bullets": "^1.0.0",
@@ -48,5 +50,8 @@
     "prismjs": "0.0.1",
     "through": "^2.3.4",
     "webshot": "^0.16.0"
+  },
+  "dependencies": {
+    "napa": "^1.2.0"
   }
 }
