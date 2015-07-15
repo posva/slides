@@ -1,9 +1,7 @@
 'use strict';
 
-var gulp = require('gulp'),
-  gulpGulp = require('gulp-gulp'),
-  glob = require('glob'),
-  fs = require('fs'),
+var pkg = require('./package.json'),
+  gulp = require('gulp'),
   gutil = require('gulp-util'),
   plumber = require('gulp-plumber'),
   rename = require('gulp-rename'),
@@ -17,51 +15,25 @@ var gulp = require('gulp'),
   del = require('del'),
   through = require('through'),
   opn = require('opn'),
-  ghPages = require('gulp-gh-pages'),
   path = require('path'),
   imagemin = require('gulp-imagemin'),
-  PORT = 4000,
+  webshot = require('webshot'),
+  taskListing = require('gulp-task-listing'),
   isDist = process.argv.indexOf('serve') === -1;
 
-gulp.task('gulp', function() {
-  return gulp.src('./*/gulpfile.js')
-    .pipe(gulpGulp());
-});
+gulp.task('help', taskListing);
 
-function getNewestMtime(files) {
-  var newest = 0;
-  files.forEach(function(file) {
-    var mtime = fs.statSync(file).mtime;
-    if (newest < mtime)
-      newest = mtime;
+gulp.task('webshot', function(done) {
+  connect.server({
+    root: 'dist',
+    port: 8888
   });
-  return newest;
-}
-
-gulp.task('bundle', function() {
-  var slideDirs = glob.sync('*/src');
-  var rebuildDirs = [];
-  slideDirs.forEach(function(slidesDir) {
-    if (slidesDir === 'boilerplate/src') return;
-    var files = glob.sync(path.join(slidesDir, '**/*'));
-    var newest = getNewestMtime(files);
-    var currentPath = path.join('dist', path.dirname(slidesDir));
-    var current = 0;
-    if (fs.existsSync(currentPath)) {
-      current = getNewestMtime(glob.sync(path.join(currentPath, '**/*')));
-    }
-    if (current < newest) {
-      console.log(slidesDir, 'needs update');
-      rebuildDirs.push(path.join(slidesDir, '../gulpfile.js'));
-    }
+  webshot('http://localhost:8888', 'dist/thumbail.png', function(err) {
+    if (err)
+      console.error('Error webshotting', err);
+    connect.serverClose();
+    done();
   });
-  return gulp.src(rebuildDirs)
-    .pipe(gulpGulp());
-});
-
-gulp.task('deploy', function() {
-  return gulp.src('./dist/**/*')
-    .pipe(ghPages());
 });
 
 gulp.task('js', ['clean:js'], function() {
@@ -93,7 +65,7 @@ gulp.task('css', ['clean:css'], function() {
     .pipe(stylus({
       // Allow CSS to be imported from node_modules
       'include css': true,
-      'paths': ['./node_modules']
+      'paths': ['../node_modules']
     }))
     .pipe(autoprefixer('last 2 versions', {
       map: false
@@ -105,10 +77,15 @@ gulp.task('css', ['clean:css'], function() {
 });
 
 gulp.task('images', ['clean:images'], function() {
-  return gulp.src(['src/images/**/*', 'common/**/*'])
-    .pipe(imagemin())
+  return gulp.src('src/images/**/*')
     .pipe(gulp.dest('dist/images'))
     .pipe(connect.reload());
+});
+
+gulp.task('imagemin', function() {
+  return gulp.src('src/images/**/*')
+    .pipe(imagemin())
+    .pipe(gulp.dest('src/images'));
 });
 
 gulp.task('clean', function(done) {
@@ -134,13 +111,12 @@ gulp.task('clean:images', function(done) {
 gulp.task('connect', ['build'], function() {
   connect.server({
     root: 'dist',
-    livereload: true,
-    port: PORT
+    livereload: true
   });
 });
 
 gulp.task('open', ['connect'], function(done) {
-  opn('http://localhost:' + PORT, done);
+  opn('http://localhost:8080', done);
 });
 
 gulp.task('watch', function() {
@@ -149,11 +125,17 @@ gulp.task('watch', function() {
   gulp.watch('src/images/**/*', ['images']);
   gulp.watch([
     'src/scripts/**/*.js',
+    'bespoke-theme-*/dist/*.js' // Allow themes to be developed in parallel
   ], ['js']);
+});
+
+gulp.task('bundle', ['build'], function() {
+  return gulp.src('dist/**/*')
+    .pipe(gulp.dest(path.join('../dist', path.basename(path.resolve('.')))));
 });
 
 gulp.task('build', ['js', 'html', 'css', 'images']);
 
 gulp.task('serve', ['open', 'watch']);
 
-gulp.task('default', ['build', 'bundle']);
+gulp.task('default', ['bundle']);

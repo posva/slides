@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Slides
+
+    link(rel='stylesheet', type='text/css', href='build/build.css')
+    link(rel='icon' type='image/png' href='images/posvaicon.png')
+    link(href='http://fonts.googleapis.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css')
+
+  body
+
+
+    mixin section(back)
+      section.full-text(style='background: url(images/' + back + ') no-repeat center center; ')
+        block
+    mixin full(back)
+      section.full(style='background: url(images/' + back + ') no-repeat center center; ')
+        block
+
+    article
+      +section('posvaicon.png')
+        h1 Starter
+        div.bottom
+          a.pull-right.icon-link(href='https://github.com/posva')
+            img.icon(src='images/githubicon.svg')
+            span posva
+
+      section
+        h2 Some section
+
+      +full('posvaicon.png')
+        h2 Happy Talk!
+
+    script(src='build/build.js')
