@@ -26,13 +26,45 @@ html
             img.icon(src='images/githubicon.svg')
             span posva
 
+      +section('debug-screen.png')
+        h1 Client side
+
       +full('hi-spiderman.jpg')
-        h1 Hi There!
 
       section
-        h2 Some section
+        h3.bullet Loggers
+        ul
+          li
+            code console.log('foo:', foo);
 
-      +full('posvaicon.png')
-        h2 Happy Talk!
+      +full('fatvenom.jpg')
+
+      +section('debug-client.png')
+        h3.bullet Debuggers
+        ul
+          li
+            code debugger;
+          li breakpoints
+
+      +section('server-debug.png')
+        h1 Server side
+
+      +full('uwot.png')
+
+      section
+        h1 Lancer en debug
+        h3
+          code coffee --nodejs --debug server/server.coffee
+
+      section
+        h1 Lancer le debugger
+        h3.bullet
+          code node-inspector
+        h3.bullet
+          span Vagrant:
+          code node-inspector --web-host=199.199.199.42 -p 10100 --preload=false
+
+      +section('sadvenom.jpg')
+        h2 Happy Debugging !
 
     script(src='build/build.js')
