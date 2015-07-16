@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Slides</title>
+    <link rel="stylesheet" type="text/css" href="build/build.css">
+    <link rel="icon" type="image/png" href="images/posvaicon.png">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,600" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <article>
+      <section>
+        <h1>Debugging & stuff</h1>
+        <div class="bottom"><a href="https://github.com/posva" class="pull-right icon-link"><img src="images/githubicon.svg" class="icon"><span>posva</span></a></div>
+      </section>
+          <section style="background: url(images/debug-screen.png) no-repeat center center; " class="full-text">
+            <h1>Client side</h1>
+          </section>
+          <section style="background: url(images/hi-spiderman.jpg) no-repeat center center; " class="full">
+          </section>
+      <section>
+        <h3 class="bullet">Loggers</h3>
+        <ul>
+          <li><code>console.log('foo:', foo);</code></li>
+        </ul>
+      </section>
+          <section style="background: url(images/fatvenom.jpg) no-repeat center center; " class="full">
+          </section>
+          <section style="background: url(images/debug-client.png) no-repeat center center; " class="full-text">
+            <h3 class="bullet">Debuggers</h3>
+            <ul>
+              <li><code>debugger;</code></li>
+              <li>breakpoints</li>
+            </ul>
+          </section>
+          <section style="background: url(images/server-debug.png) no-repeat center center; " class="full-text">
+            <h1>Server side</h1>
+          </section>
+          <section style="background: url(images/uwot.png) no-repeat center center; " class="full">
+          </section>
+      <section>
+        <h1>Lancer en debug</h1>
+        <h3><code>coffee --nodejs --debug server/server.coffee</code></h3>
+      </section>
+      <section>
+        <h1>Lancer le debugger</h1>
+        <h3 class="bullet"><code>node-inspector</code></h3>
+        <h3 class="bullet"><span>Vagrant:</span><code>node-inspector --web-host=199.199.199.42 -p 10100 --preload=false</code></h3>
+      </section>
+          <section style="background: url(images/sadvenom.jpg) no-repeat center center; " class="full-text">
+            <h2>Happy Debugging !</h2>
+          </section>
+    </article>
+    <script src="build/build.js"></script>
+  </body>
+</html>
