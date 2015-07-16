@@ -51,7 +51,7 @@ gulp.task('bundle', function() {
       current = getNewestMtime(glob.sync(path.join(currentPath, '**/*')));
     }
     if (current < newest) {
-      console.log(slidesDir, 'needs update');
+      gutil.log('Updating', slidesDir);
       rebuildDirs.push(path.join(slidesDir, '../gulpfile.js'));
     }
   });
@@ -59,7 +59,7 @@ gulp.task('bundle', function() {
     .pipe(gulpGulp());
 });
 
-gulp.task('deploy', function() {
+gulp.task('deploy', ['bundle'], function() {
   return gulp.src('./dist/**/*')
     .pipe(ghPages());
 });
