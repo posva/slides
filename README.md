@@ -1,7 +1,7 @@
-:movie_camera: Slides
+Slides
 ===
 
-My talks.
+My talks :loudspeaker:
 
 # Viewing slides locally
 
