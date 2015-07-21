@@ -57,12 +57,14 @@ gulp.task('bundle', ['common'], function() {
     }
   });
   return gulp.src(rebuildDirs)
-    .pipe(gulpGulp());
+    .pipe(gulpGulp())
+    .pipe(connect.reload());
 });
 
 gulp.task('common', ['clean:common'], function() {
   return gulp.src('common/**/*')
-  .pipe(gulp.dest('./dist/common/'));
+    .pipe(gulp.dest('./dist/common/'))
+    .pipe(connect.reload());
 });
 
 gulp.task('deploy', ['bundle'], function() {
