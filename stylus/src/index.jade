@@ -23,10 +23,46 @@ html
             img.icon(src='../common/githubicon.svg')
             span posva
 
-      section
-        h2 Some section
+      +section('boring1.gif')
+        h2.bullet CSS Problems
+        ul
+          li Unorganized
+          li WET
+            small.tiny-up  (Write Everything Twice)
+            span  Oriented
+          li Useless characters
 
-      +full('flamingo-hello.gif')
-        h2 Happy Talk!
+      section
+        code.language-css
+          pre.
+            /* Boooring */
+            body {
+              font: 12px Helvetica, Arial, sans-serif;
+            }
+            a.button {
+              -webkit-border-radius: 5px;
+              -moz-border-radius: 5px;
+              border-radius: 5px;
+            }
+
+      section
+        h3 Minification
+        code.language-css
+          pre.
+            /*                             wow such css such minify */
+            body{font:12px Helvetica,Arial,sans-serif}a.button{-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px}
+
+      +full('boring2.gif')
+
+      section
+        h1.bullet Preprocessors
+        ul
+          li Variables
+          li Mixins
+          li Extends
+          li Simple Operations
+
+      +full('fabulous.gif')
+        h1 Happy Fabulousification
 
     script(src='build/build.js')
