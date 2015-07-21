@@ -1,7 +1,7 @@
-Slides
+:movie_camera: Slides
 ===
 
-Presenations I own
+My talks.
 
 # Viewing slides locally
 
@@ -18,8 +18,9 @@ npm install
 
 These dependencies are used by all the subdirectories.
 
-Go to any directory and do:
+Serve it:
 
 ```bash
 gulp serve
 ```
+
