@@ -1,5 +1,5 @@
 node_modules
-dist
-!dist/thumb.png
+dist/*/
+dist/index.html
 .publish
 src/slides.jade

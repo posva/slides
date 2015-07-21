@@ -38,7 +38,7 @@ function getNewestMtime(files) {
   return newest;
 }
 
-gulp.task('bundle', function() {
+gulp.task('bundle', ['common'], function() {
   var slideDirs = glob.sync('*/src');
   var rebuildDirs = [];
   slideDirs.forEach(function(slidesDir) {
@@ -58,6 +58,11 @@ gulp.task('bundle', function() {
   });
   return gulp.src(rebuildDirs)
     .pipe(gulpGulp());
+});
+
+gulp.task('common', ['clean:common'], function() {
+  return gulp.src('common/**/*')
+  .pipe(gulp.dest('./dist/common/'));
 });
 
 gulp.task('deploy', ['bundle'], function() {
@@ -151,6 +156,10 @@ gulp.task('clean:images', function(done) {
   del('dist/images', done);
 });
 
+gulp.task('clean:common', function(done) {
+  del('dist/common', done);
+});
+
 gulp.task('connect', ['build'], function() {
   connect.server({
     root: 'dist',
@@ -174,8 +183,8 @@ gulp.task('watch', function() {
   ], ['js']);
 });
 
-gulp.task('build', ['js', 'html', 'css', 'images']);
+gulp.task('build', ['slides', 'js', 'html', 'css', 'images', 'bundle']);
 
-gulp.task('serve', ['open', 'watch']);
+gulp.task('serve', ['bundle', 'slides', 'open', 'watch']);
 
-gulp.task('default', ['build', 'bundle']);
+gulp.task('default', ['build']);
