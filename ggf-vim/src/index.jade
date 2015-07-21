@@ -11,13 +11,7 @@ html
 
   body
 
-
-    mixin section(back)
-      section.full-text(style='background: url(images/' + back + ') no-repeat center center; ')
-        block
-    mixin full(back)
-      section.full(style='background: url(images/' + back + ') no-repeat center center; ')
-        block
+    include ../../utils/utils.jade
 
     article
       +section('sonic-running.gif')
