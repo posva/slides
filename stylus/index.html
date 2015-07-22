@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Slides</title>
+    <link rel="stylesheet" type="text/css" href="build/build.css">
+    <link rel="icon" type="image/png" href="../common/posvaicon.png">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,600" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <article>
+          <section style="background: url(images/flamingo-hello.gif) no-repeat center center; " class="full-text">
+            <h1><img src="images/stylus.png"></h1>
+            <h5>Pimp your style</h5>
+            <div class="bottom"><a href="https://github.com/posva" class="pull-right icon-link"><img src="../common/githubicon.svg" class="icon"><span>posva</span></a></div>
+          </section>
+          <section style="background: url(images/boring1.gif) no-repeat center center; " class="full-text">
+            <h2 class="bullet">CSS Problems</h2>
+            <ul>
+              <li>Unorganized</li>
+              <li>WET<small> (Write Everything Twice)</small><span> Oriented</span></li>
+              <li>Useless characters</li>
+              <li>Browser dependent</li>
+              <li>Hard to mantain<small> in larger projects</small></li>
+            </ul>
+          </section>
+      <section>
+        <pre><code class="language-css">body {
+  font: 12px Helvetica, Arial, sans-serif;
+}
+a.button {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+</code></pre>
+      </section>
+      <section>
+        <h3>Minification</h3>
+        <pre><code class="language-css">/*                                    wow such css such minify */
+body{font:12px Helvetica,Arial,sans-serif}a.button{-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px}
+</code></pre>
+      </section>
+      <section>
+        <h3>WET</h3>
+        <pre><code class="language-css">/* Same color */
+.button {
+  color: pink;
+  /* A bunch of stuff */
+}
+p {
+  color: pink;
+  /* A bunch of stuff */
+}
+</code></pre>
+      </section>
+      <section>
+        <h3>WET<small> (again)</small></h3>
+        <pre><code class="language-css no-back">/* Same property, different values */
+.button {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+p {
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+</code></pre>
+      </section>
+      <section>
+        <h3>WET<small> (even more)</small></h3>
+        <pre><code class="language-css no-back">/* Nested properties */
+.message {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.message .icon {
+  color: white;
+}
+.message .text {
+  font: 12px Helvetica, Arial, sans-serif;
+}
+</code></pre>
+      </section>
+          <section style="background: url(images/boring2.gif) no-repeat center center; " class="full">
+            <h1>Preprocessors</h1>
+          </section>
+          <section style="background: url(images/preprocessors.png) no-repeat center center; " class="full">
+          </section>
+      <section>
+        <h3>DRY<small> (Don't Repeat yourself) Oriented</small></h3>
+        <ul>
+          <li>Variables</li>
+          <li>Mixins</li>
+          <li>Extends</li>
+          <li>Simple Operations</li>
+        </ul>
+      </section>
+          <section style="background: url(images/howl-excited.gif) no-repeat center center; " class="full">
+            <h1>Stylus sugar</h1>
+          </section>
+      <section>
+        <h3>Drop the Brace</h3>
+        <pre><code class="language-css no-back">/* Ｏ(≧▽≦)Ｏ */
+body
+  font: 12px Helvetica, Arial, sans-serif;
+a.button
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  </code></pre>
+      </section>
+      <section>
+        <h3>No more<code>;</code><span>or</span><code>:</code></h3>
+        <pre><code class="language-css">body
+  font: 12px Helvetica, Arial, sans-serif
+a.button
+  -webkit-border-radius: 5px
+  -moz-border-radius: 5px
+  border-radius: 5px
+  </code></pre>
+      </section>
+      <section>
+        <h3>Variables</h3>
+        <pre><code class="language-stylus">font-size = 14px
+body
+  font font-size Arial, sans-serif
+  </code></pre>
+      </section>
+      <section>
+        <h3>Property Lookup</h3>
+        <pre><code class="language-stylus">#logo
+  position: absolute
+  top: 50%
+  left: 50%
+  width: w = 150px
+  height: h = 80px
+  margin-left: -(w / 2)
+  margin-top: -(h / 2)
+  </code></pre>
+      </section>
+      <section>
+        <h3>Property Lookup</h3>
+        <pre><code class="language-stylus">#logo
+  position: absolute
+  top: 50%
+  left: 50%
+  width: 150px
+  height: 80px
+  margin-left: -(@width / 2)
+  margin-top: -(@height / 2)
+  </code></pre>
+      </section>
+      <section>
+        <h3>Mixins</h3>
+        <pre><code class="language-stylus">border-radius(n)
+  -webkit-border-radius n
+  -moz-border-radius n
+  border-radius n
+  
+form input[type=button]
+  border-radius(5px)
+  
+div.roundy
+  border-radius 5px
+  </code></pre>
+      </section>
+      <section>
+        <h3>Importing</h3>
+        <pre><code class="language-stylus">@import "reset.css"
+@import "utils/nib"
+@import "syntax/*"
+</code></pre>
+      </section>
+          <section style="background: url(images/not-impressed.gif) no-repeat center center; " class="full">
+            <h1>Basic stuff</h1>
+          </section>
+      <section>
+        <h1>Feature-rich language</h1>
+        <ul>
+          <li>Lists<small> (Arrays)</small></li>
+          <li>Functions</li>
+          <li>Real Loops<small> (not like Less)</small></li>
+          <li>Objects variables</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Lists</h3>
+        <pre><code class="language-stylus">values = 1 2 3 4 5 6 7 8 9 10 11 12
+values = 1..12
+values = 1...13
+</code></pre>
+      </section>
+      <section>
+        <h3>Interpolation</h3>
+        <pre><code class="language-stylus">name = foo
+.{name}
+  width: 320px
+  </code></pre>
+      </section>
+      <section>
+        <h3>Iteration</h3>
+        <pre><code class="language-stylus">values = 1..12
+table
+  for row in values
+    tr:nth-child({row})
+      height: 10px * row
+      </code></pre>
+      </section>
+      <section>
+        <h3>Simple grid</h3>
+        <pre><code class="language-stylus">v = zero one two three four five six \
+  seven eight nine ten eleven twelve
+columns = 12
+plural(i)
+  i > 1 ? 'columns' : 'column'
+for i in 1..12
+  .{v[i]}-{plural(i)}
+     width: (100 * i / columns)%
+     display: inline-block
+     </code></pre>
+      </section>
+      <section>
+        <h3>Hashes (aka Objects)</h3>
+        <pre><code class="language-stylus">foo = {
+  bar: baz,
+  'baz': raz,
+  '0': raz
+}
+</code></pre>
+      </section>
+          <section style="background: url(images/fabulous.gif) no-repeat center center; " class="full">
+            <h1>Happy Fabulousification</h1>
+          </section>
+    </article>
+    <script src="build/build.js"></script>
+  </body>
+</html>
