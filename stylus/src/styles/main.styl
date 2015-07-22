@@ -10,8 +10,13 @@
 code, pre
   background: initial
   border: initial
-  background: hsl(0, 0%, 8%) !important
+  background: none !important
   overflow: visible !important
+
+code.no-back
+  background: none !important
+  border: none !important
+  box-shadow: none !important
 @import 'prismjs/themes/prism-twilight.css'
 
 @import 'bespoke-substeps/style.css'
@@ -108,6 +113,14 @@ section
       border-radius 5px
       padding: 0px 3px !important
 
+  &.full
+    h1
+      text-shadow:
+        3px 3px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000
   &.full-text, &.full
     size: 100% 100%
     absolute: top left

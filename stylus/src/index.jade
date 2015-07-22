@@ -28,14 +28,16 @@ html
         ul
           li Unorganized
           li WET
-            small.tiny-up  (Write Everything Twice)
+            small  (Write Everything Twice)
             span  Oriented
           li Useless characters
+          li Browser dependent
+          li Hard to mantain
+            small  in larger projects
 
       section
-        code.language-css
-          pre.
-            /* Boooring */
+        pre
+          code.language-css.
             body {
               font: 12px Helvetica, Arial, sans-serif;
             }
@@ -47,20 +49,222 @@ html
 
       section
         h3 Minification
-        code.language-css
-          pre.
-            /*                             wow such css such minify */
+        pre
+          code.language-css.
+            /*                                    wow such css such minify */
             body{font:12px Helvetica,Arial,sans-serif}a.button{-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px}
 
-      +full('boring2.gif')
+      section
+        h3 WET
+        pre
+          code.language-css.
+            /* Same color */
+            .button {
+              color: pink;
+              /* A bunch of stuff */
+            }
+            p {
+              color: pink;
+              /* A bunch of stuff */
+            }
 
       section
-        h1.bullet Preprocessors
+        h3 WET
+          small  (again)
+        pre
+          code.language-css.no-back.
+            /* Same property, different values */
+            .button {
+              -webkit-border-radius: 5px;
+              -moz-border-radius: 5px;
+              border-radius: 5px;
+            }
+            p {
+              -webkit-border-radius: 15px;
+              -moz-border-radius: 15px;
+              border-radius: 15px;
+            }
+
+      section
+        h3 WET
+          small  (even more)
+        pre
+          code.language-css.no-back.
+            /* Nested properties */
+            .message {
+              -webkit-border-radius: 5px;
+              -moz-border-radius: 5px;
+              border-radius: 5px;
+            }
+            .message .icon {
+              color: white;
+            }
+            .message .text {
+              font: 12px Helvetica, Arial, sans-serif;
+            }
+
+      +full('boring2.gif')
+        h1 Preprocessors
+
+      +full('preprocessors.png')
+
+      section
+        h3 DRY
+          small  (Don't Repeat yourself) Oriented
         ul
           li Variables
           li Mixins
           li Extends
           li Simple Operations
+
+      +full('howl-excited.gif')
+        h1 Stylus sugar
+
+      section
+        h3 Drop the Brace
+        pre
+          code.language-css.no-back.
+            /* Ｏ(≧▽≦)Ｏ */
+            body
+              font: 12px Helvetica, Arial, sans-serif;
+            a.button
+              -webkit-border-radius: 5px;
+              -moz-border-radius: 5px;
+              border-radius: 5px;
+
+      section
+        h3 No more
+          code ;
+          span or
+          code :
+        pre
+          code.language-css.
+            body
+              font: 12px Helvetica, Arial, sans-serif
+            a.button
+              -webkit-border-radius: 5px
+              -moz-border-radius: 5px
+              border-radius: 5px
+
+      section
+        h3 Variables
+        pre
+          code.language-stylus.
+             font-size = 14px
+             body
+               font font-size Arial, sans-serif
+
+      section
+        h3 Property Lookup
+        pre
+          code.language-stylus.
+            #logo
+              position: absolute
+              top: 50%
+              left: 50%
+              width: w = 150px
+              height: h = 80px
+              margin-left: -(w / 2)
+              margin-top: -(h / 2)
+
+      section
+        h3 Property Lookup
+        pre
+          code.language-stylus.
+            #logo
+              position: absolute
+              top: 50%
+              left: 50%
+              width: 150px
+              height: 80px
+              margin-left: -(@width / 2)
+              margin-top: -(@height / 2)
+
+      section
+        h3 Mixins
+        pre
+          code.language-stylus.
+            border-radius(n)
+              -webkit-border-radius n
+              -moz-border-radius n
+              border-radius n
+
+            form input[type=button]
+              border-radius(5px)
+
+            div.roundy
+              border-radius 5px
+
+      section
+        h3 Importing
+        pre
+          code.language-stylus.
+            @import "reset.css"
+            @import "utils/nib"
+            @import "syntax/*"
+
+      +full('not-impressed.gif')
+        h1 Basic stuff
+
+      section
+        h1 Feature-rich language
+        ul
+          li Lists
+            small  (Arrays)
+          li Functions
+          li Real Loops
+            small  (not like Less)
+          li Objects variables
+
+      section
+        h3 Lists
+        pre
+          code.language-stylus.
+            values = 1 2 3 4 5 6 7 8 9 10 11 12
+            values = 1..12
+            values = 1...13
+
+      section
+        h3 Interpolation
+        pre
+          code.language-stylus.
+            name = foo
+            .{name}
+              width: 320px
+
+      section
+        h3 Iteration
+        pre
+          code.language-stylus.
+            values = 1..12
+            table
+              for row in values
+                tr:nth-child({row})
+                  height: 10px * row
+
+      section
+        h3 Simple grid
+        pre
+          code.language-stylus.
+            v = zero one two three four five six \
+              seven eight nine ten eleven twelve
+            columns = 12
+            plural(i)
+              i > 1 ? 'columns' : 'column'
+            for i in 1..12
+              .{v[i]}-{plural(i)}
+                 width: (100 * i / columns)%
+                 display: inline-block
+
+      section
+        h3 Hashes (aka Objects)
+        pre
+          code.language-stylus.
+            foo = {
+              bar: baz,
+              'baz': raz,
+              '0': raz
+            }
 
       +full('fabulous.gif')
         h1 Happy Fabulousification
