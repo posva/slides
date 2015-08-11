@@ -131,9 +131,9 @@ gulp.task('open', ['connect'], function(done) {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('src/**/*.jade', ['html']);
+  gulp.watch(['src/**/*.jade', '../utils/*.jade'], ['html']);
   gulp.watch('../common/**/*', ['common']);
-  gulp.watch('src/styles/**/*.styl', ['css']);
+  gulp.watch(['src/styles/**/*.styl', '../utils/*.styl'], ['css']);
   gulp.watch('src/images/**/*', ['images']);
   gulp.watch([
     'src/scripts/**/*.js',

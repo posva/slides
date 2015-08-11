@@ -14,3 +14,7 @@ mixin cfull(back)
   section.full(style='background: url(../common/' + back + ') no-repeat center center; ')
     block
 
+mixin free(x, y, rot)
+  .free(style='left: ' + x + '; top: ' + y + '; transform: rotate(' + rot + ');')
+    .free-inner
+      block
