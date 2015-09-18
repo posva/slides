@@ -5,3 +5,22 @@
     position: relative
     margin-top: -50%
     left: -50%
+
+img.full
+  width: 100%
+
+section
+  &.full-text, &.full
+    size: 100% 100%
+    absolute: top left
+    margin: initial
+    -webkit-background-size: cover !important
+
+  &.full-text::before
+    content: ''
+    background: rgba(0, 0, 0, 0.6)
+    size: 80%
+    position: absolute
+    left: 10%
+    top: 10%
+    border-radius: 1em
