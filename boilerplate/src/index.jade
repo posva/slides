@@ -14,19 +14,46 @@ html
     include ../../utils/utils.jade
 
     article
+      section
+        h1 H1 title
+        p This is a paragraph
+
       +section('flamingo-hello.gif')
-        h1 Starter
-        div.bottom
-          a.pull-right.icon-link(href='https://github.com/posva')
-            img.icon(src='../common/githubicon.svg')
+        h1 Boilerplate
+        +free('85%', '76%')
+          a.icon-link(href='https://github.com/posva')
+            img(src='../common/githubicon.svg')
             span posva
         +free('80%', '20%', '10deg')
           img(src='../common/lama-fabulous.gif')
 
       section
-        h2 Some section
+        h2 H2 section
+        p This is a paragraph
+
+      section
+        h3 H3 title
+        p This is a paragraph
+
+      section
+        h4 H4 title
+        p This is a paragraph
+
+      section
+        h2 H2 title
+        ul
+          li element 1
+          li element 2
+          li element 3
 
       +full('flamingo-hello.gif')
         h2 Happy Talk!
+
+      section
+        h2 H2 title
+        ul
+          li element 1
+          li element 2
+          li element 3
 
     script(src='build/build.js')

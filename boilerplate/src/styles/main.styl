@@ -3,17 +3,6 @@
 
 // Import CSS from "node_modules" and "bower_components"
 // thanks to Stylus' "import css" and "paths" options
-@import 'Skeleton/css/skeleton.css'
-.row
-  width: 100%
-
-code, pre
-  background: initial
-  border: initial
-  background: hsl(0, 0%, 8%) !important
-  overflow: visible !important
-@import 'prismjs/themes/prism-twilight.css'
-
 @import 'bespoke-substeps/style.css'
 
 @import 'nib' // CSS3 extensions for Stylus: http://visionmedia.github.io/nib/
@@ -48,18 +37,18 @@ spacer_gif = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAAB
 
 @media print
   *
-    -webkit-print-color-adjust: exact
+    print-color-adjust: exact
 
 @page
   size: landscape
   margin: 0
 
-// bespoke.js layout styles
+//// bespoke.js layout styles
 
-.pull-left
-  float: left !important;
-.pull-right
-  float: right !important;
+//.pull-left
+  //float: left !important;
+//.pull-right
+  //float: right !important;
 
 article
   transition: all .3s ease
@@ -78,24 +67,21 @@ article
       overflow: visible
       position: static
 
-    &.green
-      background: primary
-    &.white
-      background: white
+    //&.green
+      //background: primary
+    //&.white
+      //background: white
 
-.iframe
-  iframe
-    background: white
+//.iframe
+  //iframe
+    //background: white
 
-.inline-pre pre
-  display: inline-block
+//.inline-pre pre
+  //display: inline-block
 
 section
   .notes
     display: none
-  .bottom
-    size: 80% 128px
-    //relative: bottom -64px
 
   h1, h2
     text-transform: initial
@@ -116,92 +102,85 @@ section
   li h3
     display: inline-block
 
-  .icon-link
 
-  .logo
-    max-width: 128px
+//.bespoke-slide
+  //transition:
+    //transform slide_transition_length slide_transition_easing,
+    //opacity slide_transition_length slide_transition_easing,
+    //background slide_transition_length slide_transition_easing
+  //transform-origin: 50% 50% 0
+  //transform: translate3d(0,0,0)
+  //backface-visibility: hidden
+  //display: flex
+  //flex-direction: column
+  //justify-content: center
+  //align-items: center
+  //text-align: center
+  //width: slide_width
+  //height: slide_height
+  //position: absolute
+  //top: 50%
+  //margin-top: (slide_height / 2) * -1
+  //left: 50%
+  //margin-left: (slide_width / 2) * -1
+  //background: slide_background
+  //padding: 40px
+  //border-radius: 0
+  //@media print
+    //zoom: 1 !important // disable bespoke-scale
+    //height: 743px // seems to correspond with an A4, landscape page height
+    //width: 100%
+    //page-break-before: always
+    //position: static
+    //margin: 0
 
-  .icon
-    max-width: 64px
+//.bespoke-before
+  //transform: translateX(slide_transition_nudge_x * -1) translateX(slide_width / -2) rotateY(slide_transition_rotate_y * -1) translateX(slide_width / -2)
 
-.bespoke-slide
-  transition:
-    transform slide_transition_length slide_transition_easing,
-    opacity slide_transition_length slide_transition_easing,
-    background slide_transition_length slide_transition_easing
-  transform-origin: 50% 50% 0
-  transform: translate3d(0,0,0)
-  backface-visibility: hidden
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: center
-  text-align: center
-  width: slide_width
-  height: slide_height
-  position: absolute
-  top: 50%
-  margin-top: (slide_height / 2) * -1
-  left: 50%
-  margin-left: (slide_width / 2) * -1
-  background: slide_background
-  padding: 40px
-  border-radius: 0
-  @media print
-    zoom: 1 !important // disable bespoke-scale
-    height: 743px // seems to correspond with an A4, landscape page height
-    width: 100%
-    page-break-before: always
-    position: static
-    margin: 0
+//.bespoke-after
+  //transform: translateX(slide_transition_nudge_x) translateX(slide_width / 2) rotateY(slide_transition_rotate_y) translateX(slide_width / 2)
+  //@media print
+    //transform: none
 
-.bespoke-before
-  transform: translateX(slide_transition_nudge_x * -1) translateX(slide_width / -2) rotateY(slide_transition_rotate_y * -1) translateX(slide_width / -2)
+//.bespoke-inactive
+  //opacity: 0
+  //pointer-events: none
+  //@media print
+    //opacity 1
 
-.bespoke-after
-  transform: translateX(slide_transition_nudge_x) translateX(slide_width / 2) rotateY(slide_transition_rotate_y) translateX(slide_width / 2)
-  @media print
-    transform: none
+//.bespoke-active
+  //opacity: 1
+  //transition-delay: .2s
 
-.bespoke-inactive
-  opacity: 0
-  pointer-events: none
-  @media print
-    opacity 1
+//// bespoke-bullet styles
 
-.bespoke-active
-  opacity: 1
-  transition-delay: .2s
+//.bespoke-bullet
+  //transition: all bullet_transition_length bullet_transition_easing
 
-// bespoke-bullet styles
+//.bespoke-bullet-inactive
+  //opacity: 0
+  //li&
+    //transform: translateX(-10px) translateZ(-10px) rotateY(20deg)
+  //@media print
+    //opacity: 1
 
-.bespoke-bullet
-  transition: all bullet_transition_length bullet_transition_easing
+//.bespoke-bullet-active
+  //opacity: 1
 
-.bespoke-bullet-inactive
-  opacity: 0
-  li&
-    transform: translateX(-10px) translateZ(-10px) rotateY(20deg)
-  @media print
-    opacity: 1
+//// bespoke-scale styles
 
-.bespoke-bullet-active
-  opacity: 1
-
-// bespoke-scale styles
-
-.bespoke-scale-parent
-  perspective: 600px
-  position: absolute
-  top: 0
-  left: 0
-  right: 0
-  bottom: 0
-  pointer-events: none
-  .bespoke-active
-    pointer-events: auto
-  @media print
-    transform: none !important
+//.bespoke-scale-parent
+  //perspective: 600px
+  //position: absolute
+  //top: 0
+  //left: 0
+  //right: 0
+  //bottom: 0
+  //pointer-events: none
+  //.bespoke-active
+    //pointer-events: auto
+  //@media print
+    //transform: none !important
 
 // bespoke-progress styles
 
@@ -224,26 +203,25 @@ section
 
 // bespoke-state styles
 
-.emphatic,
-.emphatic .bespoke-slide
-  background: slide_background
+//.emphatic,
+//.emphatic .bespoke-slide
+  //background: slide_background
 
 // prism styles
 
-pre
-  padding: 5px !important
-  border-radius: 8px !important
-  border: none !important
-  box-shadow: none !important
-  span
-    text-shadow: none !important
+//pre
+  //padding: 5px !important
+  //border-radius: 8px !important
+  //border: none !important
+  //box-shadow: none !important
+  //span
+    //text-shadow: none !important
 
-.text-right
-  text-align: right
+//.text-right
+  //text-align: right
 
 body
   background: #303030
-  font-family: open sans, helvetica, arial, sans-serif
   font-weight: 300
   font-size: 23px
   color: #f0f0f0
@@ -252,7 +230,7 @@ body
   .bespoke-slide.light
     color: rgba(0,0,0,0.5)
 
-.bespoke-parent
+body, .bespoke-parent
   font-family: open sans, helvetica, arial, sans-serif
 
 h1
@@ -279,22 +257,22 @@ h3
   .bespoke-slide.light &
     color: rgba(0,0,0,0.5)
 
-hr
-  visibility: hidden
-  height: 20px
+//hr
+  //visibility: hidden
+  //height: 20px
 
-ul
-  list-style: none
+//ul
+  //list-style: none
 
-li
-  margin-bottom: 12px
+//li
+  //margin-bottom: 12px
 
-p
-  margin: 0 100px 12px
-  line-height: 1.3em
+//p
+  //margin: 0 100px 12px
+  //line-height: 1.3em
 
-blockquote
-  max-width: 75%
+//blockquote
+  //max-width: 75%
 
 small
   font-size: 50%
@@ -310,19 +288,19 @@ a
   .bespoke-slide.light h1 &
     color: primary
 
-.avatar
-  display: block
-  margin: 0 auto
-  width: 120px
-  height: 120px
-  border-radius: 120px
-  &--small
-    width: 70px
-    height: 70px
+//.avatar
+  //display: block
+  //margin: 0 auto
+  //width: 120px
+  //height: 120px
+  //border-radius: 120px
+  //&--small
+    //width: 70px
+    //height: 70px
 
-.logo
-  background-position: center
-  background-repeat: no-repeat
-  &--gulp
-    background-size: 25%
-    background-image: url(../images/gulp.png)
+//.logo
+  //background-position: center
+  //background-repeat: no-repeat
+  //&--gulp
+    //background-size: 25%
+    //background-image: url(../images/gulp.png)
