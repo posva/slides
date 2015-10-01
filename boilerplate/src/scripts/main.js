@@ -22,4 +22,12 @@ bespoke.from('article', [
 ]);
 
 // Prism syntax highlighting
-require('prismjs');
+require('prismjs/components/prism-core');
+require('prismjs/components/prism-clike');
+require('prismjs/components/prism-javascript');
+require('prismjs/components/prism-coffeescript');
+require('prismjs/components/prism-css');
+require('prismjs/components/prism-stylus');
+require('prismjs/components/prism-jade');
+require('prismjs/components/prism-bash');
+require('prismjs/components/prism-git');

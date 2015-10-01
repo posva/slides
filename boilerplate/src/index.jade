@@ -28,12 +28,38 @@ html
           img(src='../common/lama-fabulous.gif')
 
       section
-        h2 H2 section
+        h2 Inline code
+          code.language-javascript var a;
         p This is a paragraph
 
       section
-        h3 H3 title
-        p This is a paragraph
+        h2 Code
+        pre
+          code.language-javascript.
+            var a, b;
+            a = 3;
+            b = function() {
+              return true;
+            };
+
+      section
+        h2 Code long line
+        pre
+          code.language-coffeescript.
+            a = 3
+            b = ->
+              thisIsASuperLongNameForAFunctionNobodyWillEverType()
+
+      section
+        h3 Vue format
+        pre
+          code.language-css.
+            h1 {
+              color: red;
+            }
+
+      section(data-bespoke-backdrop='emphatic')
+        h2 This is a paragraph
 
       section
         h4 H4 title
@@ -48,12 +74,5 @@ html
 
       +full('flamingo-hello.gif')
         h2 Happy Talk!
-
-      section
-        h2 H2 title
-        ul
-          li element 1
-          li element 2
-          li element 3
 
     script(src='build/build.js')
