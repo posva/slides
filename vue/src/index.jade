@@ -24,14 +24,27 @@ html
         .notes
           Librarie pour faire des interfaces web reactives oriente web components
 
-      +section('flamingo-hello.gif')
-        h1 Boilerplate
-        +free('85%', '76%')
-          a.icon-link(href='https://github.com/posva')
-            img(src='../common/githubicon.svg')
-            span posva
-        +free('80%', '20%', '10deg')
-          img(src='../common/lama-fabulous.gif')
+      +full('manufacturing.gif')
+        h1 Un autre MVVM ?!
+        .notes
+          Tres souvent la premiere reaction des gens quand je leur parle de Vue
+          est 'Un autre MVVM' et il fait quoi de mieux
+
+      section
+        h2 Pourquoi Vue ?
+        ul.bullet
+          li Performant
+          li Facile à utiliser
+          li Communauté très active
+
+      section
+        h1 Le ViewModel
+
+      section
+        h1 Les directives
+
+      section
+        h1 Les components
 
       section
         h2 Inline code
@@ -43,13 +56,26 @@ html
 
       section
         h2 Code
-        pre
-          code.language-javascript.
-            var a, b;
-            a = 3;
-            b = function() {
-              return true;
-            };
+        .row.align-center
+          .even
+            pre
+              code.language-markup.
+                &lt;div id="hello-world"&gt;
+                  &lt;input v-model="value" type="text" /&gt;
+                  &lt;span&gt;{{value}}&lt;/span&gt;
+                &lt;/div&gt;
+            pre
+              code.language-javascript.
+                new Vue({
+                  el: '#hello-world',
+                  data: {
+                    value: 'Hello World'
+                  }
+                });
+          .even
+            #hello-world
+              input(v-model='value' type='text')
+              span {{value}}
 
       section
         h2 Code long line
