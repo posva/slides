@@ -32,3 +32,12 @@ require('prismjs/components/prism-markup');
 require('prismjs/components/prism-jade');
 require('prismjs/components/prism-bash');
 require('prismjs/components/prism-git');
+
+(function() {
+  new Vue({
+    el: '#hello-world',
+    data: {
+      value: 'Hello World'
+    }
+  });
+})();

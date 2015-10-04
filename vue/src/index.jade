@@ -16,7 +16,7 @@ html
 
     article
       section
-        h1.thin
+        h1.thin.no-padding
           img.block.center(src='images/vue-logo.png')
           span Vue
           small .js
@@ -62,7 +62,7 @@ html
               code.language-markup.
                 &lt;div id="hello-world"&gt;
                   &lt;input v-model="value" type="text" /&gt;
-                  &lt;span&gt;{{value}}&lt;/span&gt;
+                  &lt;p&gt;{{value}}&lt;/p&gt;
                 &lt;/div&gt;
             pre
               code.language-javascript.
@@ -75,7 +75,7 @@ html
           .even
             #hello-world
               input(v-model='value' type='text')
-              span {{value}}
+              p {{value}}
 
       section
         h2 Code long line
@@ -111,4 +111,5 @@ html
       +full('flamingo-hello.gif')
         h2 Happy Talk!
 
+    script(src='https://raw.githubusercontent.com/yyx990803/vue/1.0.0-beta/dist/vue.min.js')
     script(src='build/build.js')

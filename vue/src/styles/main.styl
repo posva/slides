@@ -103,7 +103,6 @@ section
   margin-top: (slide_height / 2) * -1
   left: 50%
   margin-left: (slide_width / 2) * -1
-  padding: 40px
   border-radius: 0
   @media print
     zoom: 1 !important // disable bespoke-scale
@@ -200,6 +199,9 @@ section[data-bespoke-backdrop='emphatic']
 :not(pre) > code[class*="language-"]
   margin-left: 0.5em
 
+pre[class*="language-"]
+ padding: 0
+
 body
   background: #303030
   font-weight: 300
@@ -221,6 +223,9 @@ h1
   line-height: 82px
   letter-spacing: -2px
   margin-bottom: 16px
+
+h1.no-padding
+  padding: 0
 
 h2
   font-weight: 300
