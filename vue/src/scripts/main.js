@@ -14,7 +14,7 @@ bespoke.from('article', [
   nebula(),
   keys(),
   touch(),
-  bullets('li, .bullet'),
+  bullets('ul:not(.no-bullet) li, .bullet'),
   substeps(),
   backdrop(),
   hash(),

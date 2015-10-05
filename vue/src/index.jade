@@ -31,11 +31,103 @@ html
           est 'Un autre MVVM' et il fait quoi de mieux
 
       section
+        h2 Vue aujourd'hui
+        ul.no-bullet
+          li Version stable: 0.12
+          li Version 1.0 en route
+          li Version Alpha disponible
+          li Version Beta disponible
+
+      section
         h2 Pourquoi Vue ?
         ul.bullet
           li Performant
           li Facile à utiliser
-          li Communauté très active
+          li Orienté Components
+          li Communauté très active !
+        .notes
+          Issues crées tous les jours (un peu moins les we) et tout le monde qui répond
+          chat Gitter pour discuter ou demander de l'aide
+
+      section
+        h2 Hello World
+        .row.flex-align-center
+          .even
+            pre
+              code.language-markup.
+                &lt;div id="hello-world"&gt;
+                  &lt;input v-model="value" type="text" /&gt;
+                  &lt;p&gt;{{value}}&lt;/p&gt;
+                &lt;/div&gt;
+            pre
+              code.language-javascript.
+                new Vue({
+                  el: '#hello-world',
+                  data: {
+                    value: 'Hello World'
+                  }
+                });
+          .even.row.flex-align-center
+            #hello-world
+              input(v-model='value' type='text')
+              p {{value}}
+
+      section
+        h2 Le&nbsp;
+          code v-for
+
+      section
+        h2 Component System
+        ul.no-bullet
+          li DRY
+            small (Don't repeat yourself)
+          li Meilleure Structuration
+          li Relecture Facile
+        .notes.
+          ça incite la refacto car on peut bien commencer par un component qui contient tout
+          Puis au fur et a mesure que l'appli avance on se rend compte que certain composants
+          peuvent etre reutilisés
+
+      section.more-space
+        h2 Tout dans une seule page
+        pre
+          code.language-markup.
+            &lt;div id="contacts"&gt;
+              &lt;form id="contacts-search" action="fetchResults"&gt;
+                &lt;input v-model="search" type="text"/&gt;
+                &lt;button type="submit"&gt;Search&lt;/button&gt;
+              &lt;/form&gt;
+              &lt;div id="contacts-results" class="contacts-grid"&gt;
+                &lt;div class="contacts-card row" v-for="contacts"&gt;
+                  &lt;img v-bind:src="imgUrl" class="contacts-img col-4"/&gt;
+                  &lt;div class="contacts-info"&gt;
+                    &lt;span&gt;{{firtsName}} {{lastName}}&lt;/span&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+      section
+        h2 Components search et contact-list
+        pre
+          code.language-markup.
+            &lt;div id="contacts"&gt;
+              &lt;search id="contacts-search" action="fetchResults"&gt;&lt;/search&gt;
+              &lt;contact-list id="contacts-results"
+                v-bind:contacts="contacts"&gt;
+              &lt;/contact-list&gt;
+            &lt;/div&gt;
+        .notes
+          On garde encore certains liens de données dans la vue pricipale
+
+      section
+        h2 Componentception:&nbsp;
+          code contact-list
+        pre
+          code.language-markup.
+            &lt;div class="contacts-contact-grid"&gt;
+                &lt;contact-card v-for="contacts" contact="$value"&gt;&lt;/contact-card&gt;
+            &lt;/div&gt;
 
       section
         h1 Le ViewModel
@@ -53,29 +145,6 @@ html
 
       section
         a(href='#') Some link
-
-      section
-        h2 Code
-        .row.align-center
-          .even
-            pre
-              code.language-markup.
-                &lt;div id="hello-world"&gt;
-                  &lt;input v-model="value" type="text" /&gt;
-                  &lt;p&gt;{{value}}&lt;/p&gt;
-                &lt;/div&gt;
-            pre
-              code.language-javascript.
-                new Vue({
-                  el: '#hello-world',
-                  data: {
-                    value: 'Hello World'
-                  }
-                });
-          .even
-            #hello-world
-              input(v-model='value' type='text')
-              p {{value}}
 
       section
         h2 Code long line
@@ -111,5 +180,5 @@ html
       +full('flamingo-hello.gif')
         h2 Happy Talk!
 
-    script(src='https://raw.githubusercontent.com/yyx990803/vue/1.0.0-beta/dist/vue.min.js')
+    script(src='https://rawgit.com/yyx990803/vue/1.0.0-beta/dist/vue.min.js')
     script(src='build/build.js')
