@@ -286,3 +286,13 @@ a
     margin: auto
 pre.no-line-number .line-highlight:before
   content: ''
+
+.expand-transition
+  transition: all .3s ease
+  width: 100%
+  height: 220px
+  overflow: hidden
+  opacity: 1
+.expand-enter, .expand-leave
+  height: 0
+  opacity: 0

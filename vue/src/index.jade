@@ -72,6 +72,41 @@ html
               input(v-model='value' type='text')
               p {{value}}
 
+      +full('spider-fight.gif')
+        h1 Les classiques
+        .notes les impasses
+
+      section
+        h2 Le&nbsp;
+          code v-show
+          span /
+          code v-if
+        .row
+          .even
+            pre.no-line-number(data-line='6')
+              code.language-markup.
+                &lt;div id="v-show"&gt;
+                  &lt;input v-model="show" type="checkbox"/&gt;
+                  &lt;span&gt;
+                    {{show ? 'Hide the bear' : 'Show the bear'}}
+                  &lt;/span&gt;
+                  &lt;img v-show="show" src="images/bear-hello.gif"/&gt;
+                &lt;/div&gt;
+            pre
+              code.language-javascript.
+                new Vue({
+                  el: '#v-show',
+                  data: {
+                    show: false
+                  }
+                });
+          .even
+            #v-show
+              .block
+                input(v-model='show' type='checkbox' id='v-show-check')
+                label(for='v-show-check') {{show ? 'Hide the bear' : 'Show the bear'}}
+              img(v-show='show' src='images/bear-hello.gif')
+
       section
         h2 Le&nbsp;
           code v-for
@@ -99,6 +134,34 @@ html
               button(@click='items.pop()') Pop
               ul.row.flex-flow-wrap.flex-justify-start
                 li(v-for='item in items') {{item}}
+
+      section
+        h2 Le&nbsp;
+          code v-transition
+        .row
+          .even
+            pre
+              code.language-markup.
+                  &lt;img v-show="show" transition="expand"
+                    src="images/bear-hello.gif"/&gt;
+            pre
+              code.language-css.
+                .expand-transition {
+                  transition: all .3s ease;
+                  height: 220px
+                  overflow: hidden;
+                }
+                .expand-enter, .expand-leave {
+                  height: 0;
+                  opacity: 0;
+                }
+          .even
+            #v-transition
+              .block
+                input(v-model='show' type='checkbox' id='v-transition-check')
+                label(for='v-transition-check') {{show ? 'Hide the bear' : 'Show the bear'}}
+              div(transition="expand" v-if='show')
+                img(src='images/bear-hello.gif')
 
       section
         h2 Component System

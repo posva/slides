@@ -49,4 +49,18 @@ require('prismjs/plugins/line-highlight/prism-line-highlight');
       items: [0, 1]
     }
   });
+
+  new Vue({
+    el: '#v-show',
+    data: {
+      show: false,
+    }
+  });
+
+  new Vue({
+    el: '#v-transition',
+    data: {
+      show: false,
+    }
+  });
 })();
