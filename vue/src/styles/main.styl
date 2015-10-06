@@ -7,6 +7,9 @@
 
 @import 'nib' // CSS3 extensions for Stylus: http://visionmedia.github.io/nib/
 @import 'prismjs/themes/prism.css'
+@import 'prismjs/plugins/line-highlight/prism-line-highlight.css'
+.line-highlight
+  margin-top: 0.2em
 
 @import '../../../utils/utils'
 
@@ -276,3 +279,10 @@ a
     color: rgba(0,0,0,0.7)
   .bespoke-slide.light h1 &
     color: primary
+
+#v-for
+  ul li
+    width: 0.25em
+    margin: auto
+pre.no-line-number .line-highlight:before
+  content: ''

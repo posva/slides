@@ -22,6 +22,9 @@ section.more-space
   height: 100%
   top: 30%
 
+.inline
+  display: inline
+
 .block
   display: block
 
@@ -35,10 +38,17 @@ padRight = 20px
 values = zero one two three four five six seven eight nine ten eleven twelve
 .row
   display: flex
+  flex-basis: 1
+  &.flex-align-top
+    align-items: flex-start
   &.flex-align-center
     align-items: center
   .even
     flex-grow: 1
+  &.flex-flow-wrap
+    flex-flow: wrap
+  &.flex-justify-start
+    justify-content: flex-start
 
 section
   &.full-text, &.full

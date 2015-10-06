@@ -14,7 +14,7 @@ bespoke.from('article', [
   nebula(),
   keys(),
   touch(),
-  bullets('ul:not(.no-bullet) li, .bullet'),
+  bullets('ul.bullet li, .bullet'),
   substeps(),
   backdrop(),
   hash(),
@@ -33,11 +33,20 @@ require('prismjs/components/prism-jade');
 require('prismjs/components/prism-bash');
 require('prismjs/components/prism-git');
 
+require('prismjs/plugins/line-highlight/prism-line-highlight');
+
 (function() {
   new Vue({
     el: '#hello-world',
     data: {
       value: 'Hello World'
+    }
+  });
+
+  new Vue({
+    el: '#v-for',
+    data: {
+      items: [0, 1]
     }
   });
 })();

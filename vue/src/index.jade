@@ -75,6 +75,30 @@ html
       section
         h2 Le&nbsp;
           code v-for
+        .row
+          .even
+            pre(data-line='3')
+              code.language-markup.
+                &lt;div id="v-for"&gt;
+                  &lt;ul&gt;
+                    &lt;li v-for="item in items"&gt;{{item}}&lt;/li&gt;
+                  &lt;/ul&gt;
+                &lt;/div&gt;
+            pre
+              code.language-javascript.
+                new Vue({
+                  el: '#v-for',
+                  data: {
+                    items: [1, 2]
+                  }
+                });
+          .even
+            #v-for
+              p There are {{items.length}} elements
+              button(@click='items.push(items.length)') Push
+              button(@click='items.pop()') Pop
+              ul.row.flex-flow-wrap.flex-justify-start
+                li(v-for='item in items') {{item}}
 
       section
         h2 Component System
@@ -109,7 +133,7 @@ html
 
       section
         h2 Components search et contact-list
-        pre
+        pre.no-line-number(data-line='2,3,5')
           code.language-markup.
             &lt;div id="contacts"&gt;
               &lt;search id="contacts-search" action="fetchResults"&gt;&lt;/search&gt;
@@ -123,7 +147,7 @@ html
       section
         h2 Componentception:&nbsp;
           code contact-list
-        pre
+        pre(data-line='2')
           code.language-markup.
             &lt;div class="contacts-contact-grid"&gt;
                 &lt;contact-card v-for="contacts" contact="$value"&gt;&lt;/contact-card&gt;
