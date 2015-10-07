@@ -29,6 +29,39 @@ require('prismjs/components/prism-coffeescript');
 require('prismjs/components/prism-css');
 require('prismjs/components/prism-stylus');
 require('prismjs/components/prism-markup');
+Prism.languages.markup = {
+  'comment': /<!--[\w\W]*?-->/,
+  'prolog': /<\?.+?\?>/,
+  'doctype': /<!DOCTYPE.+?>/,
+  'cdata': /<!\[CDATA\[[\w\W]*?]]>/i,
+    'tag': {
+      pattern: /<\/?[\w:-]+\s*(?:\s+[\w:@\.-]+(?:=(?:("|')(\\?[\w\W])*?\1|[^\s'">=]+))?\s*)*\/?>/i,
+      inside: {
+        'tag': {
+          pattern: /^<\/?[\w:-]+/i,
+          inside: {
+            'punctuation': /^<\/?/,
+            'namespace': /^[\w-]+?:/
+          }
+        },
+        'attr-value': {
+          pattern: /=(?:('|")[\w\W]*?(\1)|[^\s>]+)/i,
+          inside: {
+            'punctuation': /=|>|"/
+          }
+        },
+        'punctuation': /\/?>/,
+        'attr-name': {
+          pattern: /[\w:\.@-]+/,
+          inside: {
+            'namespace': /^[\w-]+?:/
+          }
+        }
+
+      }
+    },
+    'entity': /&#?[\da-z]{1,8};/i
+};
 require('prismjs/components/prism-jade');
 require('prismjs/components/prism-bash');
 require('prismjs/components/prism-git');

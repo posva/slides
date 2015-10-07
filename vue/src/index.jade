@@ -214,6 +214,7 @@ html
                 label(for='v-transition-check') {{show ? 'Hide the bear' : 'Show the bear'}}
               div(transition="expand" v-if='show')
                 img(src='images/bear-hello.gif')
+
       section
         h2 Les filtres
         .row.flex-align-center
@@ -246,6 +247,19 @@ html
           On peut passer des argument
           et on peut bien sur creer ses propres filtres
 
+      +full('over.gif')
+        h1 C'est tout ?
+        ul.bullet
+          li
+            a(href='https://github.com/vuejs/vue-router') vue-router
+          li
+            a(href='https://github.com/vuejs/vue-resource') vue-resource
+          li
+            a(href='https://github.com/vuejs/vue-validator') vue-validator
+        .notes.
+          Il manque bien sur plein de trucs. c'est pour ca que lon utilise des plugins.
+          On evite de construire une usine a gaz
+
       +full('conventions.gif')
        h1 Les Conventions
        .notes.
@@ -254,18 +268,44 @@ html
         réactif = prend une expression
 
       section
-        h2 Conventions: directives
-        ul.bullet
-          li les directives sont réactive
-          li TODO
+        h2 Directives réactives
+        pre
+          code.language-markup.
+            &lt;a v-link.literal="/foo"&gt;Go to foo&lt;/a&gt;
+
+      section
+        h2 Attributs non réactifs
+        pre.bullet
+          code.language-markup.
+            &lt;img v-bind:src="user.picture"/&gt;
+            &lt;img :src="user.picture"/&gt;
+        pre.bullet
+          code.language-markup.
+            &lt;contact-card :contact="user"&gt;&lt;/contact-card&gt;
+        .notes.
+          vue sait que c'est un lien et qu'il faut faire une requete
+
+      section
+        h2 Mustache Binding
+        p Que dans les noeuds ou les attributs natifs
+        pre
+          code.language-markup.
+            &lt;img src="{{imgUrl}}"/&gt;
 
       section
         h2 Les Events
+        pre
+          code.language-markup.
+            &lt;input v-on:change="handle()"/&gt;
+            &lt;input @change="handle()"/&gt;
         .notes.
           TODO parler den @change
 
+      +full('playstation.gif')
+        h1 Component System
+
       section
-        h2 Component System
+        h2 Les Avantages
         ul.bullet
           li DRY
             small (Don't repeat yourself)
@@ -319,61 +359,15 @@ html
             &lt;/div&gt;
 
       section
-        h1 Les directives
-
-      +full('playstation.gif')
-        h1 Internement c'est comment
-
-      section
-        h1 Le ViewModel
-
-      section
-        h1 Les directives
-
-      section
-        h1 Les components
-
-      section
-        h2 Inline code
-          code.language-javascript var a;
-        p This is a paragraph
-
-      section
-        a(href='#') Some link
-
-      section
-        h2 Code long line
-        pre
-          code.language-coffeescript.
-            a = 3
-            b = ->
-              thisIsASuperLongNameForAFunctionNobodyWillEverType()
-
-      section
-        h3 Vue format
-        pre
-          code.language-css.
-            h1 {
-              color: red;
-            }
-
-      section(data-bespoke-backdrop='emphatic')
-        h2 This is a paragraph
-        a(href='#') Some link
-
-      section
-        h4 H4 title
-        p This is a paragraph
-
-      section
-        h2 H2 title
-        ul
-          li element 1
-          li element 2
-          li element 3
+        h1 Le format&nbsp;
+          code .vue
 
       +full('flamingo-hello.gif')
         h2 Happy Talk!
+        .notes.
+          Ca sera tout pour cette intro a vuejs. J'espere avoir attire l'attention
+          vers ce framework et si c'est le cas je vous conseille de le tester et
+          d'aller voir les ressources
 
     script(src='https://rawgit.com/yyx990803/vue/1.0.0-beta/dist/vue.min.js')
     script(src='build/build.js')
