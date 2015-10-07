@@ -18,8 +18,7 @@ html
       section
         h1.thin.no-padding
           img.block.center(src='images/vue-logo.png')
-          span Vue
-          small .js
+          span Vue.js
         h2 Data-reactive web components
         .notes
           Librarie pour faire des interfaces web reactives oriente web components
@@ -35,19 +34,24 @@ html
         ul.no-bullet
           li Version stable: 0.12
           li Version 1.0 en route
-          li Version Alpha disponible
-          li Version Beta disponible
+          li Version Alpha et Beta disponible
+        .notes.
+          La version alpha est faite pour faire la transition car elle affiche
+          des warning de fontionnalités qui sont deprecated tandis que la beta
+          est une pre release de la v1
 
       section
         h2 Pourquoi Vue ?
         ul.bullet
-          li Performant
-          li Facile à utiliser
+          li Equilibre Performance – Usabilité
           li Orienté Components
           li Communauté très active !
-        .notes
+        .notes.
+          Il est difficile de faire quelquechose d'efficace mais qui soit pratique à utiliser
+          C'est le cas de react. Angular 1 est à l'opposé
           Issues crées tous les jours (un peu moins les we) et tout le monde qui répond
           chat Gitter pour discuter ou demander de l'aide
+          Documentation solide
 
       section
         h2 Hello World
@@ -56,7 +60,7 @@ html
             pre
               code.language-markup.
                 &lt;div id="hello-world"&gt;
-                  &lt;input v-model="value" type="text" /&gt;
+                  &lt;input v-model="value" type="text"/&gt;
                   &lt;p&gt;{{value}}&lt;/p&gt;
                 &lt;/div&gt;
             pre
@@ -72,9 +76,56 @@ html
               input(v-model='value' type='text')
               p {{value}}
 
+      +full('vocabulary.gif')
+        h1 Le Vocabulaire
+        .notes.
+          Anvant de rentrer un peu plus dans les details de vue on va parler des
+          principaux termes utilisés. Il y en a pas beaucoup :D
+
+      section
+        h2 Les Directives
+        ul.no-bullet
+          li
+            code v-model
+            span ,&nbsp;
+            code v-if
+            span , ...
+          li Custom directives
+            small (ne commencent pas forcemment par v-)
+        span.bullet
+        pre.bullet
+          code.language-markup.
+            &lt;input v-model="value" type="text"/&gt;
+        .notes.
+          Tous les v- et les custom directives sont des directives
+          v-model est une directive mais type non
+          les directives sont toujours reactive. Cad qu'elles évaluent une expression
+
+      section
+        h2 Le View Model (
+          code vm
+          span )
+        p View ⇆ Model
+        span.bullet
+        pre.bullet
+          code.language-javascript.
+            new Vue({...});
+        .notes.
+          Le vm se charge de sync les données avec la vue
+          La vm est crée quand on instancie une Vue
+
+      section
+        h2 Les filtres
+        pre
+          code.language-markup.
+            &lt;p&gt;{{msg | capitalize}}&lt;/p&gt;
+        .notes.
+          surement connu ils permettent de changer les données avant qu'elles
+          soient passées à la view
+
       +full('spider-fight.gif')
-        h1 Les classiques
-        .notes les impasses
+        h1 Fontionnalités classiques
+        .notes les impasses, mais avant on va parler des concepts de base de vue
 
       section
         h2 Le&nbsp;
@@ -104,7 +155,7 @@ html
             #v-show
               .block
                 input(v-model='show' type='checkbox' id='v-show-check')
-                label(for='v-show-check') {{show ? 'Hide the bear' : 'Show the bear'}}
+                label(v-bind:style='{fontSize: show? "1em" : "2em"}' for='v-show-check') {{show ? 'Hide the bear' : 'Show the bear'}}
               img(v-show='show' src='images/bear-hello.gif')
 
       section
@@ -124,7 +175,7 @@ html
                 new Vue({
                   el: '#v-for',
                   data: {
-                    items: [1, 2]
+                    items: [0, 1]
                   }
                 });
           .even
@@ -142,8 +193,9 @@ html
           .even
             pre
               code.language-markup.
-                  &lt;img v-show="show" transition="expand"
-                    src="images/bear-hello.gif"/&gt;
+                &lt;div v-if="show" transition="expand"&gt;
+                  &lt;img src="images/bear-hello.gif"/&gt;
+                &lt;/div&gt;
             pre
               code.language-css.
                 .expand-transition {
@@ -162,15 +214,65 @@ html
                 label(for='v-transition-check') {{show ? 'Hide the bear' : 'Show the bear'}}
               div(transition="expand" v-if='show')
                 img(src='images/bear-hello.gif')
+      section
+        h2 Les filtres
+        .row.flex-align-center
+          .even
+            pre
+              code.language-markup.
+                &lt;div id="filters"&gt;
+                  &lt;p&gt;{{obj | json}}&lt;/p&gt;
+                &lt;/div&gt;
+            pre
+              code.language-javascript.
+                new Vue({
+                  el: '#filters',
+                  data: {
+                    obj: {
+                      bool: true,
+                      arr: [1, 2],
+                      inner: {
+                        a: null
+                      }
+                    }
+                  }
+                });
+          .even
+            #filters
+              p {{obj | json}}
+        .notes.
+          quand on veut modifier les données avant de les afficher
+          on peut les chainer les un à la suite des autres
+          On peut passer des argument
+          et on peut bien sur creer ses propres filtres
+
+      +full('conventions.gif')
+       h1 Les Conventions
+       .notes.
+        elles sont la pour faire que le dev n'ai pas a se poser de questions
+        lorsqu'il doit écrire du code.
+        réactif = prend une expression
+
+      section
+        h2 Conventions: directives
+        ul.bullet
+          li les directives sont réactive
+          li TODO
+
+      section
+        h2 Les Events
+        .notes.
+          TODO parler den @change
 
       section
         h2 Component System
-        ul.no-bullet
+        ul.bullet
           li DRY
             small (Don't repeat yourself)
           li Meilleure Structuration
           li Relecture Facile
         .notes.
+          j'ai parlé tout à l'heure des components comme un avantage. mais pourquoi
           ça incite la refacto car on peut bien commencer par un component qui contient tout
           Puis au fur et a mesure que l'appli avance on se rend compte que certain composants
           peuvent etre reutilisés
@@ -215,6 +317,12 @@ html
             &lt;div class="contacts-contact-grid"&gt;
                 &lt;contact-card v-for="contacts" contact="$value"&gt;&lt;/contact-card&gt;
             &lt;/div&gt;
+
+      section
+        h1 Les directives
+
+      +full('playstation.gif')
+        h1 Internement c'est comment
 
       section
         h1 Le ViewModel

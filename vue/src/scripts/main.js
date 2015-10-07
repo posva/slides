@@ -63,4 +63,17 @@ require('prismjs/plugins/line-highlight/prism-line-highlight');
       show: false,
     }
   });
+
+  new Vue({
+    el: '#filters',
+    data: {
+      obj: {
+        bool: true,
+        arr: [1, 2],
+        inner: {
+          a: null
+        }
+      }
+    }
+  });
 })();
