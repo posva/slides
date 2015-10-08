@@ -99,8 +99,6 @@ html
         .notes.
           Tous les v- et les custom directives sont des directives
           v-model est une directive mais type ne l est pas
-          les directives sont toujours reactive. Cad qu'elles évaluent une expression
-          Manip du dom faites dans ça
 
       section
         h2 Le View Model (
@@ -322,20 +320,6 @@ html
           Puis au fur et a mesure que l'appli avance on se rend compte que certain composants
           peuvent etre reutilisés
 
-      section
-        h2 Flow de données
-        ul.no-bullet
-          li Props/Attributs: données vers les enfants
-          li Custom Events: données vers les parents
-        span.bullet
-        p.bullet ⚠ Les custom events ne marchent que dans des components
-        pre.bullet
-          code.language-markup
-            &lt;search-results @ready="resultsReload()"&gt;&lt;/search-results&gt;
-        .notes.
-          les custom events vm.$emit permettent de communiquer avec les parents depuis un composant
-          enfant.
-
       section.more-space
         h2 Tout dans une seule page
         pre
@@ -357,7 +341,7 @@ html
 
       section
         h2 Components search et contact-list
-        pre.no-line-number(data-line='2,3,5')
+        pre.no-line-number(data-line='2,3')
           code.language-markup.
             &lt;div id="contacts"&gt;
               &lt;search id="contacts-search" :submit="fetchResults"&gt;&lt;/search&gt;
@@ -379,6 +363,21 @@ html
             &lt;/div&gt;
 
       section
+        h2 Flow de données
+        ul.no-bullet
+          li Props/Attributs: données vers les enfants
+          li Custom Events: données vers les parents
+        span.bullet
+        p.bullet ⚠ Les custom events ne marchent que dans des components
+        pre.bullet
+          code.language-markup.
+            &lt;search-results @ready="resultsReload()"&gt;&lt;/search-results&gt;
+        .notes.
+          les custom events vm.$emit permettent de communiquer avec les parents depuis un composant
+          enfant.
+
+
+      section
         h2 Binding modes
         ul.bullet
           li
@@ -394,11 +393,21 @@ html
           Le sync est tres utile lorsque l'on crée des composants tels que des checkboxs
 
       section
-        h2 Les methods
-        h2 Les events
+        h2 Données asynchrones
+        p Émettre un event dans le component lui même
+        pre
+          code.language-markup.
+            &lt;contact-card wait-for="data-loaded" :contact="contact"&gt;&lt;/contact-card&gt;
 
       section
-        h2 Les directives
+        h2 Les Hooks
+        p
+          code created, beforeCompile, compiled, ...
+        pre
+          code.language-javascript.
+            ready: function() {
+              componentHandler.upgradeElement(this.$el);
+            }
 
       +full('vue-format.gif')
         h1 Le format&nbsp;
@@ -461,7 +470,7 @@ html
           code.language-markup.
             &lt;script lang="coffee"&gt;
           br
-          code.language-javascript.
+          code.language-coffeescript.
             module.exports =
               props:
                 contact:
@@ -504,8 +513,64 @@ html
           code.language-markup.
             &lt;/script&gt;
 
-      +full('flamingo-hello.gif')
-        h2 Happy Talk!
+      section
+        h2 Transformer les&nbsp;
+          code .vue
+          span  en&nbsp;
+          code .js
+        ul.no-bullet
+          li Browserify:
+            a(href='https://github.com/vuejs/vueify') vueify
+          li Webpack:
+            a(href='https://github.com/vuejs/vue-loader') vue-loader
+
+      section
+        h2 Des examples
+        ul.no-bullet
+          li
+            a(href='https://github.com/vuejs/vueify-example') vueify
+          li
+            a(href='https://github.com/vuejs/vue-loader-example') vue-loader
+
+      section
+        h2
+          code mdl-checkbox
+          span  template
+        pre
+          code.language-jade.
+            label.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect(for='{{* id}}')
+              input.mdl-checkbox__input(type='checkbox' id='{{* id}}'
+                v-model='checked' disabled='{{disabled}}')
+              span.mdl-checkbox__label
+                slot
+
+      section.more-space
+        h2
+          code mdl-checkbox
+          span  script
+        pre
+          code.language-coffeescript.
+            utils = require 'coffee!./utils.coffee'
+            module.exports =
+              data: ->
+                unwatch: []
+              props:
+                id:
+                  type: String
+                  required: true
+                checked:
+                  type: Boolean
+                  required: true
+                disabled: Boolean
+              ready: ->
+                componentHandler.upgradeElement @$el
+                @unwatch.push @$watch 'checked', utils.classToggler 'is-checked'
+                @unwatch.push @$watch 'disabled', utils.classToggler 'is-disabled'
+              beforeDestroy: ->
+                @unwatch.forEach (unwatch) -> unwatch()
+
+      +full('end.gif')
+        h2.shadow Have Fun!
         .notes.
           Ca sera tout pour cette intro a vuejs. J'espere avoir attire l'attention
           vers ce framework et si c'est le cas je vous conseille de le tester et
