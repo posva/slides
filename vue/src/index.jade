@@ -98,8 +98,9 @@ html
             &lt;input v-model="value" type="text"/&gt;
         .notes.
           Tous les v- et les custom directives sont des directives
-          v-model est une directive mais type non
+          v-model est une directive mais type ne l est pas
           les directives sont toujours reactive. Cad qu'elles évaluent une expression
+          Manip du dom faites dans ça
 
       section
         h2 Le View Model (
@@ -113,6 +114,8 @@ html
         .notes.
           Le vm se charge de sync les données avec la vue
           La vm est crée quand on instancie une Vue
+          Elle a toute la logique et ne comporte pas de manipulation du DOM(faites dans les
+          directives)
 
       section
         h2 Les filtres
@@ -155,7 +158,7 @@ html
             #v-show
               .block
                 input(v-model='show' type='checkbox' id='v-show-check')
-                label(v-bind:style='{fontSize: show? "1em" : "2em"}' for='v-show-check') {{show ? 'Hide the bear' : 'Show the bear'}}
+                label(for='v-show-check') {{show ? 'Hide the bear' : 'Show the bear'}}
               img(v-show='show' src='images/bear-hello.gif')
 
       section
@@ -216,6 +219,16 @@ html
                 img(src='images/bear-hello.gif')
 
       section
+        h2 Les Events
+        pre
+          code.language-markup.
+            &lt;input v-on:change="handle()"/&gt;
+            &lt;input @change="handle()"/&gt;
+        .notes.
+          Vue js est fonctionne avec des events en interne. On peut emmettre
+          des evenements sur des components qui remontent vers les parents
+
+      section
         h2 Les filtres
         .row.flex-align-center
           .even
@@ -268,13 +281,13 @@ html
         réactif = prend une expression
 
       section
-        h2 Directives réactives
+        h2 Les Directives sont réactives
         pre
           code.language-markup.
             &lt;a v-link.literal="/foo"&gt;Go to foo&lt;/a&gt;
 
       section
-        h2 Attributs non réactifs
+        h2 Les Attributs sont non réactifs
         pre.bullet
           code.language-markup.
             &lt;img v-bind:src="user.picture"/&gt;
@@ -286,20 +299,12 @@ html
           vue sait que c'est un lien et qu'il faut faire une requete
 
       section
-        h2 Mustache Binding
-        p Que dans les noeuds ou les attributs natifs
+        h2 le mustache binding...
+        p n'est permis que dans les noeuds ou les attributs natifs
         pre
           code.language-markup.
             &lt;img src="{{imgUrl}}"/&gt;
-
-      section
-        h2 Les Events
-        pre
-          code.language-markup.
-            &lt;input v-on:change="handle()"/&gt;
-            &lt;input @change="handle()"/&gt;
-        .notes.
-          TODO parler den @change
+            &lt;p&gt;URL is {{imgUrl}}&lt;/p&gt;
 
       +full('playstation.gif')
         h1 Component System
@@ -317,20 +322,34 @@ html
           Puis au fur et a mesure que l'appli avance on se rend compte que certain composants
           peuvent etre reutilisés
 
+      section
+        h2 Flow de données
+        ul.no-bullet
+          li Props/Attributs: données vers les enfants
+          li Custom Events: données vers les parents
+        span.bullet
+        p.bullet ⚠ Les custom events ne marchent que dans des components
+        pre.bullet
+          code.language-markup
+            &lt;search-results @ready="resultsReload()"&gt;&lt;/search-results&gt;
+        .notes.
+          les custom events vm.$emit permettent de communiquer avec les parents depuis un composant
+          enfant.
+
       section.more-space
         h2 Tout dans une seule page
         pre
           code.language-markup.
             &lt;div id="contacts"&gt;
-              &lt;form id="contacts-search" action="fetchResults"&gt;
+              &lt;form id="contacts-search" @submit="fetchResults()"&gt;
                 &lt;input v-model="search" type="text"/&gt;
                 &lt;button type="submit"&gt;Search&lt;/button&gt;
               &lt;/form&gt;
               &lt;div id="contacts-results" class="contacts-grid"&gt;
-                &lt;div class="contacts-card row" v-for="contacts"&gt;
-                  &lt;img v-bind:src="imgUrl" class="contacts-img col-4"/&gt;
-                  &lt;div class="contacts-info"&gt;
-                    &lt;span&gt;{{firtsName}} {{lastName}}&lt;/span&gt;
+                &lt;div class="contacts-card row" v-for="contact in contacts"&gt;
+                  &lt;img :src="contact.imgUrl" class="contacts-img col-4"/&gt;
+                  &lt;div class="contacts-info col-8"&gt;
+                    &lt;span&gt;{{contact.firtsName}} {{contact.lastName}}&lt;/span&gt;
                   &lt;/div&gt;
                 &lt;/div&gt;
               &lt;/div&gt;
@@ -341,9 +360,8 @@ html
         pre.no-line-number(data-line='2,3,5')
           code.language-markup.
             &lt;div id="contacts"&gt;
-              &lt;search id="contacts-search" action="fetchResults"&gt;&lt;/search&gt;
-              &lt;contact-list id="contacts-results"
-                v-bind:contacts="contacts"&gt;
+              &lt;search id="contacts-search" :submit="fetchResults"&gt;&lt;/search&gt;
+              &lt;contact-list id="contacts-results" :contacts="contacts"&gt;
               &lt;/contact-list&gt;
             &lt;/div&gt;
         .notes
@@ -352,15 +370,139 @@ html
       section
         h2 Componentception:&nbsp;
           code contact-list
-        pre(data-line='2')
+        pre(data-line='3')
           code.language-markup.
-            &lt;div class="contacts-contact-grid"&gt;
-                &lt;contact-card v-for="contacts" contact="$value"&gt;&lt;/contact-card&gt;
+            &lt;div class="contacts-grid"&gt;
+              &lt;contact-card v-for="contact in contacts"
+                :contact="contact"&gt;
+              &lt;/contact-card&gt;
             &lt;/div&gt;
 
       section
+        h2 Binding modes
+        ul.bullet
+          li
+            code :prop='defaultOneWay'
+          li
+            code :prop.sync='twoWay'
+          li
+            code :prop.once='oneTime'
+        pre.bullet
+          code.language-markup.
+            &lt;mdl-checkbox :checked.sync="confirm"&gt;Confirm&lt;/mdl-checkbox&gt;
+        .notes.
+          Le sync est tres utile lorsque l'on crée des composants tels que des checkboxs
+
+      section
+        h2 Les methods
+        h2 Les events
+
+      section
+        h2 Les directives
+
+      +full('vue-format.gif')
         h1 Le format&nbsp;
-          code .vue
+          code.shadow .vue
+        .notes.
+          il y a du template, du js et meme du style
+
+      section
+        h2 Inline template
+        pre
+          code.language-javascript.
+            var MyComponent = Vue.extend({
+                template: '<p>A custom component!</p>'
+            });
+
+      section.more-space
+        h2 Regrouper le template HTML avec le js
+        pre
+          code.language-markup.
+            &lt;template&gt;
+              &lt;div class="contacts-card row" v-for="contact in contacts"&gt;
+                &lt;img :src="contact.imgUrl" class="contacts-img col-4"/&gt;
+                &lt;div class="contacts-info col-8"&gt;
+                  &lt;span&gt;{{contact.firtsName}} {{contact.lastName}}&lt;/span&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/template&gt;
+          br
+          code.language-markup.
+            &lt;script&gt;
+          br
+          code.language-javascript.
+            module.exports = {
+              props: {
+                contact: {
+                  type: String,
+                  required: true
+                }
+              }
+            };
+          br
+          code.language-markup.
+            &lt;/script&gt;
+
+      section.more-space
+        h2 Regrouper le template Jade avec le Coffee
+        pre
+          code.language-markup.
+            &lt;template lang="jade"&gt;
+          br
+          code.language-jade.
+              .contacts-card.row(v-for'contact in contacts')
+                img.contacts-img.col-4(v-bind:src='contact.imgUrl')
+                .contacts-info.col-8
+                  span {{contact.firtsName}} {{contact.lastName}}
+          br
+          code.language-markup.
+            &lt;/template&gt;
+          br
+          code.language-markup.
+            &lt;script lang="coffee"&gt;
+          br
+          code.language-javascript.
+            module.exports =
+              props:
+                contact:
+                  type: String
+                  required: true
+          br
+          code.language-markup.
+            &lt;/script&gt;
+
+      section.more-space
+        h2 Ajouter le style aussi
+        pre
+          code.language-markup.
+            &lt;template lang="jade"&gt;
+          br
+          code.language-jade.
+            ...
+          br
+          code.language-markup.
+            &lt;/template&gt;
+          br
+          code.language-markup.
+            &lt;style lang="stylus"&gt;
+          br
+          code.language-jade.
+              .contacts-card
+                ...
+              .contacts-info
+                ...
+          br
+          code.language-markup.
+            &lt;/style&gt;
+          br
+          code.language-markup.
+            &lt;script lang="coffee"&gt;
+          br
+          code.language-javascript.
+            ...
+          br
+          code.language-markup.
+            &lt;/script&gt;
 
       +full('flamingo-hello.gif')
         h2 Happy Talk!
