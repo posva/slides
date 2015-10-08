@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Slides</title>
+    <link rel="stylesheet" type="text/css" href="build/build.css">
+    <link rel="icon" type="image/png" href="../common/posvaicon.png">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,600" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Source+Code+Pro|Dosis:300,500" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <article>
+      <section>
+        <h1 class="thin no-padding"><img src="images/vue-logo.png" class="block center"><span>Vue.js</span></h1>
+        <h2>Data-reactive web components</h2>
+        <div class="notes">
+          <Librarie>pour faire des interfaces web reactives oriente web components</Librarie>
+        </div>
+      </section>
+          <section style="background: url(images/manufacturing.gif) no-repeat center center; " class="full">
+            <h1>Un autre MVVM ?!</h1>
+            <div class="notes">
+              <Tres>souvent la premiere reaction des gens quand je leur parle de Vue</Tres>
+              <est>'Un autre MVVM' et il fait quoi de mieux</est>
+            </div>
+          </section>
+      <section>
+        <h2>Vue aujourd'hui</h2>
+        <ul class="no-bullet">
+          <li>Version stable: 0.12</li>
+          <li>Version 1.0 en route</li>
+          <li>Version Alpha et Beta disponible</li>
+        </ul>
+        <div class="notes">
+          La version alpha est faite pour faire la transition car elle affiche
+          des warning de fontionnalités qui sont deprecated tandis que la beta
+          est une pre release de la v1
+          
+        </div>
+      </section>
+      <section>
+        <h2>Pourquoi Vue ?</h2>
+        <ul class="bullet">
+          <li>Equilibre Performance – Usabilité</li>
+          <li>Orienté Components</li>
+          <li>Communauté très active !</li>
+        </ul>
+        <div class="notes">
+          Il est difficile de faire quelquechose d'efficace mais qui soit pratique à utiliser
+          C'est le cas de react. Angular 1 est à l'opposé
+          Issues crées tous les jours (un peu moins les we) et tout le monde qui répond
+          chat Gitter pour discuter ou demander de l'aide
+          Documentation solide
+          
+        </div>
+      </section>
+      <section>
+        <h2>Hello World</h2>
+        <div class="row flex-align-center">
+          <div class="even">
+            <pre><code class="language-markup">&lt;div id="hello-world"&gt;
+  &lt;input v-model="value" type="text"/&gt;
+  &lt;p&gt;{{value}}&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            <pre><code class="language-javascript">new Vue({
+  el: '#hello-world',
+  data: {
+    value: 'Hello World'
+  }
+});</code></pre>
+          </div>
+          <div class="even row flex-align-center">
+            <div id="hello-world">
+              <input v-model="value" type="text">
+              <p>{{value}}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+          <section style="background: url(images/vocabulary.gif) no-repeat center center; " class="full">
+            <h1>Le Vocabulaire</h1>
+            <div class="notes">
+              Anvant de rentrer un peu plus dans les details de vue on va parler des
+              principaux termes utilisés. Il y en a pas beaucoup :D
+              
+            </div>
+          </section>
+      <section>
+        <h2>Les Directives</h2>
+        <ul class="no-bullet">
+          <li><code>v-model</code><span>,&nbsp;</span><code>v-if</code><span>, ...</span></li>
+          <li>Custom directives<small>(ne commencent pas forcemment par v-)</small></li>
+        </ul><span class="bullet"></span>
+        <pre class="bullet"><code class="language-markup">&lt;input v-model="value" type="text"/&gt;</code></pre>
+        <div class="notes">
+          Tous les v- et les custom directives sont des directives
+          v-model est une directive mais type ne l est pas
+          
+        </div>
+      </section>
+      <section>
+        <h2>Le View Model (<code>vm</code><span>)</span></h2>
+        <p>View ⇆ Model</p><span class="bullet"></span>
+        <pre class="bullet"><code class="language-javascript">new Vue({...});</code></pre>
+        <div class="notes">
+          Le vm se charge de sync les données avec la vue
+          La vm est crée quand on instancie une Vue
+          Elle a toute la logique et ne comporte pas de manipulation du DOM(faites dans les
+          directives)
+          
+        </div>
+      </section>
+      <section>
+        <h2>Les filtres</h2>
+        <pre><code class="language-markup">&lt;p&gt;{{msg | capitalize}}&lt;/p&gt;</code></pre>
+        <div class="notes">
+          surement connu ils permettent de changer les données avant qu'elles
+          soient passées à la view
+          
+        </div>
+      </section>
+          <section style="background: url(images/spider-fight.gif) no-repeat center center; " class="full">
+            <h1>Fontionnalités classiques</h1>
+            <div class="notes">les impasses, mais avant on va parler des concepts de base de vue</div>
+          </section>
+      <section>
+        <h2>Le&nbsp;<code>v-show</code><span>/</span><code>v-if</code></h2>
+        <div class="row">
+          <div class="even">
+            <pre data-line="6" class="no-line-number"><code class="language-markup">&lt;div id="v-show"&gt;
+  &lt;input v-model="show" type="checkbox"/&gt;
+  &lt;span&gt;
+    {{show ? 'Hide the bear' : 'Show the bear'}}
+  &lt;/span&gt;
+  &lt;img v-show="show" src="images/bear-hello.gif"/&gt;
+&lt;/div&gt;</code></pre>
+            <pre><code class="language-javascript">new Vue({
+  el: '#v-show',
+  data: {
+    show: false
+  }
+});</code></pre>
+          </div>
+          <div class="even">
+            <div id="v-show">
+              <div class="block">
+                <input v-model="show" type="checkbox" id="v-show-check">
+                <label for="v-show-check">{{show ? 'Hide the bear' : 'Show the bear'}}</label>
+              </div><img v-show="show" src="images/bear-hello.gif">
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Le&nbsp;<code>v-for</code></h2>
+        <div class="row">
+          <div class="even">
+            <pre data-line="3"><code class="language-markup">&lt;div id="v-for"&gt;
+  &lt;ul&gt;
+    &lt;li v-for="item in items"&gt;{{item}}&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+            <pre><code class="language-javascript">new Vue({
+  el: '#v-for',
+  data: {
+    items: [0, 1]
+  }
+});</code></pre>
+          </div>
+          <div class="even">
+            <div id="v-for">
+              <p>There are {{items.length}} elements</p>
+              <button @click="items.push(items.length)">Push</button>
+              <button @click="items.pop()">Pop</button>
+              <ul class="row flex-flow-wrap flex-justify-start">
+                <li v-for="item in items">{{item}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Le&nbsp;<code>v-transition</code></h2>
+        <div class="row">
+          <div class="even">
+            <pre><code class="language-markup">&lt;div v-if="show" transition="expand"&gt;
+  &lt;img src="images/bear-hello.gif"/&gt;
+&lt;/div&gt;</code></pre>
+            <pre><code class="language-css">.expand-transition {
+  transition: all .3s ease;
+  height: 220px
+  overflow: hidden;
+}
+.expand-enter, .expand-leave {
+  height: 0;
+  opacity: 0;
+}</code></pre>
+          </div>
+          <div class="even">
+            <div id="v-transition">
+              <div class="block">
+                <input v-model="show" type="checkbox" id="v-transition-check">
+                <label for="v-transition-check">{{show ? 'Hide the bear' : 'Show the bear'}}</label>
+              </div>
+              <div transition="expand" v-if="show"><img src="images/bear-hello.gif"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Les Events</h2>
+        <pre><code class="language-markup">&lt;input v-on:change="handle()"/&gt;
+&lt;input @change="handle()"/&gt;</code></pre>
+        <div class="notes">
+          Vue js est fonctionne avec des events en interne. On peut emmettre
+          des evenements sur des components qui remontent vers les parents
+          
+        </div>
+      </section>
+      <section>
+        <h2>Les filtres</h2>
+        <div class="row flex-align-center">
+          <div class="even">
+            <pre><code class="language-markup">&lt;div id="filters"&gt;
+  &lt;p&gt;{{obj | json}}&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            <pre><code class="language-javascript">new Vue({
+  el: '#filters',
+  data: {
+    obj: {
+      bool: true,
+      arr: [1, 2],
+      inner: {
+        a: null
+      }
+    }
+  }
+});</code></pre>
+          </div>
+          <div class="even">
+            <div id="filters">
+              <p>{{obj | json}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="notes">
+          quand on veut modifier les données avant de les afficher
+          on peut les chainer les un à la suite des autres
+          On peut passer des argument
+          et on peut bien sur creer ses propres filtres
+          
+        </div>
+      </section>
+          <section style="background: url(images/over.gif) no-repeat center center; " class="full">
+            <h1>C'est tout ?</h1>
+            <ul class="bullet">
+              <li><a href="https://github.com/vuejs/vue-router">vue-router</a></li>
+              <li><a href="https://github.com/vuejs/vue-resource">vue-resource</a></li>
+              <li><a href="https://github.com/vuejs/vue-validator">vue-validator</a></li>
+            </ul>
+            <div class="notes">
+              Il manque bien sur plein de trucs. c'est pour ca que lon utilise des plugins.
+              On evite de construire une usine a gaz
+              
+            </div>
+          </section>
+          <section style="background: url(images/conventions.gif) no-repeat center center; " class="full">
+            <h1>Les Conventions</h1>
+            <div class="notes">
+              elles sont la pour faire que le dev n'ai pas a se poser de questions
+              lorsqu'il doit écrire du code.
+              réactif = prend une expression
+              
+            </div>
+          </section>
+      <section>
+        <h2>Les Directives sont réactives</h2>
+        <pre><code class="language-markup">&lt;a v-link.literal="/foo"&gt;Go to foo&lt;/a&gt;
+</code></pre>
+      </section>
+      <section>
+        <h2>Les Attributs sont non réactifs</h2>
+        <pre class="bullet"><code class="language-markup">&lt;img v-bind:src="user.picture"/&gt;
+&lt;img :src="user.picture"/&gt;</code></pre>
+        <pre class="bullet"><code class="language-markup">&lt;contact-card :contact="user"&gt;&lt;/contact-card&gt;</code></pre>
+        <div class="notes">
+          vue sait que c'est un lien et qu'il faut faire une requete
+          
+        </div>
+      </section>
+      <section>
+        <h2>le mustache binding...</h2>
+        <p>n'est permis que dans les noeuds ou les attributs natifs</p>
+        <pre><code class="language-markup">&lt;img src="{{imgUrl}}"/&gt;
+&lt;p&gt;URL is {{imgUrl}}&lt;/p&gt;
+</code></pre>
+      </section>
+          <section style="background: url(images/playstation.gif) no-repeat center center; " class="full">
+            <h1>Component System</h1>
+          </section>
+      <section>
+        <h2>Les Avantages</h2>
+        <ul class="bullet">
+          <li>DRY<small>(Don't repeat yourself)</small></li>
+          <li>Meilleure Structuration</li>
+          <li>Relecture Facile</li>
+        </ul>
+        <div class="notes">
+          j'ai parlé tout à l'heure des components comme un avantage. mais pourquoi
+          ça incite la refacto car on peut bien commencer par un component qui contient tout
+          Puis au fur et a mesure que l'appli avance on se rend compte que certain composants
+          peuvent etre reutilisés
+          
+        </div>
+      </section>
+      <section class="more-space">
+        <h2>Tout dans une seule page</h2>
+        <pre><code class="language-markup">&lt;div id="contacts"&gt;
+  &lt;form id="contacts-search" @submit="fetchResults()"&gt;
+    &lt;input v-model="search" type="text"/&gt;
+    &lt;button type="submit"&gt;Search&lt;/button&gt;
+  &lt;/form&gt;
+  &lt;div id="contacts-results" class="contacts-grid"&gt;
+    &lt;div class="contacts-card row" v-for="contact in contacts"&gt;
+      &lt;img :src="contact.imgUrl" class="contacts-img col-4"/&gt;
+      &lt;div class="contacts-info col-8"&gt;
+        &lt;span&gt;{{contact.firtsName}} {{contact.lastName}}&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+      </section>
+      <section>
+        <h2>Components search et contact-list</h2>
+        <pre data-line="2,3" class="no-line-number"><code class="language-markup">&lt;div id="contacts"&gt;
+  &lt;search id="contacts-search" :submit="fetchResults"&gt;&lt;/search&gt;
+  &lt;contact-list id="contacts-results" :contacts="contacts"&gt;
+  &lt;/contact-list&gt;
+&lt;/div&gt;</code></pre>
+        <div class="notes">
+          <On>garde encore certains liens de données dans la vue pricipale</On>
+        </div>
+      </section>
+      <section>
+        <h2>Componentception:&nbsp;<code>contact-list</code></h2>
+        <pre data-line="3"><code class="language-markup">&lt;div class="contacts-grid"&gt;
+  &lt;contact-card v-for="contact in contacts"
+    :contact="contact"&gt;
+  &lt;/contact-card&gt;
+&lt;/div&gt;
+</code></pre>
+      </section>
+      <section>
+        <h2>Flow de données</h2>
+        <ul class="no-bullet">
+          <li>Props/Attributs: données vers les enfants</li>
+          <li>Custom Events: données vers les parents</li>
+        </ul><span class="bullet"></span>
+        <p class="bullet">⚠ Les custom events ne marchent que dans des components</p>
+        <pre class="bullet"><code class="language-markup">&lt;search-results @ready="resultsReload()"&gt;&lt;/search-results&gt;</code></pre>
+        <div class="notes">
+          les custom events vm.$emit permettent de communiquer avec les parents depuis un composant
+          enfant.
+          
+          
+        </div>
+      </section>
+      <section>
+        <h2>Binding modes</h2>
+        <ul class="bullet">
+          <li><code>:prop='defaultOneWay'</code></li>
+          <li><code>:prop.sync='twoWay'</code></li>
+          <li><code>:prop.once='oneTime'</code></li>
+        </ul>
+        <pre class="bullet"><code class="language-markup">&lt;mdl-checkbox :checked.sync="confirm"&gt;Confirm&lt;/mdl-checkbox&gt;</code></pre>
+        <div class="notes">
+          Le sync est tres utile lorsque l'on crée des composants tels que des checkboxs
+          
+        </div>
+      </section>
+      <section>
+        <h2>Données asynchrones</h2>
+        <p>Émettre un event dans le component lui même</p>
+        <pre><code class="language-markup">&lt;contact-card wait-for="data-loaded" :contact="contact"&gt;&lt;/contact-card&gt;
+</code></pre>
+      </section>
+      <section>
+        <h2>Les Hooks</h2>
+        <p><code>created, beforeCompile, compiled, ...</code></p>
+        <pre><code class="language-javascript">ready: function() {
+  componentHandler.upgradeElement(this.$el);
+}
+</code></pre>
+      </section>
+          <section style="background: url(images/vue-format.gif) no-repeat center center; " class="full">
+            <h1>Le format&nbsp;<code class="shadow">.vue</code></h1>
+            <div class="notes">
+              il y a du template, du js et meme du style
+              
+            </div>
+          </section>
+      <section>
+        <h2>Inline template</h2>
+        <pre><code class="language-javascript">var MyComponent = Vue.extend({
+    template: '<p>A custom component!</p>'
+});
+</code></pre>
+      </section>
+      <section class="more-space">
+        <h2>Regrouper le template HTML avec le js</h2>
+        <pre><code class="language-markup">&lt;template&gt;
+  &lt;div class="contacts-card row" v-for="contact in contacts"&gt;
+    &lt;img :src="contact.imgUrl" class="contacts-img col-4"/&gt;
+    &lt;div class="contacts-info col-8"&gt;
+      &lt;span&gt;{{contact.firtsName}} {{contact.lastName}}&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</code><br><code class="language-markup">&lt;script&gt;</code><br><code class="language-javascript">module.exports = {
+  props: {
+    contact: {
+      type: String,
+      required: true
+    }
+  }
+};</code><br><code class="language-markup">&lt;/script&gt;
+</code></pre>
+      </section>
+      <section class="more-space">
+        <h2>Regrouper le template Jade avec le Coffee</h2>
+        <pre><code class="language-markup">&lt;template lang="jade"&gt;</code><br><code class="language-jade">.contacts-card.row(v-for'contact in contacts')
+  img.contacts-img.col-4(v-bind:src='contact.imgUrl')
+  .contacts-info.col-8
+    span {{contact.firtsName}} {{contact.lastName}}</code><br><code class="language-markup">&lt;/template&gt;</code><br><code class="language-markup">&lt;script lang="coffee"&gt;</code><br><code class="language-coffeescript">module.exports =
+  props:
+    contact:
+      type: String
+      required: true</code><br><code class="language-markup">&lt;/script&gt;
+</code></pre>
+      </section>
+      <section class="more-space">
+        <h2>Ajouter le style aussi</h2>
+        <pre><code class="language-markup">&lt;template lang="jade"&gt;</code><br><code class="language-jade">...</code><br><code class="language-markup">&lt;/template&gt;</code><br><code class="language-markup">&lt;style lang="stylus"&gt;</code><br><code class="language-jade">.contacts-card
+  ...
+.contacts-info
+  ...</code><br><code class="language-markup">&lt;/style&gt;</code><br><code class="language-markup">&lt;script lang="coffee"&gt;</code><br><code class="language-javascript">...</code><br><code class="language-markup">&lt;/script&gt;
+</code></pre>
+      </section>
+      <section>
+        <h2>Transformer les&nbsp;<code>.vue</code><span> en&nbsp;</span><code>.js</code></h2>
+        <ul class="no-bullet">
+          <li>Browserify:<a href="https://github.com/vuejs/vueify">vueify</a></li>
+          <li>Webpack:<a href="https://github.com/vuejs/vue-loader">vue-loader</a></li>
+        </ul>
+      </section>
+      <section>
+        <h2>Des examples</h2>
+        <ul class="no-bullet">
+          <li><a href="https://github.com/vuejs/vueify-example">vueify</a></li>
+          <li><a href="https://github.com/vuejs/vue-loader-example">vue-loader</a></li>
+        </ul>
+      </section>
+      <section>
+        <h2><code>mdl-checkbox</code><span> template</span></h2>
+        <pre><code class="language-jade">label.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect(for='{{* id}}')
+  input.mdl-checkbox__input(type='checkbox' id='{{* id}}'
+    v-model='checked' disabled='{{disabled}}')
+  span.mdl-checkbox__label
+    slot
+    </code></pre>
+      </section>
+      <section class="more-space">
+        <h2><code>mdl-checkbox</code><span> script</span></h2>
+        <pre><code class="language-coffeescript">utils = require 'coffee!./utils.coffee'
+module.exports =
+  data: ->
+    unwatch: []
+  props:
+    id:
+      type: String
+      required: true
+    checked:
+      type: Boolean
+      required: true
+    disabled: Boolean
+  ready: ->
+    componentHandler.upgradeElement @$el
+    @unwatch.push @$watch 'checked', utils.classToggler 'is-checked'
+    @unwatch.push @$watch 'disabled', utils.classToggler 'is-disabled'
+  beforeDestroy: ->
+    @unwatch.forEach (unwatch) -> unwatch()
+    </code></pre>
+      </section>
+          <section style="background: url(images/end.gif) no-repeat center center; " class="full">
+            <h2 class="shadow">Have Fun!</h2>
+            <div class="notes">
+              Ca sera tout pour cette intro a vuejs. J'espere avoir attire l'attention
+              vers ce framework et si c'est le cas je vous conseille de le tester et
+              d'aller voir les ressources
+              
+            </div>
+          </section>
+    </article>
+    <script src="https://rawgit.com/yyx990803/vue/1.0.0-beta/dist/vue.min.js"></script>
+    <script src="build/build.js"></script>
+  </body>
+</html>
