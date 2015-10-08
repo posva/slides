@@ -187,6 +187,6 @@ gulp.task('watch', function() {
 
 gulp.task('build', ['slides', 'js', 'html', 'css', 'images', 'bundle']);
 
-gulp.task('serve', ['bundle', 'slides', 'open', 'watch']);
+gulp.task('serve', ['build', 'open', 'watch']);
 
 gulp.task('default', ['build']);
