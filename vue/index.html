@@ -210,8 +210,9 @@
       </section>
       <section>
         <h2>Les Events</h2>
-        <pre><code class="language-markup">&lt;input v-on:change="handle()"/&gt;
-&lt;input @change="handle()"/&gt;</code></pre>
+        <pre><code class="language-markup">&lt;form v-on:submit="send()"&gt;&lt;/form&gt;
+&lt;form @submit="send()"&gt;&lt;/form&gt;
+</code></pre>
         <div class="notes">
           Vue js est fonctionne avec des events en interne. On peut emmettre
           des evenements sur des components qui remontent vers les parents
