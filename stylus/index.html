@@ -100,13 +100,20 @@ p {
           <li>Simple Operations</li>
         </ul>
       </section>
-          <section style="background: url(images/howl-excited.gif) no-repeat center center; " class="full">
-            <h1>Stylus sugar</h1>
-          </section>
+      <section>
+        <pre><code class="language-css">body {
+  font: 12px Helvetica, Arial, sans-serif;
+}
+a.button {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+</code></pre>
+      </section>
       <section>
         <h3>Drop the Brace</h3>
-        <pre><code class="language-css no-back">/* Ｏ(≧▽≦)Ｏ */
-body
+        <pre><code class="language-stylus no-back">body
   font: 12px Helvetica, Arial, sans-serif;
 a.button
   -webkit-border-radius: 5px;
@@ -115,12 +122,20 @@ a.button
   </code></pre>
       </section>
       <section>
-        <h3>No more<code>;</code><span>or</span><code>:</code></h3>
-        <pre><code class="language-css">body
+        <h3>No more<code>;</code><small><span>or</span><code>:</code></small></h3>
+        <pre><code class="language-stylus">body
   font: 12px Helvetica, Arial, sans-serif
 a.button
   -webkit-border-radius: 5px
   -moz-border-radius: 5px
+  border-radius: 5px
+  </code></pre>
+      </section>
+      <section>
+        <h3>Mixins</h3>
+        <pre><code class="language-stylus no-back">body
+  font: 12px Helvetica, Arial, sans-serif
+a.button
   border-radius: 5px
   </code></pre>
       </section>
@@ -132,8 +147,8 @@ body
   </code></pre>
       </section>
       <section>
-        <h3>Property Lookup</h3>
-        <pre><code class="language-stylus">#logo
+        <h3 class="bullet">Property Lookup</h3>
+        <pre class="bullet"><code class="language-stylus">#logo
   position: absolute
   top: 50%
   left: 50%
@@ -203,13 +218,96 @@ values = 1...13
   </code></pre>
       </section>
       <section>
+        <h3>Interpolation</h3>
+        <pre><code class="language-stylus">classic-text =
+  background-color: white
+  color: black
+p.quote
+  {classic-text}
+  </code></pre>
+      </section>
+      <section>
         <h3>Iteration</h3>
-        <pre><code class="language-stylus">values = 1..12
-table
-  for row in values
-    tr:nth-child({row})
-      height: 10px * row
+        <div class="colored">
+          <tr>
+            <p>Row 0</p>
+          </tr>
+          <tr>
+            <p>Row 1</p>
+          </tr>
+          <tr>
+            <p>Row 2</p>
+          </tr>
+          <tr>
+            <p>Row 3</p>
+          </tr>
+          <tr>
+            <p>Row 4</p>
+          </tr>
+          <tr>
+            <p>Row 5</p>
+          </tr>
+          <tr>
+            <p>Row 6</p>
+          </tr>
+          <tr>
+            <p>Row 7</p>
+          </tr>
+          <tr>
+            <p>Row 8</p>
+          </tr>
+        </div>
+      </section>
+      <section>
+        <h3>Iteration</h3>
+        <pre><code class="language-stylus">.colored
+  for row in 1..8
+    p:nth-child({row})
+      darker = row * 3
+      background-color: darken(aliceblue, darker)
+      color: lighten(darkorange, darker)
       </code></pre>
+      </section>
+      <section>
+        <h3>Simple Grid</h3>
+        <div class="grid">
+          <div class="two-columns">
+            <div class="module"><span>Two</span></div>
+          </div>
+          <div class="four-columns">
+            <div class="module"><span>Four</span></div>
+          </div>
+          <div class="six-columns">
+            <div class="module"><span>Six</span></div>
+          </div>
+          <div class="eight-columns">
+            <div class="module"><span>Eight</span></div>
+          </div>
+          <div class="nine-columns">
+            <div class="module"><span>Nine</span></div>
+          </div>
+          <div class="one-column">
+            <div class="module"><span>1</span></div>
+          </div>
+          <div class="two-columns">
+            <div class="module"><span>Two</span></div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h3>Simple Grid</h3>
+        <pre><code class="language-stylus">pad = 20px
+.grid
+  width: 100%
+  margin: 0 0 pad 0
+  [class*='column']
+    float: left
+    padding: (pad / 2)
+  &:after
+    content: ""
+    display: table
+    clear: both
+    </code></pre>
       </section>
       <section>
         <h3>Simple grid</h3>
@@ -218,20 +316,38 @@ table
 columns = 12
 plural(i)
   i > 1 ? 'columns' : 'column'
-for i in 1..12
+for i in 1..columns
   .{v[i]}-{plural(i)}
      width: (100 * i / columns)%
      display: inline-block
      </code></pre>
       </section>
       <section>
-        <h3>Hashes (aka Objects)</h3>
-        <pre><code class="language-stylus">foo = {
-  bar: baz,
-  'baz': raz,
-  '0': raz
+        <h3>Simple Grid</h3>
+        <pre><code class="language-jade">.grid
+  .one-column
+    .module
+      span Two
+  .four-columns
+    .module
+      span Four
+      </code></pre>
+      </section>
+      <section>
+        <h3>Hashes</h3>
+        <pre><code class="language-stylus">theme-red = {
+  primary: red,
+  accent: blue
 }
 </code></pre>
+      </section>
+      <section>
+        <h3>Themes with hashes</h3>
+        <pre><code class="language-stylus">theme = theme-red
+for k,v in theme
+  .button-{k}
+    color: v
+    </code></pre>
       </section>
           <section style="background: url(images/fabulous.gif) no-repeat center center; " class="full">
             <h1>Happy Fabulousification</h1>
