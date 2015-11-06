@@ -117,14 +117,22 @@ html
           li Extends
           li Simple Operations
 
-      +full('howl-excited.gif')
-        h1 Stylus sugar
+      section
+        pre
+          code.language-css.
+            body {
+              font: 12px Helvetica, Arial, sans-serif;
+            }
+            a.button {
+              -webkit-border-radius: 5px;
+              -moz-border-radius: 5px;
+              border-radius: 5px;
+            }
 
       section
         h3 Drop the Brace
         pre
-          code.language-css.no-back.
-            /* Ｏ(≧▽≦)Ｏ */
+          code.language-stylus.no-back.
             body
               font: 12px Helvetica, Arial, sans-serif;
             a.button
@@ -135,15 +143,25 @@ html
       section
         h3 No more
           code ;
-          span or
-          code :
+          small
+            span or
+            code :
         pre
-          code.language-css.
+          code.language-stylus.
             body
               font: 12px Helvetica, Arial, sans-serif
             a.button
               -webkit-border-radius: 5px
               -moz-border-radius: 5px
+              border-radius: 5px
+
+      section
+        h3 Mixins
+        pre
+          code.language-stylus.no-back.
+            body
+              font: 12px Helvetica, Arial, sans-serif
+            a.button
               border-radius: 5px
 
       section
@@ -155,8 +173,8 @@ html
                font font-size Arial, sans-serif
 
       section
-        h3 Property Lookup
-        pre
+        h3.bullet Property Lookup
+        pre.bullet
           code.language-stylus.
             #logo
               position: absolute
@@ -233,14 +251,73 @@ html
               width: 320px
 
       section
+        h3 Interpolation
+        pre
+          code.language-stylus.
+            classic-text =
+              background-color: white
+              color: black
+            p.quote
+              {classic-text}
+
+      section
+        h3 Iteration
+        .colored
+          each val in [0, 1, 2, 3, 4, 5, 6, 7, 8]
+            tr
+              p='Row ' + val
+
+      section
         h3 Iteration
         pre
           code.language-stylus.
-            values = 1..12
-            table
-              for row in values
-                tr:nth-child({row})
-                  height: 10px * row
+            .colored
+              for row in 1..8
+                p:nth-child({row})
+                  darker = row * 3
+                  background-color: darken(aliceblue, darker)
+                  color: lighten(darkorange, darker)
+
+      section
+        h3 Simple Grid
+        .grid
+          .two-columns
+            .module
+              span Two
+          .four-columns
+            .module
+              span Four
+          .six-columns
+            .module
+              span Six
+          .eight-columns
+            .module
+              span Eight
+          .nine-columns
+            .module
+              span Nine
+          .one-column
+            .module
+              span 1
+          .two-columns
+            .module
+              span Two
+
+      section
+        h3 Simple Grid
+        pre
+          code.language-stylus.
+            pad = 20px
+            .grid
+              width: 100%
+              margin: 0 0 pad 0
+              [class*='column']
+                float: left
+                padding: (pad / 2)
+              &:after
+                content: ""
+                display: table
+                clear: both
 
       section
         h3 Simple grid
@@ -251,20 +328,40 @@ html
             columns = 12
             plural(i)
               i > 1 ? 'columns' : 'column'
-            for i in 1..12
+            for i in 1..columns
               .{v[i]}-{plural(i)}
                  width: (100 * i / columns)%
                  display: inline-block
 
       section
-        h3 Hashes (aka Objects)
+        h3 Simple Grid
+        pre
+          code.language-jade.
+            .grid
+              .one-column
+                .module
+                  span Two
+              .four-columns
+                .module
+                  span Four
+
+      section
+        h3 Hashes
         pre
           code.language-stylus.
-            foo = {
-              bar: baz,
-              'baz': raz,
-              '0': raz
+            theme-red = {
+              primary: red,
+              accent: blue
             }
+
+      section
+        h3 Themes with hashes
+        pre
+          code.language-stylus.
+            theme = theme-red
+            for k,v in theme
+              .button-{k}
+                color: v
 
       +full('fabulous.gif')
         h1 Happy Fabulousification

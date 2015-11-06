@@ -25,6 +25,44 @@ code.no-back
 
 // variables!
 
+.colored
+  for row in 1..12
+    p:nth-child({row})
+      darker = row * 3
+      background-color: darken(aliceblue, darker)
+      color: lighten(darkorange, darker)
+      border-radius: 5px
+
+v = zero one two three four five six \
+  seven eight nine ten eleven twelve
+pad = 20px
+*, *:after, *:before
+  box-sizing: border-box;
+.grid
+  background: cadetblue
+  width: 100%
+  border-radius: 5px
+  margin: 0 0 pad 0
+  [class*='column']
+    float: left
+    padding: (pad / 2)
+    .module
+      text-align: center
+      background: lightseagreen
+      border-radius: 5px
+
+  &:after
+    content: ""
+    display: table
+    clear: both
+
+columns = 12
+plural(i)
+  i > 1 ? 'columns' : 'column'
+for i in 1..columns
+  .{v[i]}-{plural(i)}
+    width: (100 * i / columns)%
+
 primary = #06C510
 
 slide_width = 80%
