@@ -34,10 +34,10 @@ html
 
       section
         h2 Dans la même année
-        .row
-          .seven.columns
-            img.u-max-full-width(src='images/apple1.png')
-          .five.colums
+        .grid
+          .seven-columns
+            img(src='images/apple1.png')
+          .five-colums
             h3.bullet Apple 1
             ul.text-right
               li Assemblé à la main
@@ -101,32 +101,32 @@ html
 
       section
         h2 L'insertion
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre i
             img.full(src='images/vim-tut-1.gif')
 
       section
         h2 L'insertion
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre a
             img.full(src='images/vim-tut-1-2.gif')
 
       section
         h2 Enregistrer
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre :w
             img.full(src='images/vim-tut-2.gif')
 
       section
         h2 Couper / Coller
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre dd
               span  /
@@ -135,8 +135,8 @@ html
 
       section
         h2 Quitter
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre :q
               span  /
@@ -145,8 +145,8 @@ html
 
       section
         h2 Undo / Redo
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre u
               span  /
@@ -155,14 +155,14 @@ html
 
       section
         h2 Undo / Redo
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             img.full(src='images/vim-tut-4-2.gif')
 
       section
         h2 La souris
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre :set mouse=a
             img.full(src='images/vim-tut-6.gif')
@@ -211,8 +211,8 @@ html
 
       section
         h2 Fichier
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre gg
               span  /
@@ -223,8 +223,8 @@ html
 
       section
         h2 Mots
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre b
               span  /
@@ -233,16 +233,16 @@ html
 
       section
         h2 Mots
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre e
             img.full(src='images/vim-tut-e.gif')
 
       section
         h2 ← ↓ ↑ →
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               span Utiliser
               pre hjkl
@@ -251,24 +251,24 @@ html
 
       section
         h2 Motion + Insertion
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre A
             img.full(src='images/vim-tut-biga.gif')
 
       section
         h2 Motion + Insertion
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre I
             img.full(src='images/vim-tut-bigi.gif')
 
       section
         h2 Supprimer + Insérer
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre c
               span + motion
@@ -276,8 +276,8 @@ html
 
       section
         h2 Couper
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre d
               span + motion
@@ -285,8 +285,8 @@ html
 
       section
         h2 Couper
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre d
               span  + Chiffre +
@@ -299,8 +299,8 @@ html
 
       section
         h2 Répétition
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre .
             img.full(src='images/vim-tut-dot.gif')
@@ -313,8 +313,8 @@ html
 
       //-section
         //-h2 Ligne
-        //-.row
-          //-.ten.columns.offset-by-one.bullet
+        //-.grid
+          //-.ten-columns.one-offset.bullet
             //-.inline-pre
               //-pre 0
               //-span  /
@@ -330,24 +330,24 @@ html
 
       section
         h2 Visuel
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre v
             img.full(src='images/vim-tut-v.gif')
 
       section
         h2 Visuel par ligne
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre V
             img.full(src='images/vim-tut-bigv.gif')
 
       section
         h2 Couper en visuel
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre v
               span +
@@ -356,16 +356,16 @@ html
 
       section
         h2 Visuel par bloc
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre ^V
             img.full(src='images/vim-tut-vbloc.gif')
 
       section
         h2 Motion + Insertion
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre o
               span  /
@@ -374,8 +374,8 @@ html
 
       section
         h2 Inside
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               span Motion +
               pre i
@@ -383,8 +383,8 @@ html
 
       section
         h2 Around
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               span Motion +
               pre a
@@ -392,20 +392,20 @@ html
 
       section
         h2 Inside / Around
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             img.full(src='images/vim-tut-in-demo1.gif')
 
       section
         h2 Inside / Around
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             img.full(src='images/vim-tut-in-demo2.gif')
 
       section
         h2 Motions++
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre f
               span + un caractère
@@ -413,8 +413,8 @@ html
 
       section
         h2 Motions++
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre t
               span + un caractère
@@ -422,8 +422,8 @@ html
 
       section
         h2 Motions++
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre F
               span  /
@@ -432,8 +432,8 @@ html
 
       section
         h2 Recherches
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre /
               span  +
@@ -444,8 +444,8 @@ html
 
       section
         h2 Recherches
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre *
               span  +
@@ -473,8 +473,8 @@ html
 
       section
         h2 Completion
-        .row
-          .ten.columns.offset-by-one.bullet
+        .grid
+          .ten-columns.one-offset.bullet
             .inline-pre
               pre ^N
               span  /

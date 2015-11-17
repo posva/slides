@@ -72,3 +72,50 @@ section
     left: 10%
     top: 10%
     border-radius: 1em
+
+v = zero one two three four five six \
+  seven eight nine ten eleven twelve
+pad = 20px
+*, *:after, *:before
+  box-sizing: border-box;
+.grid
+  img
+    max-width: 100%
+  width: 100%
+  margin: 0 0 pad 0
+  [class*='column']
+    float: left
+    padding: (pad / 2)
+
+  &:after
+    content: ""
+    display: table
+    clear: both
+
+screen-sizes = {
+  min: {
+    xs: 480px
+    sm: 768px
+    md: 992px
+    lg: 1200px
+  }
+  max: {}
+}
+screen-sizes.max.xs = screen-sizes.min.sm - 1px
+screen-sizes.max.sm = screen-sizes.min.md - 1px
+screen-sizes.max.md = screen-sizes.min.lg - 1px
+screen-sizes.max.lg = 999999px
+screens = xs sm md lg
+
+plural(i)
+  i > 1 ? 'columns' : 'column'
+
+columns = 12
+
+for s in screens
+  @media (min-width: screen-sizes.min[s]) and (max-width: screen-sizes.max[s])
+    for i in 1..columns
+      .{v[i]}-{plural(i)}-{s}
+        width: (100 * i / columns)%
+      .{v[i]}-offset-{s}
+        margin-left: (100 * i / columns)%

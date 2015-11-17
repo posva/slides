@@ -1,8 +1,6 @@
 'use strict';
 
-var pkg = require('./package.json'),
-  gulp = require('gulp'),
-  gutil = require('gulp-util'),
+var gulp = require('gulp'),
   plumber = require('gulp-plumber'),
   rename = require('gulp-rename'),
   connect = require('gulp-connect'),
@@ -65,7 +63,7 @@ gulp.task('css', ['clean:css'], function() {
     .pipe(stylus({
       // Allow CSS to be imported from node_modules
       'include css': true,
-      'paths': ['../node_modules']
+      'paths': ['../node_modules', '../utils']
     }))
     .pipe(autoprefixer('last 2 versions', {
       map: false

@@ -116,7 +116,7 @@ gulp.task('css', ['clean:css'], function() {
     .pipe(stylus({
       // Allow CSS to be imported from node_modules
       'include css': true,
-      'paths': ['./node_modules']
+      'paths': ['./node_modules', './utils']
     }))
     .pipe(autoprefixer('last 2 versions', {
       map: false

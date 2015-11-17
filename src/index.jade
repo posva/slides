@@ -10,11 +10,12 @@ html
 
   body
     mixin slides(title, uri)
-      a(href=uri)
-        img(alt=title title=title width='320' src=uri + '/thumb.png')
+      .slide
+        a(href=uri)
+          img(alt=title title=title width='320' src=uri + '/thumb.png')
 
     h1 Hi,
     h3 here are my slides
-    include ./slides.jade
-    //-+slides('Gotta Go Fast', 'ggf-vim')
+    .slides
+      include ./slides.jade
     script(src='build/build.js')

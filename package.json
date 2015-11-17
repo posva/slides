@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "postinstall": "napa dhg/Skeleton"
   },
   "bugs": {
     "url": "https://github.com/posva/slides/issues"
@@ -52,6 +51,5 @@
     "webshot": "^0.16.0"
   },
   "dependencies": {
-    "napa": "^1.2.0"
   }
 }
