@@ -27,8 +27,9 @@ gulp.task('webshot', function(done) {
     port: 8888
   });
   webshot('http://localhost:8888', 'dist/thumbail.png', function(err) {
-    if (err)
+    if (err) {
       console.error('Error webshotting', err);
+    }
     connect.serverClose();
     done();
   });
@@ -120,7 +121,7 @@ gulp.task('clean:common', function(done) {
 gulp.task('connect', ['build'], function() {
   connect.server({
     root: 'dist',
-    livereload: true
+    livereload: true,
   });
 });
 

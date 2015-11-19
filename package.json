@@ -9,8 +9,7 @@
   },
   "author": "",
   "license": "ISC",
-  "scripts": {
-  },
+  "scripts": {},
   "bugs": {
     "url": "https://github.com/posva/slides/issues"
   },
@@ -23,6 +22,7 @@
     "bespoke-keys": "^1.0.0",
     "bespoke-progress": "^1.0.0",
     "bespoke-substeps": "^0.2.2",
+    "bespoke-sync": "^0.2.1",
     "bespoke-theme-nebula": "^1.0.1",
     "bespoke-touch": "^1.0.0",
     "del": "^1.1.1",
@@ -51,5 +51,6 @@
     "webshot": "^0.16.0"
   },
   "dependencies": {
+    "bespoke-notes": "^1.0.0"
   }
 }

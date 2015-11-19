@@ -1,4 +1,5 @@
 // Require Node modules in the browser thanks to Browserify: http://browserify.org
+'use strict';
 var bespoke = require('bespoke'),
   nebula = require('bespoke-theme-nebula'),
   keys = require('bespoke-keys'),
@@ -7,10 +8,51 @@ var bespoke = require('bespoke'),
   backdrop = require('bespoke-backdrop'),
   hash = require('bespoke-hash'),
   substeps = require('bespoke-substeps/dom'),
+  notes = require('bespoke-notes/dom'),
   progress = require('bespoke-progress');
+require('../../../lib/stereo');
 
 // Bespoke.js
 bespoke.from('article', [
+
+  function(deck) {
+    if (stereo.isMaster()) {
+      deck.parent.classList.add ('hide-notes');
+    } else {
+      deck.parent.classList.add ('show-notes');
+    }
+    deck.on('activate', function(event) {
+      if (!event.id && !event.ignore && !event.move) {
+        event.id = stereo.id;
+        stereo.broadcast('slide', event);
+      }
+    });
+    deck.on('next', function(event) {
+      if (!event.id && !event.ignore) {
+        event.id = stereo.id;
+        stereo.broadcast('next', event);
+      }
+    });
+    stereo.on('slide', function(event) {
+      if (event.id !== stereo.id) {
+        if (deck.slide() !== event.index)
+          deck.slide(event.index, event);
+        if (!stereo.isMaster()) {
+          event.ignore = true;
+          deck.next(event);
+        } else {
+          if (event.index === deck.slide())
+            deck.prev(event);
+        }
+      }
+    });
+    stereo.on('next', function(event) {
+      if (event.id !== stereo.id) {
+        deck.next(event);
+      }
+    });
+  },
+  notes(),
   nebula(),
   keys(),
   touch(),
