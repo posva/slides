@@ -20,14 +20,26 @@ html
           img.block.center(src='images/vue-logo.png')
           span Vue.js
         h2 Data-reactive web components
-        .notes
-          Librarie pour faire des interfaces web reactives oriente web components
+        .notes.
+          Bonjour, je m'appelle Eduardo et aujourd'hui je vais vous parler de
+          vuejs. Un framework MVVM que j'ai découvert il y a quelques mois, que
+          j'utilise depuis et lequel me plait de plus en plus.
+
+      section
+        h4 Me
+        p TODO
 
       +full('manufacturing.gif')
         h1 Un autre MVVM ?!
-        .notes
-          Tres souvent la premiere reaction des gens quand je leur parle de Vue
-          est 'Un autre MVVM' et il fait quoi de mieux
+        .notes.
+          j'ai dit que c'était un framework MVVM. C'est vrai qu'il y en a
+          plein. C'est comme si tout le monde avait vu Angular, s'était dit
+          "C'est stylé de faire des applis comme ça, mais j'aimerais X" ou je
+          n'aime pas Y". Et du coup tout le monde a eu envie de faire son
+          propre Framework. Certains l'on fait, d'autres se sont dit qu'ils
+          avaient pas le temps (la classique). Et du coup plus de 20 frameworks
+          existent aujourd'hui. Tels que Angular, React, Aurelia, Angular2,
+          Mithril et aussi Vuejs.
 
       section
         h2 Pourquoi Vue ?
@@ -36,11 +48,16 @@ html
           li Orienté Components
           li Communauté très active !
         .notes.
-          Il est difficile de faire quelquechose d'efficace mais qui soit pratique à utiliser
-          C'est le cas de react. Angular 1 est à l'opposé
+          Et si je parle de Vuejs aujourd'hui c'est parce que ce framework
+          établi un Equilibre entre performance et Usabilité. Je dirait meme
+          qu'il arrive a trouver le compromis que React et Angular manquent.
+
+          C'est orienté composants ou components en anglais. j'en reparlerai
+          plus tard
           Issues crées tous les jours (un peu moins les we) et tout le monde qui répond
           chat Gitter pour discuter ou demander de l'aide
           Documentation solide
+          tout ça pour componser un manque de questions sur stack overflow
 
       section
         h2 Hello World
@@ -64,10 +81,15 @@ html
             #hello-world
               input(v-model='value' type='text')
               p {{value}}
+        .notes
+          p On va directement passer à un hello world. Je vais à chaque fois
+          montrer le code et le résultat à côté.
+          p on créé un vm pour lier div et data, une directive pour input
 
       +full('vocabulary.gif')
         h1 Le Vocabulaire
         .notes.
+          Il y qq nouveaux mots. On va donc en parler
           Anvant de rentrer un peu plus dans les details de vue on va parler des
           principaux termes utilisés. Il y en a pas beaucoup :D
 
@@ -86,7 +108,7 @@ html
           code.language-markup.
             &lt;input v-model="value" type="text"/&gt;
         .notes.
-          Tous les v- et les custom directives sont des directives
+          Tous les v- sont des directives
           v-model est une directive mais type ne l est pas
 
       section
@@ -105,6 +127,12 @@ html
           directives)
 
       section
+        h2 Le View Model (
+          code vm
+          span )
+        img(src='images/mvvm.png')
+
+      section
         h2 Les filtres
         pre
           code.language-markup.
@@ -112,6 +140,22 @@ html
         .notes.
           surement connu ils permettent de changer les données avant qu'elles
           soient passées à la view
+
+      section
+        h2 Components
+        p.bullet Module réutilisables
+        pre.bullet
+          code.language-markup.
+            &lt;contact-card&gt;&lt;/contact-card&gt;
+
+      section
+        h2 Props
+        p.bullet Données passées à un component
+        pre.bullet
+          code.language-markup.
+            &lt;contact-card featured&gt;&lt;/contact-card&gt;
+            &lt;contact-card color="#fff"&gt;&lt;/contact-card&gt;
+            &lt;contact-card v-bind:contact="contact"&gt;&lt;/contact-card&gt;
 
       +full('spider-fight.gif')
         h1 Fontionnalités classiques
@@ -153,7 +197,7 @@ html
           code v-for
         .row
           .even
-            pre(data-line='3')
+            pre.no-line-number(data-line='3')
               code.language-markup.
                 &lt;div id="v-for"&gt;
                   &lt;ul&gt;
@@ -190,7 +234,7 @@ html
               code.language-css.
                 .expand-transition {
                   transition: all .3s ease;
-                  height: 220px
+                  height: 220px;
                   overflow: hidden;
                 }
                 .expand-enter, .expand-leave {
@@ -211,6 +255,7 @@ html
           code.language-markup.
             &lt;form v-on:submit="send()"&gt;&lt;/form&gt;
             &lt;form @submit="send()"&gt;&lt;/form&gt;
+            &lt;button @click="refresh()"&gt;Refresh&lt;/button&gt;
 
         .notes.
           Vue js est fonctionne avec des events en interne. On peut emmettre

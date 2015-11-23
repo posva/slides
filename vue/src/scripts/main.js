@@ -8,9 +8,60 @@ var bespoke = require('bespoke'),
   hash = require('bespoke-hash'),
   substeps = require('bespoke-substeps/dom'),
   progress = require('bespoke-progress');
+require('../../../lib/stereo');
 
 // Bespoke.js
+stereo.makeMeMaster();
 bespoke.from('article', [
+
+  function(deck) {
+    var refreshState = function() {
+      console.log('master:', stereo.isMaster())
+      if (stereo.isMaster()) {
+        deck.parent.classList.add('hide-notes');
+        deck.parent.classList.remove('show-notes');
+      } else {
+        deck.parent.classList.add('show-notes');
+        deck.parent.classList.remove('hide-notes');
+      }
+    };
+    // For some reason the broadcast doesn't work...
+    //refreshState();
+    //stereo.on('slider', refreshState);
+    //stereo.emit('slider');
+    //stereo.broadcast('slider');
+    deck.on('activate', function(event) {
+      refreshState();
+      if (!event.id && !event.ignore && !event.move) {
+        event.id = stereo.id;
+        stereo.broadcast('slide', event);
+      }
+    });
+    deck.on('next', function(event) {
+      if (!event.id && !event.ignore) {
+        event.id = stereo.id;
+        stereo.broadcast('next', event);
+      }
+    });
+    stereo.on('slide', function(event) {
+      if (event.id !== stereo.id) {
+        if (deck.slide() !== event.index)
+          deck.slide(event.index, event);
+        if (!stereo.isMaster()) {
+          event.ignore = true;
+          deck.next(event);
+        } else {
+          if (event.index === deck.slide())
+            deck.prev(event);
+        }
+      }
+    });
+    stereo.on('next', function(event) {
+      if (event.id !== stereo.id) {
+        deck.next(event);
+      }
+    });
+  },
   nebula(),
   keys(),
   touch(),
