@@ -42,8 +42,8 @@ html
           Mithril et aussi Vuejs.
 
       section
-        h2 Pourquoi Vue ?
-        ul.bullet
+        h2.bullet Pourquoi Vue ?
+        ul.ul-bullet
           li Equilibre Performance – Usabilité
           li Orienté Components
           li Communauté très active !
@@ -94,8 +94,8 @@ html
           principaux termes utilisés. Il y en a pas beaucoup :D
 
       section
-        h2 Les Directives
-        ul.no-bullet
+        h2.bullet Les Directives
+        ul
           li
             code v-model
             span ,&nbsp;
@@ -103,7 +103,6 @@ html
             span , ...
           li Custom directives
             small (commencent toujours par v-)
-        span.bullet
         pre.bullet
           code.language-markup.
             &lt;input v-model="value" type="text"/&gt;
@@ -134,16 +133,17 @@ html
 
       section
         h2 Les filtres
+        p Adapter le modèle à la vue
         pre
           code.language-markup.
             &lt;p&gt;{{msg | capitalize}}&lt;/p&gt;
         .notes.
-          surement connu ils permettent de changer les données avant qu'elles
-          soient passées à la view
+          adaptées les données a la vue sans changer le modele. Ex: changer une
+          date
 
       section
         h2 Components
-        p.bullet Module réutilisables
+        p.bullet Modules réutilisables
         pre.bullet
           code.language-markup.
             &lt;contact-card&gt;&lt;/contact-card&gt;
@@ -154,8 +154,15 @@ html
         pre.bullet
           code.language-markup.
             &lt;contact-card featured&gt;&lt;/contact-card&gt;
-            &lt;contact-card color="#fff"&gt;&lt;/contact-card&gt;
+        pre.bullet
+          code.language-markup.
+            &lt;contact-card type="rounded"&gt;&lt;/contact-card&gt;
+        pre.bullet
+          code.language-markup.
             &lt;contact-card v-bind:contact="contact"&gt;&lt;/contact-card&gt;
+        .notes.
+          ça va remplacer le ng-class et ng-checked et plein d'autres
+          Ce qui est plus expressif car v-contact pourrait être une directive
 
       +full('spider-fight.gif')
         h1 Fontionnalités classiques
@@ -224,13 +231,19 @@ html
         h2 Le&nbsp;
           code v-transition
         .row
-          .even
-            pre
+          .even.bullet-hide-inactive
+            pre.bullet.no-line-number(data-line='1')
               code.language-markup.
                 &lt;div v-if="show" transition="expand"&gt;
                   &lt;img src="images/bear-hello.gif"/&gt;
                 &lt;/div&gt;
-            pre
+            pre.bullet.hide
+              code.language-css.
+                .expand-transition {
+                }
+                .expand-enter, .expand-leave {
+                }
+            pre.bullet
               code.language-css.
                 .expand-transition {
                   transition: all .3s ease;
@@ -250,22 +263,32 @@ html
                 img(src='images/bear-hello.gif')
 
       section
+        h2 Le&nbsp;
+          code v-bind
+        pre.bullet
+          code.language-markup.
+            &lt;form v-bind:class="{'invalid-form': invalid}"&gt;&lt;/form&gt;
+        pre.bullet
+          code.language-markup.
+            &lt;form :class="{'invalid-form': invalid}"&gt;&lt;/form&gt;
+
+      section
         h2 Les Events
+          code (v-on)
         pre
           code.language-markup.
             &lt;form v-on:submit="send()"&gt;&lt;/form&gt;
             &lt;form @submit="send()"&gt;&lt;/form&gt;
-            &lt;button @click="refresh()"&gt;Refresh&lt;/button&gt;
-
+            &lt;button @click="select(contact)"&gt;Select&lt;/button&gt;
         .notes.
-          Vue js est fonctionne avec des events en interne. On peut emmettre
+          Vue js fonctionne avec des events en interne. On peut emmettre
           des evenements sur des components qui remontent vers les parents
 
       section
         h2 Les filtres
         .row.flex-align-center
           .even
-            pre
+            pre.no-line-number(data-line='2')
               code.language-markup.
                 &lt;div id="filters"&gt;
                   &lt;p&gt;{{obj | json}}&lt;/p&gt;
@@ -294,8 +317,9 @@ html
           et on peut bien sur creer ses propres filtres
 
       +full('over.gif')
-        h1 C'est tout ?
-        ul.bullet
+        h1.bullet C'est tout
+          span.bullet  ?
+        ul.ul-bullet
           li
             a(href='https://github.com/vuejs/vue-router') vue-router
           li
@@ -307,32 +331,49 @@ html
           On evite de construire une usine a gaz
 
       +full('conventions.gif')
-       h1 Les Conventions
+       h1 Vue est consistent
        .notes.
         elles sont la pour faire que le dev n'ai pas a se poser de questions
         lorsqu'il doit écrire du code.
         réactif = prend une expression
 
       section
-        h2 Les Directives sont réactives
-        pre
+        h2.bullet Les Directives sont par défaut
+          strong  réactives
+        pre.bullet.wrong-code
           code.language-markup.
-            &lt;a v-link.literal="/foo"&gt;Go to foo&lt;/a&gt;
-
-      section
-        h2 Les Attributs sont non réactifs
+            &lt;a v-link="/foo"&gt;Go to foo&lt;/a&gt;
         pre.bullet
           code.language-markup.
-            &lt;img v-bind:src="user.picture"/&gt;
+            &lt;a v-link="'/foo'"&gt;Go to foo&lt;/a&gt;
+        pre.bullet
+          code.language-markup.
+            &lt;a v-link.literal="/foo"&gt;Go to foo&lt;/a&gt;
+        .notes.
+          Tout ça dans le but d'être consistent et lisible
+
+      section
+        h2.bullet Les
+          strong  attributs
+          span  et les
+          strong  props
+          span  sont par défaut
+          strong  non réactifs
+        pre.bullet
+          code.language-markup.
+            &lt;img src="images/default-user.png"/&gt;
+        pre.bullet
+          code.language-markup.
             &lt;img :src="user.picture"/&gt;
         pre.bullet
           code.language-markup.
             &lt;contact-card :contact="user"&gt;&lt;/contact-card&gt;
         .notes.
+          Ce qui a du sens pour les props car ça veut être la même chose
           vue sait que c'est un lien et qu'il faut faire une requete
 
       section
-        h2 le mustache binding...
+        h2 Mustache binding...
         p n'est permis que dans les noeuds ou les attributs natifs
         pre
           code.language-markup.
@@ -389,7 +430,7 @@ html
       section
         h2 Componentception:&nbsp;
           code contact-list
-        pre(data-line='3')
+        pre.no-line-number(data-line='3')
           code.language-markup.
             &lt;div class="contacts-grid"&gt;
               &lt;contact-card v-for="contact in contacts"
@@ -426,18 +467,11 @@ html
             &lt;mdl-checkbox :checked.sync="confirm"&gt;Confirm&lt;/mdl-checkbox&gt;
         .notes.
           Le sync est tres utile lorsque l'on crée des composants tels que des checkboxs
-
-      section
-        h2 Données asynchrones
-        p Émettre un event dans le component lui même
-        pre
-          code.language-markup.
-            &lt;contact-card wait-for="data-loaded" :contact="contact"&gt;&lt;/contact-card&gt;
-
       section
         h2 Les Hooks
         p
-          code created, beforeCompile, compiled, ...
+          a(href='http://vuejs.org/guide/instance.html#Lifecycle_Diagram')
+            code created, beforeCompile, compiled, ...
         pre
           code.language-javascript.
             ready: function() {
@@ -495,7 +529,7 @@ html
           br
           code.language-jade.
               .contacts-card.row(v-for'contact in contacts')
-                img.contacts-img.col-4(v-bind:src='contact.imgUrl')
+                img.contacts-img.col-4(:src='contact.imgUrl')
                 .contacts-info.col-8
                   span {{contact.firtsName}} {{contact.lastName}}
           br
@@ -567,43 +601,6 @@ html
           li
             a(href='https://github.com/vuejs/vue-loader-example') vue-loader
 
-      section
-        h2
-          code mdl-checkbox
-          span  template
-        pre
-          code.language-jade.
-            label.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect(for='{{* id}}')
-              input.mdl-checkbox__input(type='checkbox' id='{{* id}}'
-                v-model='checked' disabled='{{disabled}}')
-              span.mdl-checkbox__label
-                slot
-
-      section.more-space
-        h2
-          code mdl-checkbox
-          span  script
-        pre
-          code.language-coffeescript.
-            utils = require 'coffee!./utils.coffee'
-            module.exports =
-              data: ->
-                unwatch: []
-              props:
-                id:
-                  type: String
-                  required: true
-                checked:
-                  type: Boolean
-                  required: true
-                disabled: Boolean
-              ready: ->
-                componentHandler.upgradeElement @$el
-                @unwatch.push @$watch 'checked', utils.classToggler 'is-checked'
-                @unwatch.push @$watch 'disabled', utils.classToggler 'is-disabled'
-              beforeDestroy: ->
-                @unwatch.forEach (unwatch) -> unwatch()
-
       +full('end.gif')
         h2.shadow Have Fun!
         .notes.
@@ -611,5 +608,5 @@ html
           vers ce framework et si c'est le cas je vous conseille de le tester et
           d'aller voir les ressources
 
-    script(src='https://rawgit.com/yyx990803/vue/1.0.0-beta/dist/vue.min.js')
+    script(src='//rawgit.com/vuejs/vue/v1.0.10/dist/vue.min.js')
     script(src='build/build.js')
