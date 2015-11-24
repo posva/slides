@@ -25,10 +25,6 @@ html
           vuejs. Un framework MVVM que j'ai découvert il y a quelques mois, que
           j'utilise depuis et lequel me plait de plus en plus.
 
-      section
-        h4 Me
-        p TODO
-
       +full('manufacturing.gif')
         h1 Un autre MVVM ?!
         .notes.
@@ -129,17 +125,7 @@ html
         h2 Le View Model (
           code vm
           span )
-        img(src='images/mvvm.png')
-
-      section
-        h2 Les filtres
-        p Adapter le modèle à la vue
-        pre
-          code.language-markup.
-            &lt;p&gt;{{msg | capitalize}}&lt;/p&gt;
-        .notes.
-          adaptées les données a la vue sans changer le modele. Ex: changer une
-          date
+        img.full(src='images/mvvm.png')
 
       section
         h2 Components
@@ -275,10 +261,14 @@ html
       section
         h2 Les Events
           code (v-on)
-        pre
+        pre.bullet
           code.language-markup.
             &lt;form v-on:submit="send()"&gt;&lt;/form&gt;
+        pre.bullet
+          code.language-markup.
             &lt;form @submit="send()"&gt;&lt;/form&gt;
+        pre.bullet
+          code.language-markup.
             &lt;button @click="select(contact)"&gt;Select&lt;/button&gt;
         .notes.
           Vue js fonctionne avec des events en interne. On peut emmettre
@@ -286,6 +276,7 @@ html
 
       section
         h2 Les filtres
+        p Adapter le modèle à la vue
         .row.flex-align-center
           .even
             pre.no-line-number(data-line='2')
@@ -512,7 +503,7 @@ html
             module.exports = {
               props: {
                 contact: {
-                  type: String,
+                  type: Object,
                   required: true
                 }
               }
@@ -594,19 +585,19 @@ html
             a(href='https://github.com/vuejs/vue-loader') vue-loader
 
       section
-        h2 Des examples
+        h2.bullet La suite
         ul.no-bullet
+          li
+            a(href='https://vuejs.org') Vue.js
           li
             a(href='https://github.com/vuejs/vueify-example') vueify
           li
             a(href='https://github.com/vuejs/vue-loader-example') vue-loader
-
-      +full('end.gif')
-        h2.shadow Have Fun!
-        .notes.
-          Ca sera tout pour cette intro a vuejs. J'espere avoir attire l'attention
-          vers ce framework et si c'est le cas je vous conseille de le tester et
-          d'aller voir les ressources
+        br
+        br
+        h4.bullet Merci !
+        .notes
+          Envie de plus -> guide vuejs.org
 
     script(src='//rawgit.com/vuejs/vue/v1.0.10/dist/vue.min.js')
     script(src='build/build.js')
