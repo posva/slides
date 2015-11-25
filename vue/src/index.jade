@@ -27,6 +27,9 @@ html
 
       +full('manufacturing.gif')
         h1 Un autre MVVM ?!
+
+      section
+        img(src='images/mva.png')
         .notes.
           j'ai dit que c'était un framework MVVM. C'est vrai qu'il y en a
           plein. C'est comme si tout le monde avait vu Angular, s'était dit
@@ -322,7 +325,7 @@ html
           On evite de construire une usine a gaz
 
       +full('conventions.gif')
-       h1 Vue est consistent
+       h1 La consistence dans Vue
        .notes.
         elles sont la pour faire que le dev n'ai pas a se poser de questions
         lorsqu'il doit écrire du code.
@@ -364,11 +367,10 @@ html
           vue sait que c'est un lien et qu'il faut faire une requete
 
       section
-        h2 Mustache binding...
-        p n'est permis que dans les noeuds ou les attributs natifs
+        h2 Mustache binding
+        p Pour interpoler du texte
         pre
           code.language-markup.
-            &lt;img src="{{imgUrl}}"/&gt;
             &lt;p&gt;URL is {{imgUrl}}&lt;/p&gt;
 
       +full('playstation.gif')
@@ -430,21 +432,6 @@ html
             &lt;/div&gt;
 
       section
-        h2 Flow de données
-        ul.no-bullet
-          li Props/Attributs: données vers les enfants
-          li Custom Events: données vers les parents
-        span.bullet
-        p.bullet ⚠ Les custom events ne marchent que dans des components
-        pre.bullet
-          code.language-markup.
-            &lt;search-results @ready="resultsReload()"&gt;&lt;/search-results&gt;
-        .notes.
-          les custom events vm.$emit permettent de communiquer avec les parents depuis un composant
-          enfant.
-
-
-      section
         h2 Binding modes
         ul.bullet
           li
@@ -458,6 +445,7 @@ html
             &lt;mdl-checkbox :checked.sync="confirm"&gt;Confirm&lt;/mdl-checkbox&gt;
         .notes.
           Le sync est tres utile lorsque l'on crée des composants tels que des checkboxs
+
       section
         h2 Les Hooks
         p
@@ -474,6 +462,9 @@ html
           code.shadow .vue
         .notes.
           il y a du template, du js et meme du style
+
+      section
+        img(src='images/vue-format.png')
 
       section
         h2 Inline template
