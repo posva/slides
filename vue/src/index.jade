@@ -218,7 +218,7 @@ html
 
       section
         h2 Le&nbsp;
-          code v-transition
+          code transition
         .row
           .even.bullet-hide-inactive
             pre.bullet.no-line-number(data-line='1')
@@ -409,20 +409,20 @@ html
             &lt;/div&gt;
 
       section
-        h2 Components search et contact-list
+        h2 Components search et contact-grid
         pre.no-line-number(data-line='2,3')
           code.language-markup.
             &lt;div id="contacts"&gt;
               &lt;search id="contacts-search" :submit="fetchResults"&gt;&lt;/search&gt;
-              &lt;contact-list id="contacts-results" :contacts="contacts"&gt;
-              &lt;/contact-list&gt;
+              &lt;contact-grid id="contacts-results" :contacts="contacts"&gt;
+              &lt;/contact-grid&gt;
             &lt;/div&gt;
         .notes
           On garde encore certains liens de données dans la vue pricipale
 
       section
         h2 Componentception:&nbsp;
-          code contact-list
+          code contact-grid
         pre.no-line-number(data-line='3')
           code.language-markup.
             &lt;div class="contacts-grid"&gt;
@@ -525,7 +525,7 @@ html
             module.exports =
               props:
                 contact:
-                  type: String
+                  type: Object
                   required: true
           br
           code.language-markup.
