@@ -1,0 +1,61 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Slides
+
+    link(rel='stylesheet', type='text/css', href='build/build.css')
+    link(rel='icon' type='image/png' href='../common/posvaicon.png')
+    link(href='http://fonts.googleapis.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css')
+
+  body
+
+    include ../../utils/utils.jade
+
+    article
+      +section('yuno-tests.png')
+        h1 Les Tests
+
+      section
+        h2 Pourquoi on test ?
+
+      section
+        h2 Pour tester bien sûr
+
+      section
+        h2 Pour développer plus vite
+
+      section
+        h2 Pour éviter les régressions
+
+      +full('shrug.gif')
+        h2 Pour tester bien sûr
+
+      +full('bad-tests.png')
+
+      +full('kiss.gif')
+        h2 Pour développer plus vite
+
+      +full('good-tests.png')
+
+      +full('fixit.gif')
+        h2 Pour éviter les régressions
+
+      section
+        h2.bullet Les tests dans un projet
+        ul
+          li Au début
+          li Pendant
+
+      +full('hard-work.gif')
+
+      +full('fast-writing.gif')
+
+      +full('dojo.jpg')
+        h1 Les Tests Dojo
+
+      +full('fix-everything.gif')
+        h2 Happy testing!
+
+    script(src='build/build.js')
