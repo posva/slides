@@ -1,0 +1,553 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Slides
+
+    link(rel='stylesheet', type='text/css', href='build/build.css')
+    link(rel='icon' type='image/png' href='../common/posvaicon.png')
+    link(href='http://fonts.googleapis.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css')
+    link(href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Source+Code+Pro|Dosis:300,500' rel='stylesheet' type='text/css')
+
+  body
+
+    include ../../utils/utils.jade
+
+    article
+      section
+        h1.thin.no-padding
+          img.block.center(src='images/vue-logo.png')
+          span Vue.js
+        h2 Data-reactive web components
+        .notes.
+          Bonjour, je m'appelle Eduardo et aujourd'hui je vais vous parler de
+          vuejs. Un framework MVVM que j'ai découvert il y a quelques mois, que
+          j'utilise depuis et lequel me plait de plus en plus.
+
+      +full('manufacturing.gif')
+        h1 Un autre MV* ?!
+
+      section
+        img(src='images/mva.png')
+        .notes.
+          j'ai dit que c'était un framework MVVM. C'est vrai qu'il y en a
+          plein. C'est comme si tout le monde avait vu Angular, s'était dit
+          "C'est stylé de faire des applis comme ça, mais j'aimerais X" ou je
+          n'aime pas Y". Et du coup tout le monde a eu envie de faire son
+          propre Framework. Certains l'on fait, d'autres se sont dit qu'ils
+          avaient pas le temps (la classique). Et du coup plus de 20 frameworks
+          existent aujourd'hui. Tels que Angular, React, Aurelia, Angular2,
+          Mithril et aussi Vuejs.
+
+      section
+        h2.bullet Pourquoi Vue ?
+        ul.ul-bullet
+          li Equilibre Performance – Usabilité
+          li Orienté Components
+          li Communauté très active !
+        .notes.
+          Et si je parle de Vuejs aujourd'hui c'est parce que ce framework
+          établi un Equilibre entre performance et Usabilité. Je dirait meme
+          qu'il arrive a trouver le compromis que React et Angular manquent.
+
+          C'est orienté composants ou components en anglais. j'en reparlerai
+          plus tard
+          Issues crées tous les jours (un peu moins les we) et tout le monde qui répond
+          chat Gitter pour discuter ou demander de l'aide
+          Documentation solide
+          tout ça pour componser un manque de questions sur stack overflow
+
+      section
+        h2 Hello World
+        .row.flex-align-center
+          .even
+            pre
+              code.language-markup.
+                &lt;div id="hello-world"&gt;
+                  &lt;input v-model="value" type="text"/&gt;
+                  &lt;p&gt;{{value}}&lt;/p&gt;
+                &lt;/div&gt;
+            pre
+              code.language-javascript.
+                new Vue({
+                  el: '#hello-world',
+                  data: {
+                    value: 'Hello World'
+                  }
+                });
+          .even.row.flex-align-center
+            #hello-world
+              input(v-model='value' type='text')
+              p {{value}}
+        .notes
+          p On va directement passer à un hello world. Je vais à chaque fois
+          montrer le code et le résultat à côté.
+          p on créé un vm pour lier div et data, une directive pour input
+
+      +full('vocabulary.gif')
+        h1 Le Vocabulaire
+        .notes.
+          Il y qq nouveaux mots. On va donc en parler
+          Anvant de rentrer un peu plus dans les details de vue on va parler des
+          principaux termes utilisés. Il y en a pas beaucoup :D
+
+      section
+        h2.bullet Les Directives
+        ul
+          li
+            code v-model
+            span ,&nbsp;
+            code v-if
+            span , ...
+          li Custom directives
+            small (commencent toujours par v-)
+        pre.bullet
+          code.language-markup.
+            &lt;input v-model="value" type="text"/&gt;
+        .notes.
+          Tous les v- sont des directives
+          v-model est une directive mais type ne l est pas
+
+      section
+        h2 Le View Model (
+          code vm
+          span )
+        p View ⇆ Model
+        span.bullet
+        pre.bullet
+          code.language-javascript.
+            new Vue({...});
+        .notes.
+          Le vm se charge de sync les données avec la vue
+          La vm est crée quand on instancie une Vue
+          Elle a toute la logique et ne comporte pas de manipulation du DOM(faites dans les
+          directives)
+
+      section
+        h2 Le View Model (
+          code vm
+          span )
+        img.full(src='images/mvvm.png')
+
+      section
+        h2 Props
+        p.bullet Données passées à un component
+        pre.bullet
+          code.language-markup.
+            &lt;contact-card featured&gt;&lt;/contact-card&gt;
+        pre.bullet
+          code.language-markup.
+            &lt;contact-card type="rounded"&gt;&lt;/contact-card&gt;
+        pre.bullet
+          code.language-markup.
+            &lt;contact-card v-bind:contact="contact"&gt;&lt;/contact-card&gt;
+        .notes.
+          ça va remplacer le ng-class et ng-checked et plein d'autres
+          Ce qui est plus expressif car v-contact pourrait être une directive
+
+      +full('spider-fight.gif')
+        h1 Fontionnalités classiques
+        .notes les impasses, mais avant on va parler des concepts de base de vue
+
+      section
+        h2 Le&nbsp;
+          code v-show
+          span /
+          code v-if
+        .row
+          .even
+            pre.no-line-number(data-line='6')
+              code.language-markup.
+                &lt;div id="v-show"&gt;
+                  &lt;input v-model="show" type="checkbox"/&gt;
+                  &lt;span&gt;
+                    {{show ? 'Hide the bear' : 'Show the bear'}}
+                  &lt;/span&gt;
+                  &lt;img v-show="show" src="images/bear-hello.gif"/&gt;
+                &lt;/div&gt;
+            pre
+              code.language-javascript.
+                new Vue({
+                  el: '#v-show',
+                  data: {
+                    show: false
+                  }
+                });
+          .even
+            #v-show
+              .block
+                input(v-model='show' type='checkbox' id='v-show-check')
+                label(for='v-show-check') {{show ? 'Hide the bear' : 'Show the bear'}}
+              img(v-show='show' src='images/bear-hello.gif')
+
+      section
+        h2 Le&nbsp;
+          code v-for
+        .row
+          .even
+            pre.no-line-number(data-line='3')
+              code.language-markup.
+                &lt;div id="v-for"&gt;
+                  &lt;ul&gt;
+                    &lt;li v-for="item in items"&gt;{{item}}&lt;/li&gt;
+                  &lt;/ul&gt;
+                &lt;/div&gt;
+            pre
+              code.language-javascript.
+                new Vue({
+                  el: '#v-for',
+                  data: {
+                    items: [0, 1]
+                  }
+                });
+          .even
+            #v-for
+              p There are {{items.length}} elements
+              button(@click='items.push(items.length)') Push
+              button(@click='items.pop()') Pop
+              ul.row.flex-flow-wrap.flex-justify-start
+                li(v-for='item in items') {{item}}
+
+      section
+        h2 Le&nbsp;
+          code transition
+        .row
+          .even.bullet-hide-inactive
+            pre.bullet.no-line-number(data-line='1')
+              code.language-markup.
+                &lt;div v-if="show" transition="expand"&gt;
+                  &lt;img src="images/bear-hello.gif"/&gt;
+                &lt;/div&gt;
+            pre.bullet.hide
+              code.language-css.
+                .expand-transition {
+                }
+                .expand-enter, .expand-leave {
+                }
+            pre.bullet
+              code.language-css.
+                .expand-transition {
+                  transition: all .3s ease;
+                  height: 220px;
+                  overflow: hidden;
+                }
+                .expand-enter, .expand-leave {
+                  height: 0;
+                  opacity: 0;
+                }
+          .even
+            #v-transition
+              .block
+                input(v-model='show' type='checkbox' id='v-transition-check')
+                label(for='v-transition-check') {{show ? 'Hide the bear' : 'Show the bear'}}
+              div(transition="expand" v-if='show')
+                img(src='images/bear-hello.gif')
+
+      section
+        h2 Le&nbsp;
+          code v-bind
+        pre.bullet
+          code.language-markup.
+            &lt;form v-bind:class="{'invalid-form': invalid}"&gt;&lt;/form&gt;
+        pre.bullet
+          code.language-markup.
+            &lt;form :class="{'invalid-form': invalid}"&gt;&lt;/form&gt;
+        pre.bullet
+          code.language-markup.
+            &lt;form class="form-control" :class="{'invalid-form': invalid}"&gt;&lt;/form&gt;
+
+      section
+        h2 Les Events
+          code (v-on)
+        pre.bullet
+          code.language-markup.
+            &lt;form v-on:submit="send()"&gt;&lt;/form&gt;
+        pre.bullet
+          code.language-markup.
+            &lt;form @submit="send()"&gt;&lt;/form&gt;
+        pre.bullet
+          code.language-markup.
+            &lt;button @click="select(contact)"&gt;Select&lt;/button&gt;
+        .notes.
+          Vue js fonctionne avec des events en interne. On peut emmettre
+          des evenements sur des components qui remontent vers les parents
+
+      section
+        h2 Les filtres
+        p Adapter le modèle à la vue
+        .row.flex-align-center
+          .even
+            pre.no-line-number(data-line='2')
+              code.language-markup.
+                &lt;div id="filters"&gt;
+                  &lt;p&gt;{{obj | json}}&lt;/p&gt;
+                &lt;/div&gt;
+            pre
+              code.language-javascript.
+                new Vue({
+                  el: '#filters',
+                  data: {
+                    obj: {
+                      bool: true,
+                      arr: [1, 2],
+                      inner: {
+                        a: null
+                      }
+                    }
+                  }
+                });
+          .even
+            #filters
+              p {{obj | json}}
+        .notes.
+          quand on veut modifier les données avant de les afficher
+          on peut les chainer les un à la suite des autres
+          On peut passer des argument
+          et on peut bien sur creer ses propres filtres
+
+      +full('over.gif')
+        h1.bullet C'est tout
+          span.bullet  ?
+        ul.ul-bullet
+          li
+            a(href='https://github.com/vuejs/vue-router') vue-router
+          li
+            a(href='https://github.com/vuejs/vue-resource') vue-resource
+          li
+            a(href='https://github.com/vuejs/vue-validator') vue-validator
+        .notes.
+          Il manque bien sur plein de trucs. c'est pour ca que lon utilise des plugins.
+          On evite de construire une usine a gaz
+
+      +full('conventions.gif')
+       h1 La consistence dans Vue
+       .notes.
+        elles sont la pour faire que le dev n'ai pas a se poser de questions
+        lorsqu'il doit écrire du code.
+        réactif = prend une expression
+
+      section
+        h2.bullet Les Directives sont par défaut
+          strong  réactives
+        pre.bullet
+          code.language-markup.
+            &lt;p v-text="message"&gt;&lt;/p&gt;
+        pre.bullet.wrong-code
+          code.language-markup.
+            &lt;a v-link="/foo"&gt;Go to foo&lt;/a&gt;
+        pre.bullet
+          code.language-markup.
+            &lt;a v-link="'/foo'"&gt;Go to foo&lt;/a&gt;
+        pre.bullet
+          code.language-markup.
+            &lt;a v-link.literal="/foo"&gt;Go to foo&lt;/a&gt;
+        .notes.
+          Tout ça dans le but d'être consistent et lisible
+
+      section
+        h2.bullet Les
+          strong  attributs
+          span  et les
+          strong  props
+          span  sont par défaut
+          strong  non réactifs
+        pre.bullet
+          code.language-markup.
+            &lt;img src="images/default-user.png"/&gt;
+        pre.bullet
+          code.language-markup.
+            &lt;img :src="user.picture"/&gt;
+        pre.bullet
+          code.language-markup.
+            &lt;contact-card :contact="user"&gt;&lt;/contact-card&gt;
+        .notes.
+          Ce qui a du sens pour les props car ça veut être la même chose
+          vue sait que c'est un lien et qu'il faut faire une requete
+
+      section
+        h2 Mustache binding
+        p Pour interpoler du texte
+        pre.bullet
+          code.language-markup.
+            &lt;p&gt;URL is {{imgUrl}}&lt;/p&gt;
+        pre.bullet.wrong-code
+          code.language-markup.
+            &lt;img src="{{imgUrl}}"/&gt;
+        pre.bullet
+          code.language-markup.
+            &lt;img :src="imgUrl"/&gt;
+
+      section
+        h2 Binding modes
+        ul.bullet
+          li
+            code :prop='defaultOneWay'
+          li
+            code :prop.sync='twoWay'
+          li
+            code :prop.once='oneTime'
+        pre.bullet
+          code.language-markup.
+            &lt;mdl-checkbox :checked.sync="confirm"&gt;Confirm&lt;/mdl-checkbox&gt;
+        .notes.
+          Le sync est tres utile lorsque l'on crée des composants tels que des checkboxs
+
+      section
+        h2 Les Hooks
+        p
+          a(href='http://vuejs.org/guide/instance.html#Lifecycle_Diagram')
+            code created, beforeCompile, compiled, ...
+        pre
+          code.language-javascript.
+            ready: function() {
+              componentHandler.upgradeElement(this.$el);
+            }
+
+      +full('playstation.gif')
+        h1 Component System
+
+      section
+        h2 Components search et contact-grid
+        pre.no-line-number(data-line='2,3')
+          code.language-markup.
+            &lt;div id="contacts"&gt;
+              &lt;search id="contacts-search" :submit="fetchResults"&gt;&lt;/search&gt;
+              &lt;contact-grid id="contacts-results" :contacts="contacts"&gt;
+              &lt;/contact-grid&gt;
+            &lt;/div&gt;
+        .notes
+          On garde encore certains liens de données dans la vue pricipale
+
+      +full('vue-format.gif')
+        h1 Le format&nbsp;
+          code.shadow .vue
+        .notes.
+          il y a du template, du js et meme du style
+
+      section
+        img(src='images/vue-format.png')
+
+      section
+        h2 Inline template
+        pre
+          code.language-javascript.
+            var MyComponent = Vue.extend({
+              template: '&lt;p&gt;A custom component!&lt;/p&gt;'
+            });
+
+      section.more-space
+        h2 Regrouper le template HTML avec le js
+        pre
+          code.language-markup.
+            &lt;template&gt;
+              &lt;div class="contacts-card row" v-for="contact in contacts"&gt;
+                &lt;img :src="contact.imgUrl" class="contacts-img col-4"/&gt;
+                &lt;div class="contacts-info col-8"&gt;
+                  &lt;span&gt;{{contact.firtsName}} {{contact.lastName}}&lt;/span&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/template&gt;
+          br
+          code.language-markup.
+            &lt;script&gt;
+          br
+          code.language-javascript.
+            module.exports = {
+              props: {
+                contact: {
+                  type: Object,
+                  required: true
+                }
+              }
+            };
+          br
+          code.language-markup.
+            &lt;/script&gt;
+
+      section.more-space
+        h2 Regrouper le template Jade avec le Coffee
+        pre
+          code.language-markup.
+            &lt;template lang="jade"&gt;
+          br
+          code.language-jade.
+              .contacts-card.row(v-for'contact in contacts')
+                img.contacts-img.col-4(:src='contact.imgUrl')
+                .contacts-info.col-8
+                  span {{contact.firtsName}} {{contact.lastName}}
+          br
+          code.language-markup.
+            &lt;/template&gt;
+          br
+          code.language-markup.
+            &lt;script lang="coffee"&gt;
+          br
+          code.language-coffeescript.
+            module.exports =
+              props:
+                contact:
+                  type: Object
+                  required: true
+          br
+          code.language-markup.
+            &lt;/script&gt;
+
+      section.more-space
+        h2 Ajouter le style aussi
+        pre
+          code.language-markup.
+            &lt;template lang="jade"&gt;
+          br
+          code.language-markup.
+            &lt;/template&gt;
+          br
+          code.language-markup.
+            &lt;style lang="stylus"&gt;
+          br
+          code.language-jade.
+              .contacts-card
+                display: inline-block
+              .contacts-info
+                background-color: gray
+          br
+          code.language-markup.
+            &lt;/style&gt;
+          br
+          code.language-markup.
+            &lt;script lang="coffee"&gt;
+          br
+          code.language-markup.
+            &lt;/script&gt;
+
+      section
+        h2 Transformer les&nbsp;
+          code .vue
+          span  en&nbsp;
+          code .js
+        ul.no-bullet
+          li Browserify:
+            a(href='https://github.com/vuejs/vueify') vueify
+          li Webpack:
+            a(href='https://github.com/vuejs/vue-loader') vue-loader
+
+      section
+        h2.bullet La suite
+        ul.no-bullet
+          li
+            a(href='https://vuejs.org') Vue.js
+          li
+            a(href='https://github.com/vuejs/vueify-example') vueify
+          li
+            a(href='https://github.com/vuejs/vue-loader-example') vue-loader
+        br
+        p.bullet
+          a(href='http://posva.net/slides/vue') posva.net/slides/vue
+        br
+        br
+        h4.bullet Merci !
+        .notes
+          Envie de plus -> guide vuejs.org
+
+    script(src='//rawgit.com/vuejs/vue/v1.0.10/dist/vue.min.js')
+    script(src='build/build.js')
