@@ -1,0 +1,154 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Slides
+
+    link(rel='stylesheet', type='text/css', href='build/build.css')
+    link(rel='icon' type='image/png' href='../common/posvaicon.png')
+    link(href='http://fonts.googleapis.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css')
+
+  body
+
+    include ../../utils/utils.jade
+
+    article
+      +section('dvorak-typwriter.jpg')
+        h1 Dvorak, un an après
+        .notes.
+          il y a un an, changé clavier, enfin de layout
+          Je tapais toujours sur le meme clavier physique
+          mais les touches n'étaient pas interprétés de
+          la meme façon par l'ordinateur
+
+      section
+        h4 Programmer Dvorak
+        img(src='images/kb-prog-dvorak.png')
+        .notes.
+          A priori ça parait vraiment stupide
+          C'est vraiment envie de se compliquer la vie
+          pour rien. Pourquoi réapprendre
+          mais ça a ses avantages et la preuve c'est
+          que je suis bien resté sur ce clavier un an après
+          et je n'ai aucune intention de revenir sur
+          qwerty
+          pourquoi dvorak: opti des touches
+
+      +full('typewriter.jpg')
+        .notes.
+          1889: patent
+          1930: dvorak
+          Pour l'anglais
+
+      section
+        h4 QWERTY Espagnol
+        img(src='images/kb-spanish.jpg')
+        .notes.
+          Arrive en fr et boum, azerty.
+          faute classique lettre q et a
+          je regarde le clavier pour les lettres
+          c'est psychologique
+
+      section
+        h4 QWERTY
+        img(src='images/kb-us.jpg')
+        .notes.
+          regarde qwerty americain
+          mieux pour coder
+          je sais que parmis les dev il y en a
+          qui sont passés sur qwerty et qui en
+          sont bien content
+          le prob pas d'accents car en anglais, qui
+          est une langue simple, il n'y a pas d'accents
+
+      section
+        h4 QWERTY International
+        img(src='images/kb-international-us.jpg')
+        .notes.
+          Il y a aussi des bizdevs qui font du qwerty
+          International. Permet de faire des accents
+          le changement est minimal entre ces claviers
+          mais je suis encore concerné par
+
+      +full('slow-typing.gif')
+        h4.backhighlight 35 wpm
+        .notes.
+          c'est ridicule, c'est minable
+
+      +full('accident.gif')
+        h4.backhighlight
+          | Les RSI
+          small (Repetitive Strain Injuries)
+        .notes.
+          ETQDev cela me préocupe car mes mains
+          sont mon outil le plus important
+
+      section
+        img(src='images/dvorak-vs-qwerty.jpg')
+        .notes.
+          je pourrais vous montrer des graphes qui montrent
+          les diff stats entre distance parcourues par les
+          doigt. Pour moi, le graphe qui me parle le plus
+          c'est la heatmap
+
+      +full('magic-keyboard.jpg')
+        h4.backhighlight Thin keyboard + high wpm = RSI
+
+      +full('not-sure.gif')
+
+      section
+        ul
+          li Réduire le risque de RSI
+          li Augmenter ma vitesse de frappe
+          li Fatiguer moins mes mains
+
+      +full('cat-typing.gif')
+        h4.backhighlight Touch typing
+        .notes.
+          occas apprndr qqchose de nouveau
+
+      +full('touch-typing.jpg')
+        .notes.
+          je tente pendant un temps
+          sans changer de clavier
+
+      +section('lesson-1.png')
+        h4.bullet Faire un Typing Tutor
+        ul
+          li Tous les jours
+          li Sans regarder le clavier
+          li Faire le moins d'erreurs possibles
+        .notes.
+          moins d'erreur car memoire motrice
+
+      +full('mechanical-keyboards.gif')
+        h4.backhighlight Mechanical keyboards
+
+      section
+        h4 Plus long parcours du doigt
+        img(src='images/cherry-brown.gif')
+
+      +section('personal-kb.jpg')
+        h2 Mon expérience
+        ul.bullet
+          li Imprimmé le layout
+          li Appris en un mois
+          li Doublé ma vitesse après 3 mois
+          li Je continue à l'augmenter aujourd'hui
+        .notes.
+          grace au touch typing j'avais la meme vitess
+          a peu pres 1 mois et 1 semaine apres
+          il y a dautres. Parmis eux, colemak
+
+      section
+        h4 Colemak
+        img(src='images/kb-colemak.png')
+        .notes.
+          Temps apprentissage plus court
+
+      +full('personal-kb.jpg')
+        span
+        h4.backhighlight.bullet Merci !
+
+    script(src='build/build.js')
