@@ -3,3 +3,4 @@ dist/*/
 dist/index.html
 .publish
 src/slides.jade
+.DS_Store
