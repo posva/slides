@@ -68,7 +68,8 @@ section
     size: 100% 100%
     absolute: top left
     margin: initial
-    background-size: cover !important;
+    &:not(.no-cover)
+      background-size: cover !important;
     .shadow
       text-shadow:
         3px 3px 0 #000,
@@ -132,3 +133,8 @@ for s in screens
         width: (100 * i / columns)%
       .{v[i]}-offset-{s}
         margin-left: (100 * i / columns)%
+
+.backhighlight
+  background-color: black
+  padding: 0 1rem
+  border-radius: 2px
