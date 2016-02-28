@@ -1,0 +1,147 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Slides
+
+    link(rel='stylesheet', type='text/css', href='build/build.css')
+    link(rel='icon' type='image/png' href='../common/posvaicon.png')
+    link(href='http://fonts.googleapis.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css')
+    link(href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Source+Code+Pro|Dosis:300,500' rel='stylesheet' type='text/css')
+  body
+
+    include ../../utils/utils.jade
+
+    article
+      section
+        h1.thin.no-padding
+          img.block.center(src='images/vue-logo.png')
+          span Testing in Vue.js
+        h2 Unit, Functional and e2e tests
+
+      +full('fingertips.gif')
+        p Everything at your fingertips
+
+      section
+        img(src='images/ng-test-stack.png')
+        .notes.
+          ng a karma, jasmine, protractor
+
+      +full('ng-test-search.png')
+        h4.backhighlight 1.5M results
+
+      section
+        img(src='images/react-test-stack.png')
+        .notes.
+          ng a karma, jasmine, protractor
+
+      +full('react-test-search.png')
+        h4.backhighlight 400k results
+
+      +full('excited.gif')
+        p And Vue.js
+
+      +full('vue-test-search.png')
+        h4.backhighlight 16k results
+
+      section
+        p vue a tout
+        p il faut le build
+
+      section
+        p conseillé = karma
+        p e2e nightwatch
+
+      section
+        p ou
+
+      section
+        h1 Karma
+        ul
+          li
+            span PhantomJS
+            ul
+              li Watch and debug
+              li CI
+          li
+            span Chrome
+            ul
+              li Watch
+              li slower
+          li e2e nightwatch
+          li mocks with inject loader
+          li jquery
+
+      section
+        h1 Functional testing mocha
+        ul
+          li why, easier to write etc
+          li How, with mocha, real page
+
+      section
+        h1 Coverage
+        ul
+          li with karma
+          li with mocha
+
+      +section('flamingo-hello.gif')
+        h1 Boilerplate
+        +free('85%', '76%')
+          a.icon-link(href='https://github.com/posva')
+            img(src='../common/githubicon.svg')
+            span posva
+        +free('80%', '20%', '10deg')
+          img(src='../common/lama-fabulous.gif')
+        .notes
+          p Here are some notes
+
+      section
+        h2 Inline code
+          code.language-javascript var a;
+        p This is a paragraph
+
+      section
+        h2 Code
+        pre
+          code.language-javascript.
+            var a, b;
+            a = 3;
+            b = function() {
+              return true;
+            };
+
+      section
+        h2 Code long line
+        pre
+          code.language-coffeescript.
+            a = 3
+            b = ->
+              thisIsASuperLongNameForAFunctionNobodyWillEverType()
+
+      section
+        h3 Vue format
+        pre
+          code.language-css.
+            h1 {
+              color: red;
+            }
+
+      section(data-bespoke-backdrop='emphatic')
+        h2 This is a paragraph
+
+      section
+        h4 H4 title
+        p This is a paragraph
+
+      section
+        h2 H2 title
+        ul
+          li element 1
+          li element 2
+          li element 3
+
+      +full('flamingo-hello.gif')
+        h2 Happy Talk!
+
+    script(src='build/build.js')
