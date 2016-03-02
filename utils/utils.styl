@@ -28,6 +28,9 @@ img.full
     margin: auto
     display: block
 
+img.fill
+  max-width: 100%
+
 small
   font-size: 50%
 
@@ -138,3 +141,34 @@ for s in screens
   background-color: black
   padding: 0 1rem
   border-radius: 2px
+
+.blur-bullets
+  .bespoke-bullet-active:not(.bespoke-bullet-current)
+    filter: blur(2px)
+    opacity(.3)
+
+.overlap-700
+  .under
+    margin-top: 700px
+  .over
+    position: relative
+    top: -700px
+
+code[class*="language-"],
+pre[class*="language-"]
+  line-height: 1.2
+
+.bespoke-bullet-active
+  pre.wrong-code, pre&.wrong-code
+    color: red
+    text-decoration: line-through
+  pre.hide, pre&.hide
+    display: none
+.bespoke-bullet-current
+  pre.wrong-code, pre&.wrong-code
+    text-decoration: inherit
+  pre.hide, pre&.hide
+    display: inherit
+
+.line-through
+  text-decoration: line-through
