@@ -18,7 +18,7 @@ html
         h1.thin.no-padding
           img.block.center(src='images/vue-logo.png')
           span Testing in Vue.js
-        h2 Unit, Functional and e2e tests
+        h2 Unit and Functional
 
       +full('fingertips.gif')
         p Everything at your fingertips
@@ -60,6 +60,10 @@ html
         p.bullet ☕️
         p.bullet
           code npm t
+
+      section
+        div
+          img.fill(src='images/karma-output.png')
 
       +full('travolta-searching.gif')
         h4.backhighlight Code Coverage?
@@ -120,7 +124,7 @@ html
                 el = $j(vm.$el)
               })
             })
-        
+
       section
         h2 Component initialization
         pre
@@ -152,6 +156,9 @@ html
             span.bullet
               span  ✨ (
               code toHaveText
+              span ,&nbsp;
+              code toHaveCss
+              span , ...
               span )
           li
             code nextTick()
@@ -183,7 +190,7 @@ html
           li
             code npm i -D karma-jasmine-jquery
           li
-            span 📝karma.conf.js →&nbsp;
+            span 📝 karma.conf.js →&nbsp;
             code.language-javascript frameworks: ['jasmine-jquery', 'jasmine']
           li
             span jQuery 2.1 →
@@ -208,13 +215,55 @@ html
         div
           img.fill(src='images/karma-run-emphasize.png')
 
+      section(data-bespoke-backdrop='emphatic')
+        h2 Demo
+
       +full('vue-coverage.png')
         img(src='images/travolta-transparent.gif')
+        .notes.
+          faire l'autre démo d'abord
+
+      section.blur-bullets
+        ul
+          li
+            code npm i -D isparta-loader karma-coverage
+          li 📝 karma.conf.js
 
       section
+        h2 Coverage
         pre
           code.language-javascript.
+            reporters: ['spec', 'coverage'],
+            ...
+            coverageReporter: {
+              type: 'lcov',
+              dir: '../coverage'
+            }
 
+      section
+        h2 Vue Coverage
+        pre
+          code.language-javascript.
+            webpackConf.vue = {
+              loaders: {
+                js: 'isparta'
+              }
+            }
+
+      section
+        h2 JS Coverage
+        pre
+          code.language-javascript.
+            webpackConf.module.preLoaders = [
+              {
+                test: /\.js$/,
+                loader: 'isparta',
+                exclude: /(test|node_modules)/
+              }
+            ]
+
+      section(data-bespoke-backdrop='emphatic')
+        h2 Demo
 
       section
         h2 💭 Any questions❔
