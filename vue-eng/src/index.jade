@@ -25,6 +25,18 @@ html
           vuejs. Un framework MVVM que j'ai découvert il y a quelques mois, que
           j'utilise depuis et lequel me plait de plus en plus.
 
+      section
+        .row.flex-align-center
+          .even
+            img.circle(src='https://avatars0.githubusercontent.com/u/664177?v=3&s=460')
+          .even.text-left
+            h2 Eduardo San Martin Morote
+            h2 Dev Theodo
+            h2
+              a(href='https://github.com/posva')
+                img.icon(src='../common/githubicon.svg')
+                span posva
+
       +full('manufacturing.gif')
         h1 Another MV* ?!
 
@@ -141,9 +153,6 @@ html
       section
         h2 Props
         p.bullet Pass Data down to a component
-        pre.bullet
-          code.language-markup.
-            &lt;contact-card featured&gt;&lt;/contact-card&gt;
         pre.bullet
           code.language-markup.
             &lt;contact-card type="rounded"&gt;&lt;/contact-card&gt;
@@ -473,7 +482,7 @@ html
         pre
           code.language-javascript.
             var MyComponent = Vue.extend({
-                template: '<p>A custom component!</p>'
+                template: '&lt;p&gt;I'm a component!&lt;/p&gt;'
             });
 
       section.more-space
@@ -583,9 +592,9 @@ html
           li
             a(href='https://vuejs.org') Vue.js
           li
-            a(href='https://github.com/vuejs/vueify-example') vueify
+            a(href='https://github.com/vuejs-templates/browserify') vueify
           li
-            a(href='https://github.com/vuejs/vue-loader-example') vue-loader
+            a(href='https://github.com/vuejs-templates/webpack') vue-loader
         br
         br
         h4.bullet Thanks!
