@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Slides</title>
+    <link rel="stylesheet" type="text/css" href="build/build.css">
+    <link rel="icon" type="image/png" href="../common/posvaicon.png">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,600" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Source+Code+Pro|Dosis:300,500" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <article>
+      <section>
+        <h1 class="thin no-padding"><img src="images/vue-logo.png" class="block center"><span>Testing in Vue.js</span></h1>
+        <h2>Unit and Functional</h2>
+      </section>
+          <section style="background: url(images/fingertips.gif) no-repeat center center; " class="full">
+            <p>Everything at your fingertips</p>
+          </section>
+      <section><img src="images/ng-test-stack.png">
+        <div class="notes">
+          ng a karma, jasmine, protractor
+          
+        </div>
+      </section>
+          <section style="background: url(images/ng-test-search.png) no-repeat center center; " class="full">
+            <h4 class="backhighlight">1.5M results</h4>
+          </section>
+      <section><img src="images/react-test-stack.png">
+        <div class="notes">
+          ng a karma, jasmine, protractor
+          
+        </div>
+      </section>
+          <section style="background: url(images/react-test-search.png) no-repeat center center; " class="full">
+            <h4 class="backhighlight">400k results</h4>
+          </section>
+          <section style="background: url(images/excited.gif) no-repeat center center; " class="full">
+            <p>And Vue.js 🔎</p>
+          </section>
+          <section style="background: url(images/vue-test-search.png) no-repeat center center; " class="full">
+            <h4 class="backhighlight">16k results</h4>
+            <div class="notes">
+              or test important. why
+              donc pas se désanimer
+              
+            </div>
+          </section>
+          <section style="background: url(images/homer-cry.gif) no-repeat center center; " class="full">
+          </section>
+      <section class="blur-bullets">
+        <p class="bullet"><code>npm i -g vue-cli</code></p>
+        <p class="bullet"><code>vue init webpack my-project</code></p>
+        <p class="bullet"><code>npm i</code></p>
+        <p class="bullet">☕️</p>
+        <p class="bullet"><code>npm t</code></p>
+      </section>
+      <section>
+        <div><img src="images/karma-output.png" class="fill"></div>
+      </section>
+          <section style="background: url(images/travolta-searching.gif) no-repeat center center; " class="full">
+            <h4 class="backhighlight">Code Coverage?</h4>
+          </section>
+      <section><img src="images/vue-format.png">
+        <div class="notes">
+          vue format = barrier
+          main issue when building stuff around
+          happen the same on react
+          
+        </div>
+      </section>
+          <section style="background: url(images/dog-crash.gif) no-repeat center center; " class="full">
+            <div class="notes">
+              Connait pas forcemment webpack
+              mais tu veux rajouter des choses
+              
+            </div>
+          </section>
+      <section class="blur-bullets overlap-700"><img src="images/vue-transform-webpack.png" class="bullet under"><img src="images/vue-transform-webpack-js.png" class="bullet over"></section>
+      <section>
+        <h1>Vue.js Testing stack</h1>
+      </section>
+      <section class="blur-bullets overlap-700"><img src="images/vue-test-stack.png" class="bullet under"><img src="images/webpack-logo-700.png" class="bullet over"></section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2 class="bullet">Compile Vue files before testing</h2><img src="images/webpack-logo.png" class="bullet">
+        <div class="notes">
+          Une des choses qui rend les tests compliques
+          il faut compiler les fichier vue
+          
+        </div>
+      </section>
+      <section>
+        <h2>Test directory 📂</h2>
+        <pre><code class="language-text">src
+├── components
+│   └── Hello.vue
+└── services
+    └── hello-service.js
+test
+└── unit
+    ├── Hello.spec.js
+    ├── hello-service.spec.js
+    └── index.js</code></pre>
+        <div class="notes">
+          index = entry point
+          spec = test
+          utils = utils functions
+          
+        </div>
+      </section>
+      <section>
+        <h2>Component as a module</h2>
+        <pre><code class="thin language-javascript">import Hello from 'src/components/Hello'
+
+describe('Hello.vue', () => {
+  let vm, el
+  beforeEach(() => {
+    vm = instantiateComponent(Hello)
+    el = $j(vm.$el)
+  })
+})
+</code></pre>
+      </section>
+      <section>
+        <h2>Component initialization</h2>
+        <pre><code class="language-javascript">it('initializes name', () => {
+  expect(vm.name).toBe('World')
+})
+</code></pre>
+      </section>
+      <section>
+        <h2>Component data</h2>
+        <pre><code class="language-javascript">it('displays the name', (done) => {
+  vm.name = 'Vuers'
+  expect(el).toHaveText('Hello World!')
+  nextTick(vm).then(() =>
+    expect(el).toHaveText('Hello Vuers!')
+    done()
+  })
+  </code></pre>
+      </section>
+      <section>
+        <h2 class="bullet">I'm missing 🤔</h2>
+        <ul>
+          <li><code>instantiateComponent</code></li>
+          <li><code><a href="https://github.com/bessdsv/karma-jasmine-jquery" target="_blank">karma-jasmine-jquery</a></code><span class="bullet"><span> ✨ (</span><code>toHaveText</code><span>,&nbsp;</span><code>toHaveCss</code><span>, ...</span><span>)</span></span></li>
+          <li><code>nextTick()</code><span> → Promise</span></li>
+        </ul>
+      </section>
+      <section>
+        <h2><code class="line-through">instantiateComponent</code><code> beforeEach</code></h2>
+        <pre><code class="language-javascript">let app = new Vue({
+  template: '&lt;div&gt;&lt;hello :name=&quot;name&quot;&gt;&lt;/hello&gt;&lt;/div&gt;',
+  components: { Hello }
+}).$mount()
+app.$nextTick(() => {
+  vm = app.$children[0]
+  el = $j(vm.$el)
+  done()
+})</code></pre>
+        <div class="notes">
+          plutot fait a chaque it
+          peut varier
+          regrouper dans des describe
+          
+        </div>
+      </section>
+      <section class="blur-bullets">
+        <h2>jQuery</h2>
+        <ul>
+          <li><code>npm i -D karma-jasmine-jquery</code></li>
+          <li><span>📝 karma.conf.js →&nbsp;</span><code class="language-javascript">frameworks: ['jasmine-jquery', 'jasmine']</code></li>
+          <li><span>jQuery 2.1 →</span><code>$j</code></li>
+        </ul>
+      </section>
+      <section>
+        <h2>Launch karma✅</h2>
+        <div><img src="images/karma-run.png" class="fill"></div>
+      </section>
+          <section style="background: url(images/chill.gif) no-repeat center center; " class="full">
+          </section>
+      <section>
+        <h2>Errors❌</h2>
+        <div><img src="images/karma-run-error.png" class="fill"></div>
+      </section>
+          <section style="background: url(images/empty-smile.gif) no-repeat center center; " class="full">
+          </section>
+      <section>
+        <h2>Use a real browser</h2>
+        <div><img src="images/karma-run-emphasize.png" class="fill"></div>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2>Demo</h2>
+      </section>
+          <section style="background: url(images/vue-coverage.png) no-repeat center center; " class="full"><img src="images/travolta-transparent.gif">
+            <div class="notes">
+              faire l'autre démo d'abord
+              
+            </div>
+          </section>
+      <section class="blur-bullets">
+        <ul>
+          <li><code>npm i -D isparta-loader karma-coverage</code></li>
+          <li>📝 karma.conf.js</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Coverage</h2>
+        <pre><code class="language-javascript">reporters: ['spec', 'coverage'],
+...
+coverageReporter: {
+  type: 'lcov',
+  dir: '../coverage'
+}
+</code></pre>
+      </section>
+      <section>
+        <h2>Vue Coverage</h2>
+        <pre><code class="language-javascript">webpackConf.vue = {
+  loaders: {
+    js: 'isparta'
+  }
+}
+</code></pre>
+      </section>
+      <section>
+        <h2>JS Coverage</h2>
+        <pre><code class="language-javascript">webpackConf.module.preLoaders = [
+  {
+    test: /\.js$/,
+    loader: 'isparta',
+    exclude: /(test|node_modules)/
+  }
+]
+</code></pre>
+      </section>
+      <section data-bespoke-backdrop="emphatic">
+        <h2>Demo</h2>
+      </section>
+      <section>
+        <h2>💭 Any questions❔</h2>
+      </section>
+    </article>
+    <script src="build/build.js"></script>
+  </body>
+</html>
