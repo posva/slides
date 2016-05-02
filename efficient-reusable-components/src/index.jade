@@ -1,0 +1,150 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Slides
+
+    link(rel='stylesheet', type='text/css', href='build/build.css')
+    link(rel='icon' type='image/png' href='../common/posvaicon.png')
+    link(href='http://fonts.googleapis.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css')
+    link(href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Source+Code+Pro|Dosis:300,500' rel='stylesheet' type='text/css')
+  body
+
+    include ../../utils/utils.jade
+
+    article
+      section
+        h1.thin.no-padding
+          div
+            img.center(src='../common/vue-logo.png')
+            img.center(src='images/vue-format.png')
+          span Writing efficient and reusable components
+
+      section
+        .row.flex-align-center
+          .even
+            img.circle(src='https://avatars0.githubusercontent.com/u/664177?v=3&s=460')
+          .even.text-left
+            h2 Eduardo San Martin Morote
+            h2
+              img(style='height: 64px' src='../common/theodo.png')
+              span Dev Theodo
+            h2
+              a(href='https://github.com/posva')
+                img.icon(src='../common/githubicon.svg')
+                span posva
+
+      section
+        img(src='images/vue-format.png')
+        .notes.
+          souvent écrits dans un seul fichier
+          découper un morceau de notre app
+          réutiliser à plusieurs endroits
+
+      section
+        pre
+          code.language-markup.
+            &lt;template&gt;
+              &lt;p class="red"&gt;{{ msg }}&lt;/p&gt;
+            &lt;/template&gt;
+
+
+          code.language-markup.
+            &lt;script&gt;
+
+          code.language-javascript.
+            export default { props: ['msg'] }
+
+          code.language-markup.
+            &lt;/script&gt;
+
+
+          code.language-markup.
+            &lt;style scoped&gt;
+
+          code.language-css.
+            .red { color: red; }
+
+          code.language-markup.
+            &lt;/style&gt;
+        .notes.
+          donc seul fichier avec tout ça
+          template pour html
+          script pour js
+          style pour css (optionel)
+
+      section
+        img(src='images/components.png')
+        .notes.
+          ces composants sont ensuite des morceaux de l'appli
+          division hierarchique
+          réutilisation. Montrer sur Schéma
+
+      +full('twins-dogs.gif')
+        h1.shadow Reusable
+        .notes.
+          meme fonctionnement
+          qui s'adapte
+
+      section.big
+        h2 Reusable
+        ul
+          li Replicable 👐
+          li Agnostic 🤖
+          li Configurable 🔧
+        .notes.
+          certaines vont ensemble Cnf + Adap
+
+      section
+        pre
+          code.language-markup.
+            &lt;message-box v-bind:close="messageClose" &gt;
+            &lt;/message-box&gt;
+        .notes.
+          a ne pas fair
+          methode executé par le fils TODO analogie marrante a trouver
+
+      section
+        pre
+          code.language-javascript.
+            methods: {
+              messageClose (response) {
+                if (response) this.continue()
+                else this.abort()
+              }
+            }
+
+      section
+        pre
+          code.language-markup.
+            &lt;message-box @close="messageClose" &gt;
+            &lt;/message-box&gt;
+
+      section
+        p computed vs filters
+
+      section
+        h1 Reusable components
+
+      section
+        h2 Async Components
+        .notes.
+          activate
+
+      section
+        h2 Vue Router
+        .notes.
+          c'est diff
+
+      section
+        h2 Vuex
+        h4 State management
+        .notes.
+          Quoi garder dans l'état global
+          Un component sans état?!
+
+      section
+        h2 💭 Any questions❔
+
+    script(src='build/build.js')

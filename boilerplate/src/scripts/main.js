@@ -70,6 +70,7 @@ require('prismjs/components/prism-javascript');
 require('prismjs/components/prism-coffeescript');
 require('prismjs/components/prism-css');
 require('prismjs/components/prism-stylus');
+require('prismjs/components/prism-markup');
 require('prismjs/components/prism-jade');
 require('prismjs/components/prism-bash');
 require('prismjs/components/prism-git');
