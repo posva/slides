@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Slides</title>
+    <link rel="stylesheet" type="text/css" href="build/build.css">
+    <link rel="icon" type="image/png" href="../common/posvaicon.png">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,600" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Source+Code+Pro|Dosis:300,500" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <article>
+      <section>
+        <h1 class="thin no-padding">
+          <div><img src="../common/vue-logo.png" class="center"><img src="images/vue-format.png" class="center"></div><span>Writing efficient and reusable components</span>
+        </h1>
+      </section>
+      <section>
+        <div class="row flex-align-center">
+          <div class="even"><img src="https://avatars0.githubusercontent.com/u/664177?v=3&amp;s=460" class="circle"></div>
+          <div class="even text-left">
+            <h2>Eduardo San Martin Morote</h2>
+            <h2><img style="height: 64px" src="../common/theodo.png"><span>Dev Theodo</span></h2>
+            <h2><a href="https://github.com/posva"><img src="../common/githubicon.svg" class="icon"><span>posva</span></a></h2>
+          </div>
+        </div>
+      </section>
+      <section><img src="images/vue-format.png">
+        <div class="notes">
+          souvent écrits dans un seul fichier
+          découper un morceau de notre app
+          réutiliser à plusieurs endroits
+          
+        </div>
+      </section>
+      <section>
+        <pre><code class="language-markup">&lt;template&gt;
+  &lt;p class="red"&gt;{{ msg }}&lt;/p&gt;
+&lt;/template&gt;
+
+</code><code class="language-markup">&lt;script&gt;
+</code><code class="language-javascript">export default { props: ['msg'] }
+</code><code class="language-markup">&lt;/script&gt;
+
+</code><code class="language-markup">&lt;style scoped&gt;
+</code><code class="language-css">.red { color: red; }
+</code><code class="language-markup">&lt;/style&gt;</code></pre>
+        <div class="notes">
+          donc seul fichier avec tout ça
+          template pour html
+          script pour js
+          style pour css (optionel)
+          
+        </div>
+      </section>
+      <section><img src="images/components.png">
+        <div class="notes">
+          ces composants sont ensuite des morceaux de l'appli
+          division hierarchique
+          réutilisation. Montrer sur Schéma
+          
+        </div>
+      </section>
+          <section style="background: url(images/twins-dogs.gif) no-repeat center center; " class="full">
+            <h1 class="shadow">Reusable</h1>
+            <div class="notes">
+              meme fonctionnement
+              qui s'adapte
+              
+            </div>
+          </section>
+      <section class="big">
+        <h2>Reusable</h2>
+        <ul>
+          <li>Replicable 👐</li>
+          <li>Agnostic 🤖</li>
+          <li>Configurable🔧</li>
+        </ul>
+        <div class="notes">
+          certaines vont ensemble Cnf + Adap
+          
+        </div>
+      </section>
+      <section class="big">
+        <h2>Replicable</h2>
+        <ul>
+          <li>Within a project:<span class="bullet hide-bullet"> ½ 👐</span><span class="bullet"> 🙂</span></li>
+          <li>Anywhere: 😉</li>
+        </ul>
+        <div class="notes">
+          relatif au scope du component
+          replicable dans un projet -> reutilisable au sein
+          d'un meme projet
+          -> moyen reusable
+          ça veut pas dire que ce n'est pas bien
+          c'est peut être pragmatique de le faire
+          
+        </div>
+      </section>
+      <section class="big">
+        <h2>Async data ⏳</h2>
+        <ul class="bullet">
+          <li><code>activate</code> hook</li>
+          <li>Manual in&nbsp;<code>ready</code> hook</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Async data ❌</h2>
+        <pre><code class="language-markup">&lt;async-comp&gt;&lt;/async-comp&gt;
+
+</code><code class="language-javascript">activate (done) {
+  this.$http.get('/data').then(response => {
+    // ...
+    done()
+  }, errorHandler)
+}</code></pre>
+        <div class="notes">
+          ok dans 1 projet
+          mais peut pas changer d'ou viennent les données
+          
+        </div>
+      </section>
+      <section>
+        <h2>Async data ✅</h2>
+        <pre><code class="language-markup">&lt;async-comp :promise="dataPromise()"&gt;&lt;/async-comp&gt;
+
+</code><code class="language-javascript">methods: {
+  dataPromise () {
+    return new Promise((resolve, reject) => {
+      // ...
+    })
+  }
+}
+</code></pre>
+      </section>
+      <section>
+        <h2>Async data ✅</h2>
+        <pre><code class="language-javascript">props: {
+  promise: Promise
+},
+activate (done) {
+  this.promise.then(done)
+}
+</code></pre>
+      </section>
+      <section class="big">
+        <h2>Parent communication 📤</h2>
+        <ul class="bullet">
+          <li><code>sync</code> modifier</li>
+          <li><code>v-model</code> in 2.0</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Parent communication ❌</h2>
+        <pre><code class="language-markup">&lt;modal-box :close="messageClose" &gt;
+&lt;/modal-box&gt;
+
+</code><code class="language-javascript">methods: {
+  messageClose (response) {
+    if (response) this.continue()
+    else this.abort()
+  }
+}</code></pre>
+        <div class="notes">
+          a ne pas faire
+          methode executé par le fils TODO analogie marrante a trouver
+          
+        </div>
+      </section>
+      <section>
+        <h2>Parent communication ✅</h2>
+        <pre><code class="language-markup">&lt;modal-box @close="messageClose" &gt;
+&lt;/modal-box&gt;
+
+</code><code class="language-javascript">// modal-box
+this.$emit('close', info)</code></pre>
+        <div class="notes">
+          envoi un event
+          fais ses modif a lui
+          event peut etre ignoré
+          
+        </div>
+      </section>
+      <section class="big">
+        <h2>Commanding a Component 📥</h2>
+        <ul class="bullet">
+          <li><code>props</code></li>
+          <li class="blur-bullet strike-bullet"><code>$broadcast</code></li>
+          <li><code>$refs</code></li>
+        </ul>
+        <div class="notes">
+          declancher actions
+          ex: l'affichage d'une modale
+          
+        </div>
+      </section>
+      <section class="blur-bullets">
+        <h2>Commanding a Component ❌</h2><span class="bullet"></span>
+        <pre><code class="language-javascript bullet">props: {
+  show: Boolean
+}
+</code><code class="language-javascript bullet">watch: {
+  show () {
+    // ...
+  }
+}
+</code></pre>
+      </section>
+      <section>
+        <h2>Commanding a Component ✅</h2><span class="bullet"></span>
+        <pre><code class="language-javascript bullet">// modal-box
+methods: {
+  show () {
+    // ...
+  }
+}
+</code><code class="language-markup bullet">&lt;modal-box v-ref:modal&gt;&lt;/modal-box&gt;
+</code><code class="language-javascript bullet">// Parent
+this.$refs.modal.show()
+</code></pre>
+      </section>
+          <section style="background: url(images/efficient.gif) no-repeat center center; " class="full">
+            <h1 class="shadow">Efficient</h1>
+          </section>
+      <section class="big">
+        <h2>Efficient ⚡️</h2>
+        <ul>
+          <li>Fast to configure</li>
+          <li>Fast to adapt</li>
+        </ul>
+      </section>
+      <section>
+        <h2 class="bullet">Using&nbsp;<code>slots</code></h2>
+        <pre class="bullet"><code class="language-markup">&lt;modal-box&gt;
+  &lt;p&gt;Text&lt;/p&gt;
+&lt;/modal-box&gt;
+</code></pre>
+        <div class="notes">
+          transclure du contenu du parent au fils
+          connu en ng
+          expliquer pour ceux qui connaissent pas
+          essentiel pour les components
+          
+        </div>
+      </section>
+      <section>
+        <h2><code>slots</code></h2>
+        <pre><code class="language-markup">&lt!-- Modal Box template --&gt
+&lt;div class="modal"&gt;
+  &lt;slot&gt;&lt;/slot&gt;
+  &lt;button @click="close"&gt;Close&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+      </section>
+      <section>
+        <h2>Default&nbsp;<code>slots</code></h2>
+        <pre><code class="language-markup">&lt!-- Modal Box template --&gt
+&lt;div class="modal"&gt;
+  &lt;div class="modal__text"&gt;
+    &lt;slot&gt;
+      Text
+    &lt;/slot&gt;
+  &lt;/div&gt;
+  &lt;button @click="close"&gt;Close&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+      </section>
+      <section>
+        <h2>Using multiple&nbsp;<code>slots</code> aka named&nbsp;<code>slots</code></h2>
+        <pre><code class="language-markup bullet hide-bullet">&lt;modal-box&gt;
+  &lt;h2&gt;Title&lt;/&gt;
+  &lt;p&gt;Text&lt;/p&gt;
+&lt;/modal-box&gt;</code><code class="language-markup bullet hide-bullet">&lt;modal-box&gt;
+  &lt;h2 slot="title"&gt;Title&lt;/&gt;
+  &lt;p slot="text"&gt;Text&lt;/p&gt;
+&lt;/modal-box&gt;
+</code></pre>
+      </section>
+      <section class="more-space">
+        <h2>Default&nbsp;<code>slots</code></h2>
+        <pre><code class="language-markup">&lt!-- Modal Box template --&gt
+&lt;div class="modal"&gt;
+  &lt;div class="modal__title"&gt;
+    &lt;slot name="title"&gt;
+      Title
+    &lt;/slot&gt;
+  &lt;/div&gt;
+  &lt;div class="modal__text"&gt;
+    &lt;slot name="text"&gt;
+      Text
+    &lt;/slot&gt;
+  &lt;/div&gt;
+  &lt;button @click="close"&gt;Close&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+      </section>
+      <section>
+        <h2>Improving&nbsp;<code>slots</code> with&nbsp;<code>props</code></h2>
+        <pre><code class="language-markup bullet hide-bullet">&lt!-- Modal Box template --&gt
+&lt;slot name="title"&gt;
+  Title
+&lt;/slot&gt;</code><code class="language-markup bullet hide-bullet">&lt!-- Modal Box template --&gt
+&lt;slot name="title"&gt;
+  {{ title }}
+&lt;/slot&gt;
+</code></pre>
+      </section>
+      <section>
+        <h2>Improving&nbsp;<code>slots</code> with&nbsp;<code>props</code></h2>
+        <pre><code class="language-markup bullet">&lt;modal-box title="Title"&gt;
+&lt;/modal-box&gt;
+</code></pre>
+      </section>
+      <section>
+        <h2><code>props</code> for state</h2>
+        <pre><code class="language-markup bullet">&lt;contact-card :contact="contact"&gt;
+&lt;/contact-card&gt;</code></pre>
+        <div class="notes">
+          ex mdl-card
+          on en refait une en redefinisant les slots
+          reutilise en passant des props
+          
+        </div>
+      </section>
+      <section>
+        <h2>Computed vs Filters ❌</h2>
+        <pre><code class="language-markup bullet hide-bullet">&lt;li v-for="user in users | sortBy 'name'"&gt;
+  {{ user | json }}
+&lt;/li&gt;
+</code></pre>
+      </section>
+      <section>
+        <h2>Computed vs Filters ✅</h2>
+        <pre><code class="language-markup bullet">&lt;li v-for="user in filteredArray"&gt;
+  {{ user | json }}
+&lt;/li&gt;
+
+</code><code class="language-javascript bullet">computed: {
+  filteredArray () {
+    return _.sortBy(this.users, 'name')
+  }
+}
+</code></pre>
+      </section>
+      <section>
+        <h2>💭 Any questions❔</h2>
+      </section>
+    </article>
+    <script src="build/build.js"></script>
+  </body>
+</html>
