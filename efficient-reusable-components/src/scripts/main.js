@@ -9,6 +9,7 @@ var bespoke = require('bespoke'),
   hash = require('bespoke-hash'),
   substeps = require('bespoke-substeps/dom'),
   notes = require('bespoke-notes/dom'),
+  Vue = require('vue'),
   progress = require('bespoke-progress');
 require('../../../lib/stereo');
 
@@ -74,3 +75,44 @@ require('prismjs/components/prism-markup');
 require('prismjs/components/prism-jade');
 require('prismjs/components/prism-bash');
 require('prismjs/components/prism-git');
+
+(function() {
+  new Vue({
+    el: '#promises',
+    data: {
+      comp: 'base',
+      msg: 'Waiting'
+    },
+    methods: {
+      reset: function () {
+        this.comp = 'base'
+        this.msg = 'Waiting'
+      },
+      activateComp: function () {
+        this.msg = 'Waiting 1s'
+        this.comp = 'asyncComp'
+      },
+      promise: function () {
+        console.log('hey')
+        return new Promise(function (resolve) {
+          setTimeout(resolve, 1000)
+        })
+      }
+    },
+    components: {
+      base: {
+        template: '<p><slot></slot></p>'
+      },
+      asyncComp: {
+        template: '<p>Loaded</p>',
+        props: {
+          promise: Promise
+        },
+        activate: function (done) {
+          this.promise.then(done)
+        }
+      }
+    }
+  });
+
+})()

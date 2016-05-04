@@ -147,6 +147,17 @@ for s in screens
     filter: blur(2px)
     opacity(.3)
 
+.blur-bullet.bespoke-bullet-active:not(.bespoke-bullet-current)
+  filter: blur(2px)
+  opacity(.3)
+
+.strike-bullet.bespoke-bullet-active:not(.bespoke-bullet-current)
+  text-decoration: line-through
+
+.hide-bullet.bespoke-bullet-active:not(.bespoke-bullet-current),
+.hide-bullet.bespoke-bullet-inactive
+  display: none
+
 .overlap-700
   .under
     margin-top: 700px

@@ -48,6 +48,7 @@
     "opn": "^0.1.2",
     "prismjs": "^1.2.0",
     "through": "^2.3.4",
+    "vue": "^1.0.21",
     "webshot": "^0.16.0"
   },
   "dependencies": {

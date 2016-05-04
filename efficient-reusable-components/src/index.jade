@@ -92,21 +92,98 @@ html
         ul
           li Replicable 👐
           li Agnostic 🤖
-          li Configurable 🔧
+          li Configurable🔧
         .notes.
           certaines vont ensemble Cnf + Adap
 
-      section
-        pre
-          code.language-markup.
-            &lt;message-box v-bind:close="messageClose" &gt;
-            &lt;/message-box&gt;
+      section.big
+        h2 Replicable
+        ul
+          li Within a project:
+            span.bullet.hide-bullet  ½ 👐
+            span.bullet  🙂
+          li Anywhere: 😉
         .notes.
-          a ne pas fair
-          methode executé par le fils TODO analogie marrante a trouver
+          relatif au scope du component
+          replicable dans un projet -> reutilisable au sein
+          d'un meme projet
+          -> moyen reusable
+          ça veut pas dire que ce n'est pas bien
+          c'est peut être pragmatique de le faire
+
+      section.big
+        h2 Async data ⏳
+        ul.bullet
+          li
+            code activate
+            |  hook
+          li Manual in&nbsp;
+            code ready
+            |  hook
 
       section
+        h2 Async data ❌
         pre
+          code.language-markup.
+            &lt;async-comp&gt;&lt;/async-comp&gt;
+
+
+          code.language-javascript.
+            activate (done) {
+              this.$http.get('/data').then(response => {
+                // ...
+                done()
+              }, errorHandler)
+            }
+        .notes.
+          ok dans 1 projet
+          mais peut pas changer d'ou viennent les données
+
+      section
+        h2 Async data ✅
+        pre
+          code.language-markup.
+            &lt;async-comp :promise="dataPromise()"&gt;&lt;/async-comp&gt;
+
+
+          code.language-javascript.
+            methods: {
+              dataPromise () {
+                return new Promise((resolve, reject) => {
+                  // ...
+                })
+              }
+            }
+
+      section
+        h2 Async data ✅
+        pre
+          code.language-javascript.
+            props: {
+              promise: Promise
+            },
+            activate (done) {
+              this.promise.then(done)
+            }
+
+      section.big
+        h2 Parent communication 📤
+        ul.bullet
+          li
+            code sync
+            |  modifier
+          li
+            code v-model
+            |  in 2.0
+
+      section
+        h2 Parent communication ❌
+        pre
+          code.language-markup.
+            &lt;modal-box :close="messageClose" &gt;
+            &lt;/modal-box&gt;
+
+
           code.language-javascript.
             methods: {
               messageClose (response) {
@@ -114,35 +191,224 @@ html
                 else this.abort()
               }
             }
+        .notes.
+          a ne pas faire
+          methode executé par le fils TODO analogie marrante a trouver
 
       section
+        h2 Parent communication ✅
         pre
           code.language-markup.
-            &lt;message-box @close="messageClose" &gt;
-            &lt;/message-box&gt;
+            &lt;modal-box @close="messageClose" &gt;
+            &lt;/modal-box&gt;
 
-      section
-        p computed vs filters
 
-      section
-        h1 Reusable components
-
-      section
-        h2 Async Components
+          code.language-javascript.
+            // modal-box
+            this.$emit('close', info)
         .notes.
-          activate
+          envoi un event
+          fais ses modif a lui
+          event peut etre ignoré
+
+      section.big
+        h2 Commanding a Component 📥
+        ul.bullet
+          li
+            code props
+          li.blur-bullet.strike-bullet
+            code $broadcast
+          li
+            code $refs
+        .notes.
+          declancher actions
+          ex: l'affichage d'une modale
+
+      section.blur-bullets
+        h2 Commanding a Component ❌
+        span.bullet
+        pre
+          code.language-javascript.bullet.
+            props: {
+              show: Boolean
+            }
+
+          code.language-javascript.bullet.
+            watch: {
+              show () {
+                // ...
+              }
+            }
 
       section
-        h2 Vue Router
-        .notes.
-          c'est diff
+        h2 Commanding a Component ✅
+        span.bullet
+        pre
+          code.language-javascript.bullet.
+            // modal-box
+            methods: {
+              show () {
+                // ...
+              }
+            }
+
+          code.language-markup.bullet.
+            &lt;modal-box v-ref:modal&gt;&lt;/modal-box&gt;
+
+          code.language-javascript.bullet.
+            // Parent
+            this.$refs.modal.show()
+
+      +full('efficient.gif')
+        h1.shadow Efficient
+
+      section.big
+        h2 Efficient ⚡️
+        ul
+          li Fast to configure
+          li Fast to adapt
 
       section
-        h2 Vuex
-        h4 State management
+        h2.bullet Using&nbsp;
+          code slots
+        pre.bullet
+          code.language-markup.
+            &lt;modal-box&gt;
+              &lt;p&gt;Text&lt;/p&gt;
+            &lt;/modal-box&gt;
+
         .notes.
-          Quoi garder dans l'état global
-          Un component sans état?!
+          transclure du contenu du parent au fils
+          connu en ng
+          expliquer pour ceux qui connaissent pas
+          essentiel pour les components
+
+      section
+        h2
+          code slots
+        pre
+          code.language-markup.
+            &lt!-- Modal Box template --&gt
+            &lt;div class="modal"&gt;
+              &lt;slot&gt;&lt;/slot&gt;
+              &lt;button @click="close"&gt;Close&lt;/button&gt;
+            &lt;/div&gt;
+
+      section
+        h2 Default&nbsp;
+          code slots
+        pre
+          code.language-markup.
+            &lt!-- Modal Box template --&gt
+            &lt;div class="modal"&gt;
+              &lt;div class="modal__text"&gt;
+                &lt;slot&gt;
+                  Text
+                &lt;/slot&gt;
+              &lt;/div&gt;
+              &lt;button @click="close"&gt;Close&lt;/button&gt;
+            &lt;/div&gt;
+
+      section
+        h2 Using multiple&nbsp;
+          code slots
+          |  aka named&nbsp;
+          code slots
+        pre
+          code.language-markup.bullet.hide-bullet.
+            &lt;modal-box&gt;
+              &lt;h2&gt;Title&lt;/&gt;
+              &lt;p&gt;Text&lt;/p&gt;
+            &lt;/modal-box&gt;
+          code.language-markup.bullet.hide-bullet.
+            &lt;modal-box&gt;
+              &lt;h2 slot="title"&gt;Title&lt;/&gt;
+              &lt;p slot="text"&gt;Text&lt;/p&gt;
+            &lt;/modal-box&gt;
+
+      section.more-space
+        h2 Default&nbsp;
+          code slots
+        pre
+          code.language-markup.
+            &lt!-- Modal Box template --&gt
+            &lt;div class="modal"&gt;
+              &lt;div class="modal__title"&gt;
+                &lt;slot name="title"&gt;
+                  Title
+                &lt;/slot&gt;
+              &lt;/div&gt;
+              &lt;div class="modal__text"&gt;
+                &lt;slot name="text"&gt;
+                  Text
+                &lt;/slot&gt;
+              &lt;/div&gt;
+              &lt;button @click="close"&gt;Close&lt;/button&gt;
+            &lt;/div&gt;
+
+      section
+        h2 Improving&nbsp;
+          code slots
+          |  with&nbsp;
+          code props
+        pre
+          code.language-markup.bullet.hide-bullet.
+            &lt!-- Modal Box template --&gt
+            &lt;slot name="title"&gt;
+              Title
+            &lt;/slot&gt;
+          code.language-markup.bullet.hide-bullet.
+            &lt!-- Modal Box template --&gt
+            &lt;slot name="title"&gt;
+              {{ title }}
+            &lt;/slot&gt;
+
+      section
+        h2 Improving&nbsp;
+          code slots
+          |  with&nbsp;
+          code props
+        pre
+          code.language-markup.bullet.
+            &lt;modal-box title="Title"&gt;
+            &lt;/modal-box&gt;
+
+      section
+        h2
+          code props
+          |  for state
+        pre
+          code.language-markup.bullet.
+            &lt;contact-card :contact="contact"&gt;
+            &lt;/contact-card&gt;
+        .notes.
+          ex mdl-card
+          on en refait une en redefinisant les slots
+          reutilise en passant des props
+
+      section
+        h2 Computed vs Filters ❌
+        pre
+          code.language-markup.bullet.hide-bullet.
+            &lt;li v-for="user in users | sortBy 'name'"&gt;
+              {{ user | json }}
+            &lt;/li&gt;
+
+      section
+        h2 Computed vs Filters ✅
+        pre
+          code.language-markup.bullet.
+            &lt;li v-for="user in filteredArray"&gt;
+              {{ user | json }}
+            &lt;/li&gt;
+
+
+          code.language-javascript.bullet.
+            computed: {
+              filteredArray () {
+                return _.sortBy(this.users, 'name')
+              }
+            }
 
       section
         h2 💭 Any questions❔
