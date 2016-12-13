@@ -15,131 +15,145 @@ html
 
     article
       +section('dvorak-typwriter.jpg')
-        h1 Dvorak, un an après
+        h1 Dvorak, one year later
         .notes.
-          il y a un an, changé clavier, enfin de layout
-          Je tapais toujours sur le meme clavier physique
-          mais les touches n'étaient pas interprétés de
-          la meme façon par l'ordinateur
+          Bonjour à tous, aujourd'hui je vais vous faire un retour d'expérience
+          sur l'apprentissage d'un layout de clavier
 
       section
-        h4 Programmer Dvorak
-        img(src='images/kb-prog-dvorak.png')
-        .notes.
-          A priori ça parait vraiment stupide
-          C'est vraiment envie de se compliquer la vie
-          pour rien. Pourquoi réapprendre
-          mais ça a ses avantages et la preuve c'est
-          que je suis bien resté sur ce clavier un an après
-          et je n'ai aucune intention de revenir sur
-          qwerty
-          pourquoi dvorak: opti des touches
-
-      +full('typewriter.jpg')
-        .notes.
-          1889: patent
-          1930: dvorak
-          Pour l'anglais
+        .row.flex-align-center
+          .even
+            img.circle(src='https://avatars0.githubusercontent.com/u/664177?v=3&s=460')
+          .even.text-left
+            h2 Eduardo
+            h2 Freelance web apps
+            h2
+              a(href='https://twitter.com/posva' target='-blank')
+                span @posva
 
       section
-        h4 QWERTY Espagnol
+        h4 Spanish QWERTY
         img(src='images/kb-spanish.jpg')
-        .notes.
-          Arrive en fr et boum, azerty.
-          faute classique lettre q et a
-          je regarde le clavier pour les lettres
-          c'est psychologique
 
       section
-        h4 QWERTY
+        h4 US QWERTY
         img(src='images/kb-us.jpg')
         .notes.
           regarde qwerty americain
           mieux pour coder
-          je sais que parmis les dev il y en a
-          qui sont passés sur qwerty et qui en
-          sont bien content
-          le prob pas d'accents car en anglais, qui
-          est une langue simple, il n'y a pas d'accents
-
-      section
-        h4 QWERTY International
-        img(src='images/kb-international-us.jpg')
-        .notes.
-          Il y a aussi des bizdevs qui font du qwerty
-          International. Permet de faire des accents
-          le changement est minimal entre ces claviers
-          mais je suis encore concerné par
+          pas d'accents
 
       +full('slow-typing.gif')
-        h4.backhighlight 35 wpm
+        h4.backhighlight 35 WPM
+
+      +full('wrist.jpg')
+
+      +full('not-sure.gif')
         .notes.
-          c'est ridicule, c'est minable
+          qqchose ne va pas
 
       +full('accident.gif')
         h4.backhighlight
-          | Les RSI
+          | RSI
           small (Repetitive Strain Injuries)
         .notes.
           ETQDev cela me préocupe car mes mains
           sont mon outil le plus important
+          consequences tres graves
+          mais +sieurs facons d'y remedier
+
+      +full('cat-typing.gif')
+        h4.backhighlight Touch typing
+
+      +full('touch-typing.jpg')
+        .notes.
+          1888 Frank Edward McGurrin
+
+      section
+        img(src='images/sholes.jpg')
+        h4.bullet Christopher Latham Sholes
+        h5.bullet 1873: QWERTY
+
+      +full('typewriter.jpg')
+        .notes.
+          1930: dvorak
+          Pour l'anglais
+
+      section
+        img(src='images/august-dvorak.jpg')
+        h4.bullet August Dvorak
+        h5.bullet 1932: Simplified Dvorak
+        .notes.
+          apres 1936 etudes biaises -> myth + rapide
+
+      section
+        h4 Simplified Dvorak
+        img(src='images/kb-dvorak.png')
 
       section
         img(src='images/dvorak-vs-qwerty.jpg')
         .notes.
-          je pourrais vous montrer des graphes qui montrent
-          les diff stats entre distance parcourues par les
-          doigt. Pour moi, le graphe qui me parle le plus
-          c'est la heatmap
-
-      +full('magic-keyboard.jpg')
-        h4.backhighlight Thin keyboard + high wpm = RSI
-
-      +full('not-sure.gif')
+          optimisé la fréquence de tape sur la home row
+          minimum sur low row
 
       section
-        ul
-          li Réduire le risque de RSI
-          li Augmenter ma vitesse de frappe
-          li Fatiguer moins mes mains
+        h4 Ergonomic Keyboard
+        img(src='images/kb-ergo-2.jpg')
 
-      +full('cat-typing.gif')
-        h4.backhighlight Touch typing
-        .notes.
-          occas apprndr qqchose de nouveau
-
-      +full('touch-typing.jpg')
-        .notes.
-          je tente pendant un temps
-          sans changer de clavier
-
-      +section('lesson-1.png')
-        h4.bullet Faire un Typing Tutor
-        ul
-          li Tous les jours
-          li Sans regarder le clavier
-          li Faire le moins d'erreurs possibles
-        .notes.
-          moins d'erreur car memoire motrice
+      section
+        h4 Ergonomic Keyboard
+        img(src='images/kb-ergo.jpg')
 
       +full('mechanical-keyboards.gif')
         h4.backhighlight Mechanical keyboards
 
       section
-        h4 Plus long parcours du doigt
-        img(src='images/cherry-brown.gif')
+        h4.bullet Mechanichal switches
+        .flex
+          img.bullet(src='images/cherry-blue.gif')
+          img(src='images/cherry-brown.gif')
+          img.bullet(src='images/cherry-red.gif')
+        .notes.
+          le feedback est ++ qu'un clavier de membrane
+          plus facile de savoir combien de force appliquer
+
+      +full('not-sure.gif')
+
+      section
+        ul
+          li 🚑 Reduce RSI risk
+          li 🐎 Improve my WPM
+          li ⌨️ Type more!
+
+      +section('lesson-1.png')
+        h4.bullet Use a Typing Tutor
+        ul
+          li 📅 Everyday
+          li 🙈 Don't look at your fingers
+          li 💯 Avoid mistakes
+        .notes.
+          moins d'erreur car memoire motrice
+
+      section
+        h4 Programmer Dvorak
+        img(src='images/kb-prog-dvorak.png')
+        .notes.
+          je dev, donc mieux pour moi ce clavier
 
       +section('personal-kb.jpg')
-        h2 Mon expérience
+        h2 My experience
         ul.bullet
-          li Imprimmé le layout
-          li Appris en un mois
-          li Doublé ma vitesse après 3 mois
-          li Je continue à l'augmenter aujourd'hui
+          li 📄 Printed the layout
+          li 📖 Learnt in 1 month
+          li 📈 WPM x2 2 months later
+          li 😎 Still improving today
         .notes.
           grace au touch typing j'avais la meme vitess
           a peu pres 1 mois et 1 semaine apres
           il y a dautres. Parmis eux, colemak
+
+      section
+        h2 😄 Happy with it
 
       section
         h4 Colemak
@@ -147,8 +161,21 @@ html
         .notes.
           Temps apprentissage plus court
 
-      +full('personal-kb.jpg')
+      section
+        h2 🙏 Touch typing is a must
+        .notes.
+          en tout cas je conseille absolument d'apprendre
+          le touch typing
+
+      +full('wrist-pad.png')
+        h4.backhighlight Wrist pad
+
+
+      +full('end-cat.gif')
         span
         h4.backhighlight.bullet Merci !
+
+      section
+        h2 ❓ Questions
 
     script(src='build/build.js')
