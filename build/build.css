@@ -454,6 +454,20 @@ section.full-text::before {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
   filter: alpha(opacity=30);
 }
+.blur-bullet.bespoke-bullet-active:not(.bespoke-bullet-current) {
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
+  opacity: 0.3;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+  filter: alpha(opacity=30);
+}
+.strike-bullet.bespoke-bullet-active:not(.bespoke-bullet-current) {
+  text-decoration: line-through;
+}
+.hide-bullet.bespoke-bullet-active:not(.bespoke-bullet-current),
+.hide-bullet.bespoke-bullet-inactive {
+  display: none;
+}
 .overlap-700 .under {
   margin-top: 700px;
 }
@@ -493,6 +507,9 @@ img.icon {
 }
 .circle {
   border-radius: 50%;
+}
+section.big {
+  font-size: 2em;
 }
 html {
   font-size: 62.5%;
